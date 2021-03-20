@@ -115,7 +115,7 @@
                     tools:targetApi="lollipop" />
 
                 <Button
-                    android:id="@+id/boton_configurar_tablero"
+                    android:id="@+id/boton_configurar_perfil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"

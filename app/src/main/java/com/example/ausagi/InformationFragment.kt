@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.databinding.FragmentInformationBinding
+import kotlinx.android.synthetic.main.fragment_information.*
 
 class InformationFragment : Fragment() {
 
@@ -20,12 +22,22 @@ class InformationFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
+            inflater: LayoutInflater,
+            container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+
         _binding = FragmentInformationBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
+
+    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+
+        boton_configurar_perfil.setOnClickListener {
+            val action = InformationFragmentDirections.actionInformationFragmentToConfigurationFragment()
+            findNavController().navigate(action)
+        }
+    }
+
 
 }
