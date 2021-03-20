@@ -3,7 +3,6 @@
     <string name="text_instrucciones">Instrucciones</string>
     <string name="text_configuracion">Configuración del perfil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="text_create_profile">Crear un perfil</string>
     <string name="add">Añadir foto</string>
     <string name="text_button_new_profile">Nuevo perfil</string>
     <string name="text_input_name">Nombre</string>
@@ -23,5 +22,6 @@
     <string name="text_nombre_perfil">Mariano</string>
     <string name="text_nivel">Nivel 1</string>
     <string name="text_comentarios">Me tranquiliza la canción waka waka. En caso de emergencia llamar a mi padre Juan: 6593849</string>
+    <string name="text_info">Información de perfil</string>
 
 </resources>

@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.ausagi.HomeFragment"
-        android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_informationFragment"
@@ -23,22 +22,22 @@
     <fragment
         android:id="@+id/createProfileFragment"
         android:name="com.example.ausagi.CreateProfileFragment"
-        android:label="fragment_create_profile"
+        android:label="@string/text_button_new_profile"
         tools:layout="@layout/fragment_create_profile" />
     <fragment
         android:id="@+id/configurationFragment"
         android:name="com.example.ausagi.ConfigurationFragment"
-        android:label="fragment_configuration"
+        android:label="@string/text_configuracion"
         tools:layout="@layout/fragment_configuration" />
     <fragment
         android:id="@+id/instructionsFragment"
         android:name="com.example.ausagi.InstructionsFragment"
-        android:label="fragment_instructions"
+        android:label="@string/text_instrucciones"
         tools:layout="@layout/fragment_instructions" />
     <fragment
         android:id="@+id/informationFragment"
         android:name="com.example.ausagi.InformationFragment"
-        android:label="fragment_information"
+        android:label="@string/text_info"
         tools:layout="@layout/fragment_information" >
         <action
             android:id="@+id/action_informationFragment_to_configurationFragment"
