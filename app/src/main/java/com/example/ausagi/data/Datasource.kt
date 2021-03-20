@@ -9,8 +9,7 @@ class Datasource {
     fun loadProfiles(): MutableList<Profile> {
         return mutableListOf<Profile>(
             Profile(R.drawable.kid1),
-            Profile(R.drawable.kid2),
-            Profile(R.drawable.kid3)
+            Profile(R.drawable.kid2)
         )
     }
 }
