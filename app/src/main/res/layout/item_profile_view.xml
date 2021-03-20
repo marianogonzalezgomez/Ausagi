@@ -52,6 +52,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        tools:ignore="ContentDescription"
         tools:targetApi="lollipop"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
