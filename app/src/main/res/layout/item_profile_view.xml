@@ -45,7 +45,7 @@
         android:layout_width="@dimen/lista_botones_config_circulos"
         android:layout_height="@dimen/lista_botones_config_circulos"
         android:layout_alignTop="@+id/frameLayout"
-        android:layout_marginStart="@dimen/margen_normal"
+        android:layout_marginStart="@dimen/margen_peque"
         android:background="@drawable/rounded_corner"
         android:elevation="@dimen/elevacion"
         android:src="@drawable/ic_baseline_more_horiz_24"
