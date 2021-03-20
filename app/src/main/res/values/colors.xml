@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Blue_Main">#95C8D3</color>
+    <color name="Blue_Light">#ABD4DD</color>
+    <color name="Blue_Dark">#58A5B6</color>
+    <color name="Blue_Title">#C9F5FF</color>
+    <color name="black">#00323f</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

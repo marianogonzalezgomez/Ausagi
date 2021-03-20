@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HomeFragment">
+
+    <data>
+        <variable
+            name="HomeFragment"
+            type="com.example.ausagi.HomeFragment" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/Blue_Main"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/app_name"
+                    android:textColor="@color/Blue_Title"
+                    android:textSize="@dimen/titulo_1"
+                    android:layout_marginTop="@dimen/margen_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/lista_circulos"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margen_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:listitem="@layout/item_profile_view" />
+
+                <Button
+                    android:id="@+id/boton_instrucciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margen_grande"
+                    android:layout_marginEnd="@dimen/margen_grande"
+                    android:layout_marginStart="@dimen/margen_grande"
+                    android:elevation="@dimen/elevacion"
+                    android:text="@string/text_instrucciones"
+                    android:textColor="@color/black"
+                    app:cornerRadius="@dimen/radio_boton"
+                    app:iconTint="@color/Blue_Light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+                    tools:targetApi="lollipop" />
+
+                <Button
+                    android:id="@+id/boton_nuevo_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/margen_grande"
+                    android:layout_marginTop="@dimen/margen_peque"
+                    android:layout_marginEnd="@dimen/margen_grande"
+                    android:elevation="@dimen/elevacion"
+                    android:text="@string/text_button_new_profile"
+                    android:textColor="@color/black"
+                    app:cornerRadius="@dimen/radio_boton"
+                    app:iconTint="@color/Blue_Light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/boton_instrucciones"
+                    tools:targetApi="lollipop" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CreateProfileFragment">
+
+    <data>
+        <variable
+            name="CreateProfileFragment"
+            type="com.example.ausagi.CreateProfileFragment" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/Blue_Main"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="@dimen/circulo_foto"
+                    android:layout_height="@dimen/circulo_foto"
+                    android:layout_marginTop="@dimen/margen_grande"
+                    android:background="@drawable/circle"
+                    android:text="@string/add"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/titulo_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    style="@style/AppTheme.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_normal"
+                    android:layout_marginEnd="@dimen/margen_normal"
+                    android:layout_marginStart="@dimen/margen_normal"
+                    android:hint="@string/text_input_name"
+                    android:textColor="@color/black"
+                    app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
+                    app:boxCornerRadiusBottomStart="@dimen/radio_boton"
+                    app:boxCornerRadiusTopEnd="@dimen/radio_boton"
+                    app:boxCornerRadiusTopStart="@dimen/radio_boton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/titulo_elegirnivel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_normal"
+                    android:text="@string/elige_un_nivel"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/titulo_2"
+                    app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_peque"
+                    app:layout_constraintStart_toStartOf="@+id/titulo_elegirnivel"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo_elegirnivel">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonN1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/Blue_Title"
+                        android:checked="true"
+                        android:text="@string/nivel_1_pictogramas"
+                        android:textColor="@color/black"
+                        tools:targetApi="lollipop" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonN2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/Blue_Title"
+                        android:checked="false"
+                        android:text="@string/nivel_2_pictogramas"
+                        android:textColor="@color/black"
+                        tools:targetApi="lollipop" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonN3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/Blue_Title"
+                        android:checked="false"
+                        android:text="@string/nivel_3_pictogramas"
+                        android:textColor="@color/black"
+                        tools:targetApi="lollipop" />
+                </RadioGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout3"
+                    style="@style/AppTheme.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/comentarios"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/margen_normal"
+                    android:layout_marginEnd="@dimen/margen_normal"
+                    android:layout_marginStart="@dimen/margen_normal"
+                    app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
+                    app:boxCornerRadiusBottomStart="@dimen/radio_boton"
+                    app:boxCornerRadiusTopEnd="@dimen/radio_boton"
+                    app:boxCornerRadiusTopStart="@dimen/radio_boton"
+                    app:layout_constraintStart_toStartOf="@+id/radioGroup"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:maxLength="200"
+                        android:maxLines="5"
+                        android:textColor="@color/black"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/titulo_elegirpaleta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/elige_paleta"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/titulo_2"
+                    android:layout_marginTop="@dimen/margen_normal"
+                    app:layout_constraintStart_toStartOf="@+id/radioGroup"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_peque"
+                    app:layout_constraintStart_toStartOf="@+id/titulo_elegirpaleta"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo_elegirpaleta">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonAzul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/Blue_Title"
+                        android:checked="true"
+                        android:text="@string/text_azul"
+                        android:textColor="@color/black"
+                        tools:targetApi="lollipop" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonRojo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/Blue_Title"
+                        android:checked="false"
+                        android:text="@string/text_rojo"
+                        android:textColor="@color/black"
+                        tools:targetApi="lollipop" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonVerde"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/Blue_Title"
+                        android:checked="false"
+                        android:text="@string/text_verde"
+                        android:textColor="@color/black"
+                        tools:targetApi="lollipop" />
+                </RadioGroup>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_horizontal"
+                    android:text="@string/texto_boton_hecho"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

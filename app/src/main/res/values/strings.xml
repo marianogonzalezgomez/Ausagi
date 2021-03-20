@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Ausagi</string>
+    <string name="text_instrucciones">Instrucciones</string>
+    <string name="text_configuracion">Configuración del perfil</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_create_profile">Crear un perfil</string>
+    <string name="add">Añadir foto</string>
+    <string name="text_button_new_profile">Nuevo perfil</string>
+    <string name="text_input_name">Nombre</string>
+    <string name="elige_un_nivel">Elige un nivel</string>
+    <string name="nivel_1_pictogramas">Nivel 1: Pictogramas</string>
+    <string name="nivel_2_pictogramas">Nivel 2: Pictogramas + Categorías</string>
+    <string name="nivel_3_pictogramas">Nivel 3: Pictogramas + Categorías + Rutinas</string>
+    <string name="comentarios">Comentarios</string>
+    <string name="texto_boton_hecho">¡Hecho!</string>
+    <string name="text_contenido_instrucciones">Ausagi es una aplicación de ayuda a la comunicación para niños dentro del espectro autista.</string>
+    <string name="elige_paleta">Elige una paleta de colores</string>
+    <string name="text_azul">Azul</string>
+    <string name="text_rojo">Rojo</string>
+    <string name="text_verde">Verde</string>
+    <string name="modify">Modificar foto</string>
+    <string name="text_configurar_tablero">Configurar tablero</string>
+    <string name="text_nombre_perfil">Mariano</string>
+    <string name="text_nivel">Nivel 1</string>
+    <string name="text_comentarios">Me tranquiliza la canción waka waka. En caso de emergencia llamar a mi padre Juan: 6593849</string>
+
+</resources>
