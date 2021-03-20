@@ -4,8 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ausagi.HomeFragmentDirections
 import com.example.ausagi.R
 import com.example.ausagi.model.Profile
 
@@ -20,6 +23,7 @@ class ItemProfileAdapter(
     // Each data item is just an Affirmation object.
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.imageViewFace)
+        val imageButton: ImageButton = view.findViewById(R.id.boton_masinfo)
     }
 
 
@@ -39,7 +43,18 @@ class ItemProfileAdapter(
      */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
+
         holder.imageView.setImageResource(item.imageResourceId)
+        holder.imageButton.setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeFragmentToInformationFragment()
+            holder.itemView.findNavController().navigate(action)
+        }
+      /**  Para cuando nos podamos meter en el tablero de cada niño pero con la info que corresponda
+
+        holder.imageView.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToInformationFragment()
+            holder.itemView.findNavController().navigate(action)
+        }**/
     }
 
 

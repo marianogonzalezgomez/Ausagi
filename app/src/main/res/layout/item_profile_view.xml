@@ -41,7 +41,7 @@
         tools:targetApi="lollipop" />
 
     <ImageButton
-        android:id="@+id/searchGroupButton"
+        android:id="@+id/boton_masinfo"
         android:layout_width="@dimen/lista_botones_config_circulos"
         android:layout_height="@dimen/lista_botones_config_circulos"
         android:layout_alignTop="@+id/frameLayout"
