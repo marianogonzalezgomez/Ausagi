@@ -15,5 +15,6 @@
     <dimen name="titulo_1_1">36sp</dimen>
     <dimen name="titulo_2">18sp</dimen>
     <dimen name="titulo_3">14sp</dimen>
+    <dimen name="elevacion_corta">2dp</dimen>
 
 </resources>

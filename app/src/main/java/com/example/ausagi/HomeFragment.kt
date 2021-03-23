@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,9 +24,9 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -36,6 +37,8 @@ class HomeFragment : Fragment() {
 
         val recyclerView = binding.recyclerView
         val myDataset = Datasource().loadProfiles()
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -52,6 +55,7 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToCreateProfileFragment()
             findNavController().navigate(action)
         }
+
 
        //El listener del boton_masinfo está en el adapter de cada perfil que se muestra en home
 

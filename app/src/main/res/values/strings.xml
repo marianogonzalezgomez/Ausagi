@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Ausagi</string>
     <string name="text_instrucciones">Instrucciones</string>
     <string name="text_configuracion">Configuración del perfil</string>
@@ -15,13 +15,13 @@
     <string name="text_contenido_instrucciones">Ausagi es una aplicación de ayuda a la comunicación para niños dentro del espectro autista.</string>
     <string name="elige_paleta">Elige una paleta de colores</string>
     <string name="text_azul">Azul</string>
-    <string name="text_rojo">Rojo</string>
+    <string name="text_marron">Marrón</string>
     <string name="text_verde">Verde</string>
     <string name="modify">Modificar foto</string>
     <string name="text_configurar_tablero">Configurar tablero</string>
     <string name="text_nombre_perfil">Mariano</string>
     <string name="text_nivel">Nivel 1</string>
-    <string name="text_comentarios">Me tranquiliza la canción waka waka. En caso de emergencia llamar a mi padre Juan: 6593849</string>
+    <string name="text_comentarios" tools:ignore="Typos">Me tranquiliza la canción waka waka. En caso de emergencia llamar a mi padre Juan: 6593849</string>
     <string name="text_info">Información de perfil</string>
 
 </resources>
