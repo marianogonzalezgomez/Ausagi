@@ -26,7 +26,7 @@ class InformationFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentInformationBinding.inflate(inflater, container, false)
         return binding.root
