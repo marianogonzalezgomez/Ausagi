@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="White_Main">#e0e0e0</color>
+    <color name="White_Light">#ffffff</color>
+    <color name="White_Dark">#aeaeae</color>
+    <color name="White_Title">#212121</color>
+    <color name="black_wh">#212121</color>
+
     <color name="Blue_Main">#95C8D3</color>
     <color name="Blue_Light">#ABD4DD</color>
     <color name="Blue_Dark">#58A5B6</color>
     <color name="Blue_Title">#C9F5FF</color>
     <color name="black">#00323f</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="Brown_Main">#a1887f</color>
+    <color name="Brown_Light">#d3b8ae</color>
+    <color name="Brown_Dark">#725b53</color>
+    <color name="Brown_Title">#d7ccc8</color>
+    <color name="black_br">#321911</color>
+
+    <color name="Green_Main">#c5e1a5</color>
+    <color name="Green_Light">#f8ffd7</color>
+    <color name="Green_Dark">#94af76</color>
+    <color name="Green_Title">#f1f8e9</color>
+    <color name="black_gr">#387002</color>
 </resources>

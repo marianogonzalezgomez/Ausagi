@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Referencias para cambiar los colores-->
+    <attr name="statusBarColor" format="reference" />
+</resources>

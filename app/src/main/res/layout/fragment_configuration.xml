@@ -14,7 +14,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="@color/Blue_Main"
+        android:background="?attr/colorSecondary"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -34,7 +34,7 @@
                     android:layout_marginTop="@dimen/margen_grande"
                     android:background="@drawable/circle"
                     android:text="@string/modify"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
                     android:layout_marginEnd="@dimen/margen_normal"
                     android:layout_marginStart="@dimen/margen_normal"
                     android:hint="@string/text_input_name"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
                     app:boxCornerRadiusBottomStart="@dimen/radio_boton"
                     app:boxCornerRadiusTopEnd="@dimen/radio_boton"
@@ -64,7 +64,7 @@
                         android:inputType="text"
                         android:maxLength="20"
                         android:maxLines="1"
-                        android:textColor="@color/black" />
+                        android:textColor="?attr/colorOnSecondary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margen_normal"
                     android:text="@string/elige_un_nivel"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
                     app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
@@ -90,30 +90,30 @@
                         android:id="@+id/radioButtonN1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/Blue_Title"
+                        android:buttonTint="?attr/titleTextColor"
                         android:checked="true"
                         android:text="@string/nivel_1_pictogramas"
-                        android:textColor="@color/black"
+                        android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
 
                     <RadioButton
                         android:id="@+id/radioButtonN2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/Blue_Title"
+                        android:buttonTint="?attr/titleTextColor"
                         android:checked="false"
                         android:text="@string/nivel_2_pictogramas"
-                        android:textColor="@color/black"
+                        android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
 
                     <RadioButton
                         android:id="@+id/radioButtonN3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/Blue_Title"
+                        android:buttonTint="?attr/titleTextColor"
                         android:checked="false"
                         android:text="@string/nivel_3_pictogramas"
-                        android:textColor="@color/black"
+                        android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
                 </RadioGroup>
 
@@ -123,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/comentarios"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:layout_marginTop="@dimen/margen_normal"
                     android:layout_marginEnd="@dimen/margen_normal"
                     android:layout_marginStart="@dimen/margen_normal"
@@ -142,7 +142,7 @@
                         android:lines="3"
                         android:maxLength="200"
                         android:maxLines="5"
-                        android:textColor="@color/black"/>
+                        android:textColor="?attr/colorOnSecondary"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -150,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/elige_paleta"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
                     android:layout_marginTop="@dimen/margen_normal"
                     app:layout_constraintStart_toStartOf="@+id/radioGroup"
@@ -168,30 +168,30 @@
                         android:id="@+id/radioButtonAzul"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/Blue_Title"
+                        android:buttonTint="?attr/titleTextColor"
                         android:checked="true"
                         android:text="@string/text_azul"
-                        android:textColor="@color/black"
+                        android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
 
                     <RadioButton
-                        android:id="@+id/radioButtonRojo"
+                        android:id="@+id/radioButtonMarron"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/Blue_Title"
+                        android:buttonTint="?attr/titleTextColor"
                         android:checked="false"
                         android:text="@string/text_marron"
-                        android:textColor="@color/black"
+                        android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
 
                     <RadioButton
                         android:id="@+id/radioButtonVerde"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/Blue_Title"
+                        android:buttonTint="?attr/titleTextColor"
                         android:checked="false"
                         android:text="@string/text_verde"
-                        android:textColor="@color/black"
+                        android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
                 </RadioGroup>
 
@@ -205,9 +205,9 @@
                     android:layout_marginTop="@dimen/margen_normal"
                     android:elevation="@dimen/elevacion"
                     android:text="@string/text_configurar_tablero"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     app:cornerRadius="@dimen/radio_boton"
-                    app:iconTint="@color/Blue_Light"
+                    app:iconTint="?attr/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/radioGroup2"
@@ -220,7 +220,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="center_horizontal"
                     android:text="@string/texto_boton_hecho"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:layout_marginTop="@dimen/margen_normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

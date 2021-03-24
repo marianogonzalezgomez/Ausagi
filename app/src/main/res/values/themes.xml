@@ -1,6 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Ausagi" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+    <!-- White application theme. DEFAULT -->
+    <style name="Theme.Ausagi_White" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/White_Light</item>
+        <item name="colorPrimaryVariant">@color/White_Dark</item>
+        <item name="colorOnPrimary">@color/black_wh</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/White_Main</item>
+        <item name="colorSecondaryVariant">@color/White_Light</item>
+        <item name="colorOnSecondary">@color/black_wh</item>
+        <!-- Status bar color. -->
+        <item name="statusBarColor" tools:targetApi="l">@color/White_Dark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <!-- Customize your theme here. -->
+        <item name="titleTextColor">@color/White_Title</item>
+</style>
+
+    <!-- Blue application theme. -->
+    <style name="Theme.Ausagi_Blue" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/Blue_Light</item>
         <item name="colorPrimaryVariant">@color/Blue_Dark</item>
@@ -10,7 +28,43 @@
         <item name="colorSecondaryVariant">@color/Blue_Light</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="statusBarColor" tools:targetApi="l">@color/Blue_Dark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <!-- Customize your theme here. -->
+        <item name="titleTextColor">@color/Blue_Title</item>
+    </style>
+
+    <!-- Brown application theme. -->
+    <style name="Theme.Ausagi_Brown" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/Brown_Light</item>
+        <item name="colorPrimaryVariant">@color/Brown_Dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/Brown_Main</item>
+        <item name="colorSecondaryVariant">@color/Brown_Light</item>
+        <item name="colorOnSecondary">@color/black_br</item>
+        <!-- Status bar color. -->
+        <item name="statusBarColor" tools:targetApi="l">@color/Brown_Dark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <!-- Customize your theme here. -->
+        <item name="titleTextColor">@color/Brown_Title</item>
+    </style>
+
+    <!-- Green application theme. -->
+    <style name="Theme.Ausagi_Green" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/Green_Light</item>
+        <item name="colorPrimaryVariant">@color/Green_Dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/Green_Main</item>
+        <item name="colorSecondaryVariant">@color/Green_Light</item>
+        <item name="colorOnSecondary">@color/black_gr</item>
+        <!-- Status bar color. -->
+        <item name="statusBarColor" tools:targetApi="l">@color/Green_Dark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <!-- Customize your theme here. -->
+        <item name="titleTextColor">@color/Green_Title</item>
     </style>
 </resources>

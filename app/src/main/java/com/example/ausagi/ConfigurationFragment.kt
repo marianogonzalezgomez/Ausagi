@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.databinding.FragmentConfigurationBinding
 
+
 class ConfigurationFragment : Fragment() {
 
     private var _binding: FragmentConfigurationBinding? = null
@@ -17,21 +18,21 @@ class ConfigurationFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
+
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentConfigurationBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
-
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
 
     }

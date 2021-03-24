@@ -4,11 +4,11 @@
         <!-- línea inferior -->
         <item name="boxStrokeColor">@android:color/transparent</item>
         <!-- el color de relleno, (por defecto es colorOnSurface)-->
-        <item name="boxBackgroundColor">@color/Blue_Light</item>
+        <item name="boxBackgroundColor">?attr/colorPrimary</item>
         <!-- el hint cuando el campo está vacio y sin foco-->
-        <item name="android:textColorHint">@color/Blue_Dark</item>
+        <item name="android:textColorHint">?attr/colorPrimaryVariant</item>
         <!-- el hint cuando se convierte en etiqueta flotante-->
-        <item name="hintTextColor">@color/black</item>
+        <item name="hintTextColor">?attr/colorOnSecondary</item>
     </style>
 
     <style name="circleImageViewStyle" >

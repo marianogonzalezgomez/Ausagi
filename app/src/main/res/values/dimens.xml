@@ -2,7 +2,7 @@
 <resources>
     <dimen name="circulo_foto">180dp</dimen>
     <dimen name="circulo_contenedor_foto">200dp</dimen>
-    <dimen name="lista_circulos">370dp</dimen>
+    <dimen name="lista_circulos">390dp</dimen>
     <dimen name="lista_botones_config_circulos">50dp</dimen>
     <dimen name="margen_muy_grande">72dp</dimen>
     <dimen name="margen_grande">36dp</dimen>

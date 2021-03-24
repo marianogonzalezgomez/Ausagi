@@ -14,7 +14,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="@color/Blue_Main"
+        android:background="?attr/colorSecondary"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -66,9 +66,9 @@
                     android:elevation="@dimen/elevacion"
                     android:padding="@dimen/margen_peque_2"
                     android:text="@string/text_nombre_perfil"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    app:iconTint="@color/Blue_Light"
+                    app:iconTint="?attr/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/frameLayout"
@@ -85,9 +85,9 @@
                     android:elevation="@dimen/elevacion"
                     android:padding="@dimen/margen_peque_2"
                     android:text="@string/text_nivel"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    app:iconTint="@color/Blue_Light"
+                    app:iconTint="?attr/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nombre_textview"
@@ -105,10 +105,10 @@
                     android:elevation="@dimen/elevacion"
                     android:padding="@dimen/margen_peque_2"
                     android:text="@string/text_comentarios"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
                     android:gravity="start|center"
-                    app:iconTint="@color/Blue_Light"
+                    app:iconTint="?attr/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nivel_textview"
@@ -124,17 +124,14 @@
                     android:layout_marginStart="@dimen/margen_grande"
                     android:elevation="@dimen/elevacion"
                     android:text="@string/text_configuracion"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     app:cornerRadius="@dimen/radio_boton"
-                    app:iconTint="@color/Blue_Light"
+                    app:iconTint="?attr/colorSecondaryVariant"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/informacion_textview"
                     tools:targetApi="lollipop" />
-
-
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
