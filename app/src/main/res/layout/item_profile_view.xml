@@ -37,7 +37,6 @@
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:shapeAppearanceOverlay="@style/circleImageViewStyle"
-        app:srcCompat="@drawable/kid1"
         tools:targetApi="lollipop" />
 
     <ImageButton

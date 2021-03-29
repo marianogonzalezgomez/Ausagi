@@ -7,7 +7,10 @@
 
     <data>
         <variable
-            name="HomeFragment"
+            name="viewModel"
+            type="com.example.ausagi.model.ProfileViewModel" />
+        <variable
+            name="InformationFragment"
             type="com.example.ausagi.InformationFragment" />
     </data>
 
@@ -41,7 +44,7 @@
                     tools:targetApi="lollipop" />
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/espacio_informacion_foto"
                     android:layout_width="@dimen/circulo_foto"
                     android:layout_height="@dimen/circulo_foto"
                     android:layout_gravity="center"
@@ -52,7 +55,6 @@
                     app:layout_constraintStart_toStartOf="@+id/frameLayout"
                     app:layout_constraintTop_toTopOf="@+id/frameLayout"
                     app:shapeAppearanceOverlay="@style/circleImageViewStyle"
-                    app:srcCompat="@drawable/kid1"
                     tools:targetApi="lollipop" />
 
                 <TextView
@@ -65,7 +67,7 @@
                     android:background="@drawable/rounded_corner"
                     android:elevation="@dimen/elevacion"
                     android:padding="@dimen/margen_peque_2"
-                    android:text="@string/text_nombre_perfil"
+                    android:text="@{viewModel.nombrePerfil}"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
                     app:iconTint="?attr/colorSecondaryVariant"
@@ -84,7 +86,7 @@
                     android:background="@drawable/rounded_corner"
                     android:elevation="@dimen/elevacion"
                     android:padding="@dimen/margen_peque_2"
-                    android:text="@string/text_nivel"
+                    android:text="@{viewModel.nivelPerfil.toString()}"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
                     app:iconTint="?attr/colorSecondaryVariant"
@@ -104,7 +106,7 @@
                     android:background="@drawable/rounded_corner"
                     android:elevation="@dimen/elevacion"
                     android:padding="@dimen/margen_peque_2"
-                    android:text="@string/text_comentarios"
+                    android:text="@{viewModel.comentarioPerfil}"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
                     android:gravity="start|center"

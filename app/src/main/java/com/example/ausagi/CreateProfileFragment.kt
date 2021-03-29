@@ -2,66 +2,96 @@ package com.example.ausagi
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.databinding.FragmentCreateProfileBinding
+import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_create_profile.*
 
 class CreateProfileFragment : Fragment() {
 
+    //VARIABLES----------------------------------------------------------------
+    //Variables para el binding
     private var _binding: FragmentCreateProfileBinding? = null
     private lateinit var recyclerView: RecyclerView
     private val binding get() = _binding!!
-
+    //Variable para el viewmodel
+    private val sharedViewModel: ProfileViewModel by activityViewModels()
+    //Variable para la imagen de perfil
+    private var imageUri: Uri? = null
     val REQUEST_CODE = 100
 
-    // companion object
-    companion object {
-        private val IMAGE_CHOOSE = 1000
-        private val PERMISSION_CODE = 1001
-    }
-
+    //FUNCIONES-----------------------------------------------------------------
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
+
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCreateProfileBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
-    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = sharedViewModel
+            createProfileFragment = this@CreateProfileFragment //para los clicklisteners del xml
+        }
 
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
+
+        //Valores por defecto
+        sharedViewModel.setNivelPerfilTemp("Nivel 1: Pictogramas")
+        sharedViewModel.setColorPerfilTemp("Azul")
 
         boton_nuevo_perfil_foto.setOnClickListener {
             openGalleryForImage()
         }
+
+        boton_perfil_creado.setOnClickListener {
+            //funcion para guardar los datos
+            sharedViewModel.guardarPerfil(imageUri,
+                espacio_nombre.text.toString(),
+                espacio_comentario.text.toString())
+
+            //funcion de navegacion
+            val action = CreateProfileFragmentDirections.actionCreateProfileFragmentToHomeFragment()
+            findNavController().navigate(action)
+        }
+
     }
 
+    //funciones intent de foto
     //Abre la galería con un Intent
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_CODE)
     }
-
     //Una vez abre la galería, se elige una imagen
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
-            espacio_nuevo_perfil_foto.setImageURI(data?.data) // handle chosen image
+            imageUri = data?.data
+            espacio_nuevo_perfil_foto.setImageURI(imageUri) // handle chosen image
         }
     }
+
 }

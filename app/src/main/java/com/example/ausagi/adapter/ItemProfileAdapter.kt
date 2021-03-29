@@ -20,7 +20,7 @@ class ItemProfileAdapter(
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder.
-    // Each data item is just an Affirmation object.
+    // Each data item is just a Profile object.
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.imageViewFace)
         val imageButton: ImageButton = view.findViewById(R.id.boton_masinfo)
@@ -44,7 +44,7 @@ class ItemProfileAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
-        holder.imageView.setImageResource(item.imageResourceId)
+        holder.imageView.setImageURI(item.imageResource)
         holder.imageButton.setOnClickListener{
             val action = HomeFragmentDirections.actionHomeFragmentToInformationFragment()
             holder.itemView.findNavController().navigate(action)

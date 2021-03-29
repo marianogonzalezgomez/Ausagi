@@ -23,17 +23,35 @@
         android:id="@+id/createProfileFragment"
         android:name="com.example.ausagi.CreateProfileFragment"
         android:label="@string/text_button_new_profile"
-        tools:layout="@layout/fragment_create_profile" />
+        tools:layout="@layout/fragment_create_profile" >
+        <action
+            android:id="@+id/action_createProfileFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/configurationFragment"
         android:name="com.example.ausagi.ConfigurationFragment"
         android:label="@string/text_configuracion"
-        tools:layout="@layout/fragment_configuration" />
+        tools:layout="@layout/fragment_configuration" >
+        <action
+            android:id="@+id/action_configurationFragment_to_informationFragment"
+            app:destination="@id/informationFragment"
+            app:popUpTo="@id/informationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/instructionsFragment"
         android:name="com.example.ausagi.InstructionsFragment"
         android:label="@string/text_instrucciones"
-        tools:layout="@layout/fragment_instructions" />
+        tools:layout="@layout/fragment_instructions" >
+        <action
+            android:id="@+id/action_instructionsFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/informationFragment"
         android:name="com.example.ausagi.InformationFragment"
@@ -42,5 +60,10 @@
         <action
             android:id="@+id/action_informationFragment_to_configurationFragment"
             app:destination="@id/configurationFragment" />
+        <action
+            android:id="@+id/action_informationFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/informationFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

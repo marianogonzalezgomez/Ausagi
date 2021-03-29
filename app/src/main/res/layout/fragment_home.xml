@@ -7,6 +7,9 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="com.example.ausagi.model.ProfileViewModel" />
+        <variable
             name="HomeFragment"
             type="com.example.ausagi.HomeFragment" />
     </data>

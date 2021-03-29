@@ -7,6 +7,9 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="com.example.ausagi.model.ProfileViewModel" />
+        <variable
             name="CreateProfileFragment"
             type="com.example.ausagi.CreateProfileFragment" />
     </data>
@@ -55,7 +58,7 @@
                     tools:targetApi="lollipop" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout2"
+                    android:id="@+id/contenedor_espacio_nombre"
                     style="@style/AppTheme.TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,12 +76,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/boton_nuevo_perfil_foto">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/espacio_nombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:maxLength="20"
                         android:maxLines="1"
-                        android:textColor="?attr/colorOnSecondary" />
+                        android:textColor="?attr/colorOnSecondary"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -89,8 +93,8 @@
                     android:text="@string/elige_un_nivel"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+                    app:layout_constraintStart_toStartOf="@+id/contenedor_espacio_nombre"
+                    app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_nombre" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup"
@@ -105,34 +109,37 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="true"
                         android:text="@string/nivel_1_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop" />
+                        tools:targetApi="lollipop"
+                        android:checked="true"
+                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_1_pictogramas)}"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonN2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="false"
                         android:text="@string/nivel_2_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop" />
+                        tools:targetApi="lollipop"
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_2_pictogramas)}"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonN3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="false"
                         android:text="@string/nivel_3_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop" />
+                        tools:targetApi="lollipop"
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_3_pictogramas)}"/>
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout3"
+                    android:id="@+id/contenedor_espacio_comentario"
                     style="@style/AppTheme.TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,6 +156,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/espacio_comentario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start|top"
@@ -168,7 +176,7 @@
                     android:textSize="@dimen/titulo_2"
                     android:layout_marginTop="@dimen/margen_normal"
                     app:layout_constraintStart_toStartOf="@+id/radioGroup"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+                    app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_comentario" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup2"
@@ -183,33 +191,37 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="true"
                         android:text="@string/text_azul"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop" />
+                        tools:targetApi="lollipop"
+                        android:checked="true"
+                        android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_azul)}"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonMarron"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="false"
                         android:text="@string/text_marron"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop" />
+                        tools:targetApi="lollipop"
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_marron)}"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonVerde"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="false"
                         android:text="@string/text_verde"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop" />
+                        tools:targetApi="lollipop"
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_verde)}"/>
                 </RadioGroup>
 
                 <Button
+                    android:id="@+id/boton_perfil_creado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
