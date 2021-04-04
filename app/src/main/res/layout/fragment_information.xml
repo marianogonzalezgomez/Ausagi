@@ -88,6 +88,7 @@
                     android:padding="@dimen/margen_peque_2"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
+                    android:text="@{viewModel.listaPerfiles[viewModel.posicion].level}"
                     app:iconTint="?attr/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

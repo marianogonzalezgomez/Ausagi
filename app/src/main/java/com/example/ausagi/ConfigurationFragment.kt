@@ -66,7 +66,9 @@ class ConfigurationFragment : Fragment() {
         boton_perfil_modificado.setOnClickListener {
             if(imageUri!=null){ sharedViewModel.setFoto(imageUri) }
             sharedViewModel.setNombre(espacio_nombre_config.text.toString())
+            sharedViewModel.setNivel()
             sharedViewModel.setComentario(espacio_comentario_config.text.toString())
+            sharedViewModel.setColor()
             val action = ConfigurationFragmentDirections.actionConfigurationFragmentToInformationFragment()
             findNavController().navigate(action)
         }

@@ -7,5 +7,7 @@ data class Profile(
    // @DrawableRes val imageResourceId: Int
     var imageResource: Uri?,
     var name: String,
-    var comment: String
+    var level: String,
+    var comment: String,
+    var colour: String
 )

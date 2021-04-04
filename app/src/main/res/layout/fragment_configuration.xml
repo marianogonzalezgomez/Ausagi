@@ -110,6 +110,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].level.equals(@string/nivel_1_pictogramas)}"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_1_pictogramas)}"
                         android:text="@string/nivel_1_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -119,6 +121,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].level.equals(@string/nivel_2_pictogramas)}"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_2_pictogramas)}"
                         android:text="@string/nivel_2_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -128,6 +132,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].level.equals(@string/nivel_3_pictogramas)}"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_3_pictogramas)}"
                         android:text="@string/nivel_3_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -187,6 +193,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].colour.equals(@string/text_azul)}"
+                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_azul)}"
                         android:text="@string/text_azul"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -196,6 +204,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].colour.equals(@string/text_marron)}"
+                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_marron)}"
                         android:text="@string/text_marron"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -205,6 +215,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].colour.equals(@string/text_verde)}"
+                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_verde)}"
                         android:text="@string/text_verde"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />

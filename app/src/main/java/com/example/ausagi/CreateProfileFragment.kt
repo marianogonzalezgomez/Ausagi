@@ -58,8 +58,8 @@ class CreateProfileFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
 
         //Valores por defecto
-        //sharedViewModel.setNivelPerfilTemp("Nivel 1: Pictogramas")
-        //sharedViewModel.setColorPerfilTemp("Azul")
+        sharedViewModel.setNivelTemp("Nivel 1: Pictogramas")
+        sharedViewModel.setColorTemp("Azul")
 
         boton_nuevo_perfil_foto.setOnClickListener {
             openGalleryForImage()

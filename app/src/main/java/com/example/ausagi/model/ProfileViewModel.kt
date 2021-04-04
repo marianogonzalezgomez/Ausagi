@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 class ProfileViewModel : ViewModel() {
 
     //VARIABLES-------------------------------------------------------
-    //variables del perfil con backing property
     val listaPerfiles = mutableListOf<Profile>()
     val posicion = MutableLiveData<Int>()
+
+    var nivelTempVar: String = ""
+    var colorTempVar: String = ""
 
     init {
         posicion.value = 0
@@ -60,11 +62,23 @@ class ProfileViewModel : ViewModel() {
     fun setNombre(nombre: String){
         listaPerfiles[posicion.value!!].name = nombre
     }
+    fun setNivel(){
+        listaPerfiles[posicion.value!!].level = nivelTempVar
+    }
+    fun setNivelTemp(niveltemp: String){
+        nivelTempVar = niveltemp
+    }
     fun setComentario(comentario: String){
         listaPerfiles[posicion.value!!].comment = comentario
     }
-    fun guardarPerfil(fotoID: Uri?, nombre: String,  comentario: String) {
-        listaPerfiles.add(Profile(fotoID, nombre, comentario))
+    fun setColor(){
+        listaPerfiles[posicion.value!!].colour = colorTempVar
+    }
+    fun setColorTemp(colortemp: String){
+        colorTempVar = colortemp
+    }
+    fun guardarPerfil(fotoID: Uri?, nombre: String, comentario: String) {
+        listaPerfiles.add(Profile(fotoID, nombre, nivelTempVar, comentario, colorTempVar))
 
         /*setFotoPerfil(fotoID)
         setNombrePerfil(nombre)

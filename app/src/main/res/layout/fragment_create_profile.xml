@@ -112,8 +112,8 @@
                         android:text="@string/nivel_1_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop"
-                        android:checked="true"/>
-                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_1_pictogramas)}"/>
+                        android:checked="true"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_1_pictogramas)}"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonN2"
@@ -123,8 +123,8 @@
                         android:text="@string/nivel_2_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop"
-                        android:checked="false"/>
-                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_2_pictogramas)}"/>
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_2_pictogramas)}"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonN3"
@@ -134,8 +134,8 @@
                         android:text="@string/nivel_3_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop"
-                        android:checked="false"/>
-                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_3_pictogramas)}"/>
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_3_pictogramas)}"/>
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -194,8 +194,8 @@
                         android:text="@string/text_azul"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop"
-                        android:checked="true"/>
-                       android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_azul)}"/>
+                        android:checked="true"
+                       android:onClick="@{() -> viewModel.setColorTemp(@string/text_azul)}"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonMarron"
@@ -205,8 +205,8 @@
                         android:text="@string/text_marron"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop"
-                        android:checked="false"/>
-                        android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_marron)}"/>
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_marron)}"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonVerde"
@@ -216,8 +216,8 @@
                         android:text="@string/text_verde"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop"
-                        android:checked="false"/>
-                        android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_verde)}"/>
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_verde)}"/>
                 </RadioGroup>
 
                 <Button
