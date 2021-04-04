@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -71,6 +72,14 @@ class ConfigurationFragment : Fragment() {
             sharedViewModel.setColor()
             val action = ConfigurationFragmentDirections.actionConfigurationFragmentToInformationFragment()
             findNavController().navigate(action)
+        }
+
+        boton_eliminar_perfil.setOnLongClickListener{
+            sharedViewModel.eliminarPerfil()
+            Toast.makeText(requireActivity(),"Perfil eliminado",Toast.LENGTH_SHORT).show()
+            val action = ConfigurationFragmentDirections.actionConfigurationFragmentToHomeFragment()
+            findNavController().navigate(action)
+            true
         }
     }
 

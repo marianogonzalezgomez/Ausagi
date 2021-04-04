@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ausagi.adapter.Communicator
 import com.example.ausagi.adapter.ItemProfileAdapter
 import com.example.ausagi.databinding.FragmentHomeBinding
-import com.example.ausagi.model.Profile
+import com.example.ausagi.database.Profile
 import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 

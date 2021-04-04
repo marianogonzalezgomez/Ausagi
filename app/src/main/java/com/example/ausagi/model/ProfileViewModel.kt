@@ -3,6 +3,9 @@ package com.example.ausagi.model
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.ausagi.R
+import com.example.ausagi.database.Profile
+
 
 class ProfileViewModel : ViewModel() {
 
@@ -15,6 +18,9 @@ class ProfileViewModel : ViewModel() {
 
     init {
         posicion.value = 0
+        guardarPerfil(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid1), "Mariano", "Este es un perfil de ejemplo") //ejemplo inicial
+        listaPerfiles[posicion.value!!].level= "Nivel 1: Pictogramas"
+        listaPerfiles[posicion.value!!].colour= "Azul"
     }
     /*private val _fotoPerfil = MutableLiveData<Uri?>()
     val fotoPerfil: LiveData<Uri?> = _fotoPerfil
@@ -85,6 +91,9 @@ class ProfileViewModel : ViewModel() {
         setNivelPerfil(nivelTemp)
         setComentarioPerfil(comentario)
         setColorPerfil(colorTemp)*/
+    }
+    fun eliminarPerfil(){
+        listaPerfiles.removeAt(posicion.value!!)
     }
 
 }

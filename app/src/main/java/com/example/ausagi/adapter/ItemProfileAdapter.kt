@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.HomeFragmentDirections
 import com.example.ausagi.R
-import com.example.ausagi.model.Profile
+import com.example.ausagi.database.Profile
 
 class ItemProfileAdapter(
     private val context: Context,

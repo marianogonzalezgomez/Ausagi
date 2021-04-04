@@ -241,6 +241,24 @@
                     tools:targetApi="lollipop" />
 
                 <Button
+                    android:id="@+id/boton_eliminar_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/margen_grande"
+                    android:layout_marginEnd="@dimen/margen_grande"
+                    android:layout_marginTop="@dimen/margen_peque"
+                    android:elevation="@dimen/elevacion"
+                    android:text="@string/text_eliminar_perfil"
+                    android:textColor="@android:color/holo_red_light"
+                    app:cornerRadius="@dimen/radio_boton"
+                    app:iconTint="?attr/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/boton_configurar_tablero"
+                    tools:targetApi="lollipop" />
+
+                <Button
                     android:id="@+id/boton_perfil_modificado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -251,7 +269,7 @@
                     android:layout_marginTop="@dimen/margen_normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/boton_configurar_tablero" />
+                    app:layout_constraintTop_toBottomOf="@+id/boton_eliminar_perfil" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
