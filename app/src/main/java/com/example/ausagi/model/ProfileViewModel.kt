@@ -1,7 +1,6 @@
 package com.example.ausagi.model
 
 import android.net.Uri
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -9,7 +8,13 @@ class ProfileViewModel : ViewModel() {
 
     //VARIABLES-------------------------------------------------------
     //variables del perfil con backing property
-    private val _fotoPerfil = MutableLiveData<Uri?>()
+    val listaPerfiles = mutableListOf<Profile>()
+    val posicion = MutableLiveData<Int>()
+
+    init {
+        posicion.value = 0
+    }
+    /*private val _fotoPerfil = MutableLiveData<Uri?>()
     val fotoPerfil: LiveData<Uri?> = _fotoPerfil
     private val _nombrePerfil = MutableLiveData<String>()
     val nombrePerfil: LiveData<String> = _nombrePerfil
@@ -25,7 +30,7 @@ class ProfileViewModel : ViewModel() {
 
     //FUNCIONES-------------------------------------------------------
     //funciones de datos del perfil
-    fun setFotoPerfil(fotoID: Uri?) {
+   fun setFotoPerfil(fotoID: Uri?) {
         if (fotoID!=null){
             _fotoPerfil.value= fotoID
         }
@@ -48,13 +53,24 @@ class ProfileViewModel : ViewModel() {
     fun setColorPerfilTemp(colorTempOut: String) {
         colorTemp = colorTempOut
 
+    }*/
+    fun setFoto(foto: Uri?){
+        listaPerfiles[posicion.value!!].imageResource = foto
+    }
+    fun setNombre(nombre: String){
+        listaPerfiles[posicion.value!!].name = nombre
+    }
+    fun setComentario(comentario: String){
+        listaPerfiles[posicion.value!!].comment = comentario
     }
     fun guardarPerfil(fotoID: Uri?, nombre: String,  comentario: String) {
-        setFotoPerfil(fotoID)
+        listaPerfiles.add(Profile(fotoID, nombre, comentario))
+
+        /*setFotoPerfil(fotoID)
         setNombrePerfil(nombre)
         setNivelPerfil(nivelTemp)
         setComentarioPerfil(comentario)
-        setColorPerfil(colorTemp)
+        setColorPerfil(colorTemp)*/
     }
 
 }

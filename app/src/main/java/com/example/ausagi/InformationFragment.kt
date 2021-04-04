@@ -56,7 +56,7 @@ class InformationFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        espacio_informacion_foto.setImageURI(sharedViewModel.fotoPerfil.value)
+       espacio_informacion_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.posicion.value!!].imageResource)
     }
 
 

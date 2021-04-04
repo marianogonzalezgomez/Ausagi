@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ausagi.adapter.Communicator
 import com.example.ausagi.adapter.ItemProfileAdapter
 import com.example.ausagi.databinding.FragmentHomeBinding
 import com.example.ausagi.model.Profile
 import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), Communicator {
 
     //VARIABLES----------------------------------------------------------------
     //Variables para el binding
@@ -30,12 +31,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View {
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,7 +44,7 @@ class HomeFragment : Fragment() {
             viewModel = sharedViewModel
         }
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
 
         val recyclerView = binding.recyclerView
         val myDataSet = loadProfiles()
@@ -56,7 +52,7 @@ class HomeFragment : Fragment() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             // set the custom adapter to the RecyclerView
-            adapter = ItemProfileAdapter(requireContext(), myDataSet)
+            adapter = ItemProfileAdapter(requireContext(), this@HomeFragment, myDataSet)
         }
 
         boton_instrucciones.setOnClickListener {
@@ -74,9 +70,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadProfiles(): MutableList<Profile> {
-        return mutableListOf<Profile>(
-            Profile(sharedViewModel.fotoPerfil.value)
-        )
+        return sharedViewModel.listaPerfiles
+    }
+
+    override fun passData(position: Int) {
+        sharedViewModel.posicion.value = position
     }
 }
 

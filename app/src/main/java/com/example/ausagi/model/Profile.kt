@@ -5,5 +5,7 @@ import android.net.Uri
 //data antes del class
 data class Profile(
    // @DrawableRes val imageResourceId: Int
-    val imageResource: Uri?
+    var imageResource: Uri?,
+    var name: String,
+    var comment: String
 )

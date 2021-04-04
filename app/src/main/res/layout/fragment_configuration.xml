@@ -83,7 +83,7 @@
                         android:maxLength="20"
                         android:maxLines="1"
                         android:textColor="?attr/colorOnSecondary"
-                        android:text="@{viewModel.nombrePerfil}"/>
+                        android:text="@{viewModel.listaPerfiles[viewModel.posicion].name}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -110,8 +110,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.nivelPerfil.equals(@string/nivel_1_pictogramas)}"
-                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_1_pictogramas)}"
                         android:text="@string/nivel_1_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -121,8 +119,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.nivelPerfil.equals(@string/nivel_2_pictogramas)}"
-                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_2_pictogramas)}"
                         android:text="@string/nivel_2_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -132,8 +128,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.nivelPerfil.equals(@string/nivel_3_pictogramas)}"
-                        android:onClick="@{() -> viewModel.setNivelPerfilTemp(@string/nivel_3_pictogramas)}"
                         android:text="@string/nivel_3_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -166,7 +160,7 @@
                         android:maxLength="200"
                         android:maxLines="5"
                         android:textColor="?attr/colorOnSecondary"
-                        android:text="@{viewModel.comentarioPerfil}"/>
+                        android:text="@{viewModel.listaPerfiles[viewModel.posicion].comment}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -193,8 +187,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.colorPerfil.equals(@string/text_azul)}"
-                        android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_azul)}"
                         android:text="@string/text_azul"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -204,8 +196,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.colorPerfil.equals(@string/text_marron)}"
-                        android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_marron)}"
                         android:text="@string/text_marron"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
@@ -215,8 +205,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.colorPerfil.equals(@string/text_verde)}"
-                        android:onClick="@{() -> viewModel.setColorPerfilTemp(@string/text_verde)}"
                         android:text="@string/text_verde"
                         android:textColor="?attr/colorOnSecondary"
                         tools:targetApi="lollipop" />
