@@ -1,4 +1,4 @@
-package com.example.ausagi
+package com.example.ausagi.fragmentsinicio
 
 import android.os.Bundle
 import android.view.LayoutInflater

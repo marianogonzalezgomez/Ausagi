@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragmentsinicio.BoardOneFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.ausagi.model.BoardViewModel" />
+        <variable
+            name="BoardOneFragment"
+            type="com.example.ausagi.fragmentstableros.BoardOneFragment" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="?attr/colorSecondary"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/pantalla_tablero_N1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:id="@+id/barraAccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/circulo_contenedor_picto"
+                    android:background="@drawable/barra_accion"
+                    android:elevation="@dimen/elevacion"
+                    android:layout_marginStart="@dimen/margen_peque_2"
+                    android:layout_marginEnd="@dimen/margen_peque_2"
+                    android:layout_marginTop="@dimen/margen_peque_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="lollipop">
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cuadricula_pictos_N1_recyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_peque_2"
+                    android:scrollbars="vertical"
+                    app:layoutManager="GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barraAccion"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_picto_view" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,4 +1,4 @@
-package com.example.ausagi
+package com.example.ausagi.fragmentsinicio
 
 import android.app.Activity
 import android.content.Intent

@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".HomeFragment">
+    tools:context=".fragmentsinicio.HomeFragment">
 
     <data>
         <variable
@@ -11,7 +11,7 @@
             type="com.example.ausagi.model.ProfileViewModel" />
         <variable
             name="HomeFragment"
-            type="com.example.ausagi.HomeFragment" />
+            type="com.example.ausagi.fragmentsinicio.HomeFragment" />
     </data>
 
     <ScrollView

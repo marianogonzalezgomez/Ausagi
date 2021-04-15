@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".InformationFragment">
+    tools:context=".fragmentsinicio.InformationFragment">
 
     <data>
         <variable
@@ -11,7 +11,7 @@
             type="com.example.ausagi.model.ProfileViewModel" />
         <variable
             name="InformationFragment"
-            type="com.example.ausagi.InformationFragment" />
+            type="com.example.ausagi.fragmentsinicio.InformationFragment" />
     </data>
 
     <ScrollView
@@ -40,7 +40,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:context=".CreateProfileFragment"
+                    tools:context=".fragmentsinicio.CreateProfileFragment"
                     tools:targetApi="lollipop" />
 
                 <com.google.android.material.imageview.ShapeableImageView

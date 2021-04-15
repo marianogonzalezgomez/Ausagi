@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ConfigurationFragment">
+    tools:context=".fragmentsinicio.ConfigurationFragment">
 
     <data>
         <variable
@@ -11,7 +11,7 @@
             type="com.example.ausagi.model.ProfileViewModel" />
         <variable
             name="ConfigurationFragment"
-            type="com.example.ausagi.ConfigurationFragment" />
+            type="com.example.ausagi.fragmentsinicio.ConfigurationFragment" />
     </data>
 
     <ScrollView

@@ -8,6 +8,7 @@
     <dimen name="margen_grande">36dp</dimen>
     <dimen name="margen_normal">24dp</dimen>
     <dimen name="margen_peque_2">14dp</dimen>
+    <dimen name="margen_peque_1">4dp</dimen>
     <dimen name="margen_peque">8dp</dimen>
     <dimen name="radio_boton">30dp</dimen>
     <dimen name="elevacion">10dp</dimen>
@@ -15,6 +16,9 @@
     <dimen name="titulo_1_1">36sp</dimen>
     <dimen name="titulo_2">18sp</dimen>
     <dimen name="titulo_3">14sp</dimen>
+    <dimen name="titulo_pictos">24sp</dimen>
     <dimen name="elevacion_corta">2dp</dimen>
+    <dimen name="circulo_picto">100dp</dimen>
+    <dimen name="circulo_contenedor_picto">110dp</dimen>
 
 </resources>

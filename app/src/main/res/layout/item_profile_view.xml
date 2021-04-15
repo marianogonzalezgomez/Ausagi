@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="lollipop"
-        tools:context=".CreateProfileFragment">
+        tools:context=".fragmentsinicio.CreateProfileFragment">
     </FrameLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -47,7 +47,7 @@
         android:layout_marginStart="@dimen/margen_peque"
         android:background="@drawable/rounded_corner"
         android:elevation="@dimen/elevacion"
-        android:src="@drawable/ic_baseline_more_horiz_24"
+        app:srcCompat="@drawable/ic_baseline_more_horiz_24"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
