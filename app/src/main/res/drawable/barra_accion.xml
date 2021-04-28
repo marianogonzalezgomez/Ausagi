@@ -9,6 +9,6 @@
 
     <size
         android:width="@dimen/circulo_contenedor_picto"
-        android:height="@dimen/circulo_contenedor_picto"/>
+        android:height="@dimen/circulo_contenedor_picto" />
 
 </shape>

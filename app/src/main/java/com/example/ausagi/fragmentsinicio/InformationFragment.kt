@@ -21,6 +21,7 @@ class InformationFragment : Fragment() {
     private var _binding: FragmentInformationBinding? = null
     private lateinit var recyclerView: RecyclerView
     private val binding get() = _binding!!
+
     //Variable para el viewmodel
     private val sharedViewModel: ProfileViewModel by activityViewModels()
 
@@ -56,7 +57,7 @@ class InformationFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-       espacio_informacion_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.posicion.value!!].imageResource)
+        espacio_informacion_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.posicion.value!!].imageResource)
     }
 
 

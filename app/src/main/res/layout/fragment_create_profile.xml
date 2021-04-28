@@ -6,9 +6,11 @@
     tools:context=".fragmentsinicio.CreateProfileFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.ausagi.model.ProfileViewModel" />
+
         <variable
             name="CreateProfileFragment"
             type="com.example.ausagi.fragmentsinicio.CreateProfileFragment" />
@@ -24,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -48,9 +50,9 @@
                     android:layout_width="@dimen/circulo_foto"
                     android:layout_height="@dimen/circulo_foto"
                     android:layout_marginTop="@dimen/margen_grande"
-                    android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     android:elevation="@dimen/elevacion_corta"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -62,9 +64,9 @@
                     style="@style/AppTheme.TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margen_normal"
                     android:layout_marginTop="@dimen/margen_normal"
                     android:layout_marginEnd="@dimen/margen_normal"
-                    android:layout_marginStart="@dimen/margen_normal"
                     android:hint="@string/text_input_name"
                     android:textColor="?attr/colorOnSecondary"
                     app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
@@ -82,7 +84,7 @@
                         android:inputType="text"
                         android:maxLength="20"
                         android:maxLines="1"
-                        android:textColor="?attr/colorOnSecondary"/>
+                        android:textColor="?attr/colorOnSecondary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -109,33 +111,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="true"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_1_pictogramas)}"
                         android:text="@string/nivel_1_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop"
-                        android:checked="true"
-                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_1_pictogramas)}"/>
+                        tools:targetApi="lollipop" />
 
                     <RadioButton
                         android:id="@+id/radioButtonN2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_2_pictogramas)}"
                         android:text="@string/nivel_2_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop"
-                        android:checked="false"
-                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_2_pictogramas)}"/>
+                        tools:targetApi="lollipop" />
 
                     <RadioButton
                         android:id="@+id/radioButtonN3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_3_pictogramas)}"
                         android:text="@string/nivel_3_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop"
-                        android:checked="false"
-                        android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_3_pictogramas)}"/>
+                        tools:targetApi="lollipop" />
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -143,11 +145,11 @@
                     style="@style/AppTheme.TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/comentarios"
-                    android:textColor="?attr/colorOnSecondary"
+                    android:layout_marginStart="@dimen/margen_normal"
                     android:layout_marginTop="@dimen/margen_normal"
                     android:layout_marginEnd="@dimen/margen_normal"
-                    android:layout_marginStart="@dimen/margen_normal"
+                    android:hint="@string/comentarios"
+                    android:textColor="?attr/colorOnSecondary"
                     app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
                     app:boxCornerRadiusBottomStart="@dimen/radio_boton"
                     app:boxCornerRadiusTopEnd="@dimen/radio_boton"
@@ -164,17 +166,17 @@
                         android:lines="3"
                         android:maxLength="200"
                         android:maxLines="5"
-                        android:textColor="?attr/colorOnSecondary"/>
+                        android:textColor="?attr/colorOnSecondary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/titulo_elegirpaleta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_normal"
                     android:text="@string/elige_paleta"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    android:layout_marginTop="@dimen/margen_normal"
                     app:layout_constraintStart_toStartOf="@+id/radioGroup"
                     app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_comentario" />
 
@@ -191,33 +193,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="true"
+                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_azul)}"
                         android:text="@string/text_azul"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop"
-                        android:checked="true"
-                       android:onClick="@{() -> viewModel.setColorTemp(@string/text_azul)}"/>
+                        tools:targetApi="lollipop" />
 
                     <RadioButton
                         android:id="@+id/radioButtonMarron"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_marron)}"
                         android:text="@string/text_marron"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop"
-                        android:checked="false"
-                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_marron)}"/>
+                        tools:targetApi="lollipop" />
 
                     <RadioButton
                         android:id="@+id/radioButtonVerde"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
+                        android:checked="false"
+                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_verde)}"
                         android:text="@string/text_verde"
                         android:textColor="?attr/colorOnSecondary"
-                        tools:targetApi="lollipop"
-                        android:checked="false"
-                        android:onClick="@{() -> viewModel.setColorTemp(@string/text_verde)}"/>
+                        tools:targetApi="lollipop" />
                 </RadioGroup>
 
                 <Button

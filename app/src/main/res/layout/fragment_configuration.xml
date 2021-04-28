@@ -6,9 +6,11 @@
     tools:context=".fragmentsinicio.ConfigurationFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.ausagi.model.ProfileViewModel" />
+
         <variable
             name="ConfigurationFragment"
             type="com.example.ausagi.fragmentsinicio.ConfigurationFragment" />
@@ -24,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -48,9 +50,9 @@
                     android:layout_width="@dimen/circulo_foto"
                     android:layout_height="@dimen/circulo_foto"
                     android:layout_marginTop="@dimen/margen_grande"
-                    android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     android:elevation="@dimen/elevacion_corta"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -62,9 +64,9 @@
                     style="@style/AppTheme.TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margen_normal"
                     android:layout_marginTop="@dimen/margen_normal"
                     android:layout_marginEnd="@dimen/margen_normal"
-                    android:layout_marginStart="@dimen/margen_normal"
                     android:hint="@string/text_input_name"
                     android:textColor="?attr/colorOnSecondary"
                     app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
@@ -82,8 +84,8 @@
                         android:inputType="text"
                         android:maxLength="20"
                         android:maxLines="1"
-                        android:textColor="?attr/colorOnSecondary"
-                        android:text="@{viewModel.listaPerfiles[viewModel.posicion].name}"/>
+                        android:text="@{viewModel.listaPerfiles[viewModel.posicion].name}"
+                        android:textColor="?attr/colorOnSecondary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -144,11 +146,11 @@
                     style="@style/AppTheme.TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/comentarios"
-                    android:textColor="?attr/colorOnSecondary"
+                    android:layout_marginStart="@dimen/margen_normal"
                     android:layout_marginTop="@dimen/margen_normal"
                     android:layout_marginEnd="@dimen/margen_normal"
-                    android:layout_marginStart="@dimen/margen_normal"
+                    android:hint="@string/comentarios"
+                    android:textColor="?attr/colorOnSecondary"
                     app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
                     app:boxCornerRadiusBottomStart="@dimen/radio_boton"
                     app:boxCornerRadiusTopEnd="@dimen/radio_boton"
@@ -165,18 +167,18 @@
                         android:lines="3"
                         android:maxLength="200"
                         android:maxLines="5"
-                        android:textColor="?attr/colorOnSecondary"
-                        android:text="@{viewModel.listaPerfiles[viewModel.posicion].comment}"/>
+                        android:text="@{viewModel.listaPerfiles[viewModel.posicion].comment}"
+                        android:textColor="?attr/colorOnSecondary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/titulo_elegirpaleta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_normal"
                     android:text="@string/elige_paleta"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    android:layout_marginTop="@dimen/margen_normal"
                     app:layout_constraintStart_toStartOf="@+id/radioGroup"
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
@@ -228,8 +230,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="@dimen/margen_grande"
-                    android:layout_marginEnd="@dimen/margen_grande"
                     android:layout_marginTop="@dimen/margen_normal"
+                    android:layout_marginEnd="@dimen/margen_grande"
                     android:elevation="@dimen/elevacion"
                     android:text="@string/text_configurar_tablero"
                     android:textColor="?attr/colorOnSecondary"
@@ -246,8 +248,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="@dimen/margen_grande"
-                    android:layout_marginEnd="@dimen/margen_grande"
                     android:layout_marginTop="@dimen/margen_peque"
+                    android:layout_marginEnd="@dimen/margen_grande"
                     android:elevation="@dimen/elevacion"
                     android:text="@string/text_eliminar_perfil"
                     android:textColor="@android:color/holo_red_light"
@@ -262,11 +264,11 @@
                     android:id="@+id/boton_perfil_modificado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_normal"
                     android:background="@android:color/transparent"
                     android:gravity="center_horizontal"
                     android:text="@string/texto_boton_hecho"
                     android:textColor="?attr/colorOnSecondary"
-                    android:layout_marginTop="@dimen/margen_normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/boton_eliminar_perfil" />

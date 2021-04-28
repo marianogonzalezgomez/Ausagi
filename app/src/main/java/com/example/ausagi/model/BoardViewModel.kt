@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.ausagi.R
 import com.example.ausagi.database.Picto
 
-class BoardViewModel : ViewModel(){
+class BoardViewModel : ViewModel() {
 
     val listaPictos = mutableListOf<Picto>()
     val posicion = MutableLiveData<Int>()

@@ -18,6 +18,7 @@ class BoardOneFragment : Fragment() {
     //Variables para el binding
     private var _binding: FragmentBoardOneBinding? = null
     private val binding get() = _binding!!
+
     //Variable para el viewmodel
     private val sharedViewModel: BoardViewModel by activityViewModels()
 

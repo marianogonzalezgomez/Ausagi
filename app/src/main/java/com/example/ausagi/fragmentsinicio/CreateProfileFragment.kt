@@ -24,8 +24,10 @@ class CreateProfileFragment : Fragment() {
     private var _binding: FragmentCreateProfileBinding? = null
     private lateinit var recyclerView: RecyclerView
     private val binding get() = _binding!!
+
     //Variable para el viewmodel
     private val sharedViewModel: ProfileViewModel by activityViewModels()
+
     //Variable para la imagen de perfil
     private var imageUri: Uri? = null
     val REQUEST_CODE = 100
@@ -39,9 +41,9 @@ class CreateProfileFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCreateProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -69,9 +71,9 @@ class CreateProfileFragment : Fragment() {
         boton_perfil_creado.setOnClickListener {
             //funcion para guardar los datos
             sharedViewModel.guardarPerfil(imageUri,
-                espacio_nombre.text.toString(),
-                espacio_comentario.text.toString())
-            Toast.makeText(requireActivity(),"Perfil creado", Toast.LENGTH_SHORT).show()
+                    espacio_nombre.text.toString(),
+                    espacio_comentario.text.toString())
+            Toast.makeText(requireActivity(), "Perfil creado", Toast.LENGTH_SHORT).show()
 
             //funcion de navegacion
             val action = CreateProfileFragmentDirections.actionCreateProfileFragmentToHomeFragment()
@@ -87,10 +89,11 @@ class CreateProfileFragment : Fragment() {
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_CODE)
     }
+
     //Una vez abre la galería, se elige una imagen
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
             imageUri = data?.data
             espacio_nuevo_perfil_foto.setImageURI(imageUri) // handle chosen image
         }

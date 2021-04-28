@@ -26,8 +26,10 @@ class ConfigurationFragment : Fragment() {
     private var _binding: FragmentConfigurationBinding? = null
     private lateinit var recyclerView: RecyclerView
     private val binding get() = _binding!!
+
     //Variable para el viewmodel
     private val sharedViewModel: ProfileViewModel by activityViewModels()
+
     //Variables para la imagen de perfil
     private var imageUri: Uri? = null
     val REQUEST_CODE = 100
@@ -65,7 +67,9 @@ class ConfigurationFragment : Fragment() {
         }
 
         boton_perfil_modificado.setOnClickListener {
-            if(imageUri!=null){ sharedViewModel.setFoto(imageUri) }
+            if (imageUri != null) {
+                sharedViewModel.setFoto(imageUri)
+            }
             sharedViewModel.setNombre(espacio_nombre_config.text.toString())
             sharedViewModel.setNivel()
             sharedViewModel.setComentario(espacio_comentario_config.text.toString())
@@ -74,9 +78,9 @@ class ConfigurationFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        boton_eliminar_perfil.setOnLongClickListener{
+        boton_eliminar_perfil.setOnLongClickListener {
             sharedViewModel.eliminarPerfil()
-            Toast.makeText(requireActivity(),"Perfil eliminado",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), "Perfil eliminado", Toast.LENGTH_SHORT).show()
             val action = ConfigurationFragmentDirections.actionConfigurationFragmentToHomeFragment()
             findNavController().navigate(action)
             true

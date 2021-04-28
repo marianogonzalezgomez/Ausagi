@@ -6,9 +6,11 @@
     tools:context=".fragmentsinicio.InformationFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.ausagi.model.ProfileViewModel" />
+
         <variable
             name="InformationFragment"
             type="com.example.ausagi.fragmentsinicio.InformationFragment" />
@@ -24,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -67,9 +69,9 @@
                     android:background="@drawable/rounded_corner"
                     android:elevation="@dimen/elevacion"
                     android:padding="@dimen/margen_peque_2"
+                    android:text="@{viewModel.listaPerfiles[viewModel.posicion].name}"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    android:text="@{viewModel.listaPerfiles[viewModel.posicion].name}"
                     app:iconTint="?attr/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -86,9 +88,9 @@
                     android:background="@drawable/rounded_corner"
                     android:elevation="@dimen/elevacion"
                     android:padding="@dimen/margen_peque_2"
+                    android:text="@{viewModel.listaPerfiles[viewModel.posicion].level}"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    android:text="@{viewModel.listaPerfiles[viewModel.posicion].level}"
                     app:iconTint="?attr/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -105,11 +107,11 @@
                     android:layout_marginBottom="@dimen/margen_grande"
                     android:background="@drawable/rounded_corner"
                     android:elevation="@dimen/elevacion"
+                    android:gravity="start|center"
                     android:padding="@dimen/margen_peque_2"
+                    android:text="@{viewModel.listaPerfiles[viewModel.posicion].comment}"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    android:gravity="start|center"
-                    android:text="@{viewModel.listaPerfiles[viewModel.posicion].comment}"
                     app:iconTint="?attr/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -121,9 +123,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/margen_grande"
                     android:layout_marginTop="@dimen/margen_grande"
                     android:layout_marginEnd="@dimen/margen_grande"
-                    android:layout_marginStart="@dimen/margen_grande"
                     android:elevation="@dimen/elevacion"
                     android:text="@string/text_configuracion"
                     android:textColor="?attr/colorOnSecondary"

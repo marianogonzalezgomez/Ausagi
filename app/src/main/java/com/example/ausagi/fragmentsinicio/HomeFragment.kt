@@ -22,6 +22,7 @@ class HomeFragment : Fragment(), Communicator {
     //Variables para el binding
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
     //Variable para el viewmodel
     private val sharedViewModel: ProfileViewModel by activityViewModels()
 
@@ -65,7 +66,7 @@ class HomeFragment : Fragment(), Communicator {
             findNavController().navigate(action)
         }
 
-       //El listener del boton_masinfo está en el adapter de cada perfil que se muestra en home
+        //El listener del boton_masinfo está en el adapter de cada perfil que se muestra en home
 
     }
 
@@ -76,5 +77,6 @@ class HomeFragment : Fragment(), Communicator {
     override fun passData(position: Int) {
         sharedViewModel.posicion.value = position
     }
+
 }
 

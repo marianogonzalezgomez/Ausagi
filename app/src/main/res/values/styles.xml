@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <!-- línea inferior -->
         <item name="boxStrokeColor">@android:color/transparent</item>
@@ -11,16 +12,15 @@
         <item name="hintTextColor">?attr/colorOnSecondary</item>
     </style>
 
-    <style name="circleImageViewStyle" >
+    <style name="circleImageViewStyle">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="semiCircleImageViewStyle" >
+    <style name="semiCircleImageViewStyle">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">15%</item>
     </style>
-
 
 
 </resources>

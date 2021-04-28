@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.ausagi.fragmentsinicio.HomeFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_informationFragment"
             app:destination="@id/informationFragment" />
@@ -27,7 +27,7 @@
         android:id="@+id/createProfileFragment"
         android:name="com.example.ausagi.fragmentsinicio.CreateProfileFragment"
         android:label="@string/text_button_new_profile"
-        tools:layout="@layout/fragment_create_profile" >
+        tools:layout="@layout/fragment_create_profile">
         <action
             android:id="@+id/action_createProfileFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -38,7 +38,7 @@
         android:id="@+id/configurationFragment"
         android:name="com.example.ausagi.fragmentsinicio.ConfigurationFragment"
         android:label="@string/text_configuracion"
-        tools:layout="@layout/fragment_configuration" >
+        tools:layout="@layout/fragment_configuration">
         <action
             android:id="@+id/action_configurationFragment_to_informationFragment"
             app:destination="@id/informationFragment"
@@ -54,7 +54,7 @@
         android:id="@+id/instructionsFragment"
         android:name="com.example.ausagi.fragmentsinicio.InstructionsFragment"
         android:label="@string/text_instrucciones"
-        tools:layout="@layout/fragment_instructions" >
+        tools:layout="@layout/fragment_instructions">
         <action
             android:id="@+id/action_instructionsFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -65,7 +65,7 @@
         android:id="@+id/informationFragment"
         android:name="com.example.ausagi.fragmentsinicio.InformationFragment"
         android:label="@string/text_info"
-        tools:layout="@layout/fragment_information" >
+        tools:layout="@layout/fragment_information">
         <action
             android:id="@+id/action_informationFragment_to_configurationFragment"
             app:destination="@id/configurationFragment" />
@@ -78,7 +78,7 @@
     <fragment
         android:id="@+id/boardOneFragment"
         android:name="com.example.ausagi.fragmentstableros.BoardOneFragment"
-        android:label="" >
+        android:label="">
         <action
             android:id="@+id/action_boardOneFragment_to_homeFragment"
             app:destination="@id/homeFragment"

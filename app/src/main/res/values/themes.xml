@@ -16,8 +16,9 @@
         <!-- Customize your theme here. -->
         <item name="titleTextColor">@color/White_Title</item>
         <item name="android:textColorHighlight">@color/White_Dark</item>
-        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/White_Dark</item>
-</style>
+        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/White_Dark
+        </item>
+    </style>
 
     <!-- Blue application theme. -->
     <style name="Theme.Ausagi_Blue" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -35,7 +36,8 @@
         <!-- Customize your theme here. -->
         <item name="titleTextColor">@color/Blue_Title</item>
         <item name="android:textColorHighlight">@color/Blue_Dark</item>
-        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/Blue_Dark</item>
+        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/Blue_Dark
+        </item>
     </style>
 
     <!-- Brown application theme. -->
@@ -54,7 +56,8 @@
         <!-- Customize your theme here. -->
         <item name="titleTextColor">@color/Brown_Title</item>
         <item name="android:textColorHighlight">@color/Brown_Dark</item>
-        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/Brown_Dark</item>
+        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/Brown_Dark
+        </item>
     </style>
 
     <!-- Green application theme. -->
@@ -73,6 +76,7 @@
         <!-- Customize your theme here. -->
         <item name="titleTextColor">@color/Green_Title</item>
         <item name="android:textColorHighlight">@color/Green_Dark</item>
-        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/Green_Dark</item>
+        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/Green_Dark
+        </item>
     </style>
 </resources>

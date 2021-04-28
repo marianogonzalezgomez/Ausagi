@@ -11,8 +11,8 @@ import com.example.ausagi.R
 import com.example.ausagi.database.Picto
 
 class ItemBoardAdapter(
-    private val context: Context,
-    private val dataset: MutableList<Picto>
+        private val context: Context,
+        private val dataset: MutableList<Picto>
 ) : RecyclerView.Adapter<ItemBoardAdapter.ItemViewHolder>() {
 
     /**
@@ -53,7 +53,7 @@ class ItemBoardAdapter(
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder.
     // Each data item is just a Profile object.
-    inner class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.item_board_picto_imagen)
         val textView: TextView = view.findViewById(R.id.item_board_nombre_picto)
 

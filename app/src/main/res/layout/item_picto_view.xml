@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/RelativeLayout1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:padding="@dimen/margen_peque_1"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:padding="@dimen/margen_peque_1">
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -20,8 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:targetApi="lollipop">
-    </FrameLayout>
+        tools:targetApi="lollipop" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/item_board_picto_imagen"
@@ -41,11 +39,11 @@
         android:id="@+id/item_board_nombre_picto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margen_peque_1"
         android:fontFamily="@font/patrick_hand"
         android:textAlignment="center"
         android:textColor="?attr/colorOnSecondary"
         android:textSize="@dimen/titulo_pictos"
-        android:layout_marginTop="@dimen/margen_peque_1"
         app:layout_constraintEnd_toEndOf="@+id/item_board_picto_imagen"
         app:layout_constraintStart_toStartOf="@+id/item_board_picto_imagen"
         app:layout_constraintTop_toBottomOf="@+id/item_board_picto_imagen" />

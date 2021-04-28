@@ -6,9 +6,11 @@
     tools:context=".fragmentsinicio.HomeFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.ausagi.model.ProfileViewModel" />
+
         <variable
             name="HomeFragment"
             type="com.example.ausagi.fragmentsinicio.HomeFragment" />
@@ -36,11 +38,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margen_normal"
                     android:fontFamily="sans-serif-black"
                     android:text="@string/app_name"
                     android:textColor="?attr/titleTextColor"
                     android:textSize="@dimen/titulo_1"
-                    android:layout_marginTop="@dimen/margen_normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -50,8 +52,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/lista_circulos"
                     android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal"
                     android:layout_marginTop="@dimen/margen_normal"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -62,9 +64,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/margen_grande"
                     android:layout_marginTop="@dimen/margen_peque_2"
                     android:layout_marginEnd="@dimen/margen_grande"
-                    android:layout_marginStart="@dimen/margen_grande"
                     android:elevation="@dimen/elevacion"
                     android:text="@string/text_instrucciones"
                     android:textColor="?attr/colorOnSecondary"
