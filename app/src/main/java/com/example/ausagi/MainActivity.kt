@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        navController.setGraph(R.navigation.nav_graph) //Para que no haya problemas al rotar
+        navController.setGraph(R.navigation.nav_graph) //Para que no haya problemas al rotar la pantalla
 
         setupActionBarWithNavController(navController)
 
