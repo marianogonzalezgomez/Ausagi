@@ -9,11 +9,14 @@ import com.example.ausagi.database.Picto
 class BoardViewModel : ViewModel() {
 
     val listaPictos = mutableListOf<Picto>()
+    val listaPictosBarra = mutableListOf<Picto>()
     val posicion = MutableLiveData<Int>()
+    val clicado = MutableLiveData<Int>()
 
     //INICIALIZACIÓN--------------------------------------------------
     init {
         posicion.value = 0
+        clicado.value = 0
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid1), "Yo")
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.quiero), "Quiero")
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.comer), "Comer")
@@ -33,7 +36,15 @@ class BoardViewModel : ViewModel() {
 
     }
 
-    fun guardarPicto(fotoID: Uri?, nombre: String) {
+    fun guardarPicto(fotoID: Uri?, nombre: String) { //Solo añade pictos a lista pictos, es decir a la cuadricula
         listaPictos.add(Picto(fotoID, nombre))
+    }
+
+    fun addPicto(picto: Picto) { //esta añade pictos a la barra de accion
+        listaPictosBarra.add(picto)
+    }
+
+    fun eliminarPictosBarra() {
+        listaPictosBarra.clear()
     }
 }

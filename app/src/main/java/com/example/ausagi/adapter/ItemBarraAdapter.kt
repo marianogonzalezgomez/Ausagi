@@ -10,11 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.R
 import com.example.ausagi.database.Picto
 
-class ItemBoardAdapter(
+class ItemBarraAdapter(
         private val context: Context,
-        private val listener: Communicator,
         private val dataset: MutableList<Picto>
-) : RecyclerView.Adapter<ItemBoardAdapter.ItemViewHolder>() {
+) : RecyclerView.Adapter<ItemBarraAdapter.ItemViewHolder>() {
 
     /**
      * Replace the contents of a view (invoked by the layout manager)
@@ -24,19 +23,6 @@ class ItemBoardAdapter(
 
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
-
-        /*holder.imageButton.setOnClickListener{
-            if (position != RecyclerView.NO_POSITION) { listener.passData(position) } //pasa la posicion del adapter al recyclerview para conocer que item se ha elegido
-            val action = HomeFragmentDirections.actionHomeFragmentToInformationFragment()
-            holder.itemView.findNavController().navigate(action)
-        }*/
-
-        holder.imageView.setOnClickListener {
-            if (position != RecyclerView.NO_POSITION) {
-                listener.passData(position)
-                listener.addPictoBarra(position)
-            } //pasa la posicion del adapter al recyclerview para conocer que item se ha elegido
-        }
 
     }
 

@@ -78,5 +78,8 @@ class HomeFragment : Fragment(), Communicator {
         sharedViewModel.posicion.value = position
     }
 
+    override fun addPictoBarra(position: Int) {
+    }
+
 }
 

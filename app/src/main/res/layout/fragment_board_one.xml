@@ -16,52 +16,94 @@
             type="com.example.ausagi.fragmentstableros.BoardOneFragment" />
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/pantalla_tablero_N1"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="?attr/colorSecondary"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?attr/colorSecondary">
 
-        <LinearLayout
-            android:id="@+id/pantalla_tablero_N1"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <FrameLayout
+                android:id="@+id/ContenedorBarraAccion"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="230dp"
+                android:background="?attr/colorSecondary"
+                android:elevation="@dimen/elevacion_corta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="lollipop" />
 
-                <FrameLayout
-                    android:id="@+id/barraAccion"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/circulo_contenedor_picto"
-                    android:layout_marginStart="@dimen/margen_peque_2"
-                    android:layout_marginTop="@dimen/margen_peque_2"
-                    android:layout_marginEnd="@dimen/margen_peque_2"
-                    android:background="@drawable/barra_accion"
-                    android:elevation="@dimen/elevacion"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:targetApi="lollipop" />
+            <LinearLayout
+                android:id="@+id/barraAccion"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="@dimen/margen_peque_2"
+                android:layout_marginTop="@dimen/margen_peque_2"
+                android:layout_marginEnd="@dimen/margen_peque_2"
+                android:elevation="@dimen/elevacion_corta"
+                app:layout_constraintEnd_toEndOf="@id/ContenedorBarraAccion"
+                app:layout_constraintStart_toStartOf="@id/ContenedorBarraAccion"
+                app:layout_constraintTop_toTopOf="@id/ContenedorBarraAccion"
+                tools:targetApi="lollipop">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cuadricula_pictos_N1_recyclerView"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/barra_pictos_N1_recyclerView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margen_peque_2"
-                    android:scrollbars="vertical"
-                    app:layoutManager="GridLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/barraAccion"
-                    app:spanCount="3"
-                    tools:listitem="@layout/item_picto_view" />
+                    android:scrollbars="horizontal"
+                    android:orientation="horizontal"
+                    android:elevation="@dimen/margen_peque"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_picto_view"
+                    tools:targetApi="lollipop" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </ScrollView>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/botonPlay"
+                android:layout_width="@dimen/lista_botones_config_circulos"
+                android:layout_height="@dimen/lista_botones_config_circulos"
+                android:background="@drawable/rounded_corner"
+                android:elevation="@dimen/elevacion"
+                android:layout_marginEnd="@dimen/margen_peque_2"
+                app:layout_constraintEnd_toEndOf="@id/ContenedorBarraAccion"
+                app:layout_constraintTop_toBottomOf="@+id/barraAccion"
+                app:layout_constraintBottom_toBottomOf="@id/ContenedorBarraAccion"
+                app:srcCompat="@drawable/ic_baseline_record_voice_over_24"
+                tools:targetApi="lollipop"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/botonEliminar"
+                android:layout_width="@dimen/lista_botones_config_circulos"
+                android:layout_height="@dimen/lista_botones_config_circulos"
+                android:background="@drawable/rounded_corner"
+                android:elevation="@dimen/elevacion"
+                android:layout_marginEnd="@dimen/margen_peque"
+                app:layout_constraintEnd_toStartOf="@+id/botonPlay"
+                app:layout_constraintTop_toTopOf="@+id/botonPlay"
+                app:srcCompat="@drawable/ic_baseline_delete_24"
+                tools:targetApi="lollipop"
+                tools:ignore="ContentDescription" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cuadricula_pictos_N1_recyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:layout_marginTop="@dimen/margen_peque_2"
+                android:paddingBottom="@dimen/padding_zona_segura"
+                app:layoutManager="GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ContenedorBarraAccion"
+                app:spanCount="3"
+                tools:listitem="@layout/item_picto_view" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
