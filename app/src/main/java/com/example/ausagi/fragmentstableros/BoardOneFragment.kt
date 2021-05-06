@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.ausagi.adapter.Communicator
 import com.example.ausagi.adapter.ItemBarraAdapter
 import com.example.ausagi.adapter.ItemBoardAdapter
@@ -14,6 +15,7 @@ import com.example.ausagi.database.Picto
 import com.example.ausagi.databinding.FragmentBoardOneBinding
 import com.example.ausagi.model.BoardViewModel
 import kotlinx.android.synthetic.main.fragment_board_one.*
+import kotlinx.android.synthetic.main.item_picto_view.view.*
 
 class BoardOneFragment : Fragment(), Communicator {
 
@@ -28,7 +30,6 @@ class BoardOneFragment : Fragment(), Communicator {
     //FUNCIONES-----------------------------------------------------------------
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -44,13 +45,14 @@ class BoardOneFragment : Fragment(), Communicator {
             viewModel = sharedViewModel
         }
 
+        sharedViewModel.eliminarPictosBarra()
+
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
         val recyclerView = binding.cuadriculaPictosN1RecyclerView
         val recyclerView2 = binding.barraPictosN1RecyclerView
 
         recyclerView.apply {
-            //layoutManager = LinearLayoutManager(requireContext()) //APARENTEMENTE NO SE DEBERIA PONER (?)
             // set the custom adapter to the RecyclerView
             adapter = ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
         }
@@ -59,9 +61,15 @@ class BoardOneFragment : Fragment(), Communicator {
             adapter = ItemBarraAdapter(requireContext(), loadPictosBarra())
         }
 
+        sharedViewModel.clicado.observe(viewLifecycleOwner, Observer{
+            recyclerView2.adapter?.notifyDataSetChanged()
+            recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size-1)
+        }) //Se actualiza el recycler de la barra de acción cada vez que añadimos un pictograma y se mueve el scrollbar
+
         botonEliminar.setOnClickListener {
             sharedViewModel.eliminarPictosBarra()
-        }
+            recyclerView2.adapter?.notifyDataSetChanged()
+        } //se eliminan los pictos del recycler de la barra de acción
 
     }
 
@@ -79,6 +87,10 @@ class BoardOneFragment : Fragment(), Communicator {
 
     override fun addPictoBarra(position: Int) {
         sharedViewModel.addPicto(sharedViewModel.listaPictos[sharedViewModel.posicion.value!!])
+    }
+
+    override fun passClicked(pressed: Int) {
+        sharedViewModel.clicado.value = pressed
     }
 
 }

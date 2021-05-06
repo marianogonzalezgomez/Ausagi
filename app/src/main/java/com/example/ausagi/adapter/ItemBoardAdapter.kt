@@ -21,20 +21,18 @@ class ItemBoardAdapter(
      */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
+        var pressed = 0
 
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
-
-        /*holder.imageButton.setOnClickListener{
-            if (position != RecyclerView.NO_POSITION) { listener.passData(position) } //pasa la posicion del adapter al recyclerview para conocer que item se ha elegido
-            val action = HomeFragmentDirections.actionHomeFragmentToInformationFragment()
-            holder.itemView.findNavController().navigate(action)
-        }*/
 
         holder.imageView.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
                 listener.passData(position)
                 listener.addPictoBarra(position)
+
+                pressed++
+                listener.passClicked(pressed)
             } //pasa la posicion del adapter al recyclerview para conocer que item se ha elegido
         }
 

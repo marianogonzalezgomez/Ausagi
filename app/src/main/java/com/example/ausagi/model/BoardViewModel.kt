@@ -46,5 +46,6 @@ class BoardViewModel : ViewModel() {
 
     fun eliminarPictosBarra() {
         listaPictosBarra.clear()
+        clicado.value = 0
     }
 }

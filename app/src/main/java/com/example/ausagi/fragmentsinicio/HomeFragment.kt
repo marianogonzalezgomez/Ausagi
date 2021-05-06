@@ -78,7 +78,12 @@ class HomeFragment : Fragment(), Communicator {
         sharedViewModel.posicion.value = position
     }
 
+
+    //Funciones que no interesan en este fragment
     override fun addPictoBarra(position: Int) {
+    }
+
+    override fun passClicked(pressed: Int) {
     }
 
 }
