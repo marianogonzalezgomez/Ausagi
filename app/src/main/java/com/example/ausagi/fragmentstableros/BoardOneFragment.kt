@@ -16,6 +16,7 @@ import com.example.ausagi.adapter.ItemBoardAdapter
 import com.example.ausagi.database.Picto
 import com.example.ausagi.databinding.FragmentBoardOneBinding
 import com.example.ausagi.model.BoardViewModel
+import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_board_one.*
 import kotlinx.android.synthetic.main.item_picto_view.view.*
 import java.util.*
@@ -30,6 +31,7 @@ class BoardOneFragment : Fragment(), Communicator {
 
     //Variable para el viewmodel
     private val sharedViewModel: BoardViewModel by activityViewModels()
+    private val sharedViewModelProfile: ProfileViewModel by activityViewModels()
 
     //variable para el TTS (text to speech)
     var ttsObject: TextToSpeech? = null
@@ -108,7 +110,7 @@ class BoardOneFragment : Fragment(), Communicator {
     }
 
     private fun loadPictos(): MutableList<Picto> {
-        return sharedViewModel.listaPictos
+        return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1
     }
 
     private fun loadPictosBarra(): MutableList<Picto> {
@@ -120,7 +122,7 @@ class BoardOneFragment : Fragment(), Communicator {
     }
 
     override fun addPictoBarra(position: Int) {
-        sharedViewModel.addPicto(sharedViewModel.listaPictos[sharedViewModel.posicion.value!!])
+        sharedViewModel.addPicto(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[position])
     }
 
     override fun passClicked(pressed: Int) {

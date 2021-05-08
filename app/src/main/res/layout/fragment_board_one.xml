@@ -12,6 +12,10 @@
             type="com.example.ausagi.model.BoardViewModel" />
 
         <variable
+            name="viewModelProfile"
+            type="com.example.ausagi.model.ProfileViewModel" />
+
+        <variable
             name="BoardOneFragment"
             type="com.example.ausagi.fragmentstableros.BoardOneFragment" />
     </data>
