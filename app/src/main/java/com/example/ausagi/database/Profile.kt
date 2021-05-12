@@ -8,5 +8,5 @@ data class Profile(
     var level: String,
     var comment: String,
     var colour: String,
-    val listaN1: MutableList<Picto> = ArrayList()
+    val listaN1: MutableList<ListaPicto> = ArrayList()
 )

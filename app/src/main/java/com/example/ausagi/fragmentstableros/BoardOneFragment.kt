@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import com.example.ausagi.R
+import com.example.ausagi.R.*
 import com.example.ausagi.adapter.Communicator
 import com.example.ausagi.adapter.ItemBarraAdapter
 import com.example.ausagi.adapter.ItemBoardAdapter
@@ -29,17 +33,26 @@ class BoardOneFragment : Fragment(), Communicator {
     private var _binding: FragmentBoardOneBinding? = null
     private val binding get() = _binding!!
 
-    //Variable para el viewmodel
+    //Variables para el viewmodel
     private val sharedViewModel: BoardViewModel by activityViewModels()
     private val sharedViewModelProfile: ProfileViewModel by activityViewModels()
 
-    //variable para el TTS (text to speech)
+    //Variables para el TTS (text to speech)
     var ttsObject: TextToSpeech? = null
     var result: Int? = null
 
     //FUNCIONES-----------------------------------------------------------------
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //override del metodo del botón de atrás
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            if(sharedViewModelProfile.posicionLista.value == 0) {
+                requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
+            }
+            sharedViewModelProfile.posicionLista.value = 0
+            sharedViewModel.atras.value = 1
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -71,9 +84,22 @@ class BoardOneFragment : Fragment(), Communicator {
         }
 
         //Actualizar el recycler de la barra de acción cada vez que se añade un pictograma y se mueve el scrollbar automáticamente
+        //Comprobar si es categoría. Si es categoría, se cargan de nuevo los pictogramas en el adapter
         sharedViewModel.clicado.observe(viewLifecycleOwner, Observer{
-            recyclerView2.adapter?.notifyDataSetChanged()
-            recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size-1)
+            if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList[sharedViewModel.posicion.value!!].isCategory) {
+                checkCategory()
+                recyclerView.adapter = ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
+            }
+            else {
+                recyclerView2.adapter?.notifyDataSetChanged()
+                recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size - 1)
+            }
+        })
+
+        //Actualizar el recycler de la tabla de pictos cada vez que se retrocede en una categoría
+        sharedViewModel.atras.observe(viewLifecycleOwner, Observer{
+            sharedViewModelProfile.posicionLista.value = 0
+            recyclerView.adapter = ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
         })
 
         //Eliminar Pictos de la barra de Acción con el botón eliminar
@@ -98,7 +124,7 @@ class BoardOneFragment : Fragment(), Communicator {
                 botonPlay.id -> if (result == TextToSpeech.LANG_NOT_SUPPORTED || result == TextToSpeech.LANG_MISSING_DATA) {
                     Toast.makeText(requireActivity(), "Opción no disponible en su dispositivo", Toast.LENGTH_SHORT).show()
                 } else {
-                    var stringTemp: String = ""
+                    var stringTemp = ""
                     sharedViewModel.listaPictosBarra.forEach {
                         stringTemp += it.textResource + " "
                     }
@@ -110,23 +136,40 @@ class BoardOneFragment : Fragment(), Communicator {
     }
 
     private fun loadPictos(): MutableList<Picto> {
-        return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1
+        return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
     }
 
     private fun loadPictosBarra(): MutableList<Picto> {
         return sharedViewModel.listaPictosBarra
     }
 
+    override fun addPictoBarra(position: Int) {
+        if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList[position].isCategory == false) {
+            sharedViewModel.addPicto(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList[position])
+        }
+    }
+
     override fun passData(position: Int) {
         sharedViewModel.posicion.value = position
     }
 
-    override fun addPictoBarra(position: Int) {
-        sharedViewModel.addPicto(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[position])
-    }
-
     override fun passClicked(pressed: Int) {
         sharedViewModel.clicado.value = pressed
+    }
+
+    //La funcion que se encarga de averiguar la categoría que se ha presionado
+    fun checkCategory() {
+        val limit: Int = sharedViewModel.posicion.value!!
+        var i = 0
+        var numCat = 0
+
+        while(i <= limit) {
+            if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList[i].isCategory){
+                numCat++
+            }
+            i++
+        }
+        sharedViewModelProfile.posicionLista.value = numCat
     }
 
     //Destruir el objeto TTS que se ha creado al inicio del fragmento
@@ -137,7 +180,6 @@ class BoardOneFragment : Fragment(), Communicator {
             ttsObject!!.shutdown()
         }
     }
-
 
 }
 

@@ -28,12 +28,12 @@ class ItemBoardAdapter(
 
         holder.imageView.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
-                listener.passData(position)
                 listener.addPictoBarra(position)
+                listener.passData(position)
 
                 pressed++
                 listener.passClicked(pressed)
-            } //pasa la posicion del adapter al recyclerview para conocer que item se ha elegido
+            } //Pasar la posicion del adapter al recyclerview para conocer qué item se ha elegido
         }
 
     }
