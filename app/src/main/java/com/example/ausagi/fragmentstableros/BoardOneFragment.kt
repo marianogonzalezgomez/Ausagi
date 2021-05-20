@@ -136,7 +136,22 @@ class BoardOneFragment : Fragment(), Communicator {
     }
 
     private fun loadPictos(): MutableList<Picto> {
+
+        if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 1: Pictogramas") {
+            val listaFiltroTemporal: MutableList<Picto> =
+                sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { !it.isCategory } //&& !it.isRoutine
+                    .toMutableList()
+            return listaFiltroTemporal
+        }
+        else if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 2: Pictogramas + Categorías") {
+            val listaFiltroTemporal: MutableList<Picto> =
+            sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { !it.isRoutine }
+                .toMutableList()
+            return listaFiltroTemporal
+        }
+        //Nivel 3: Pictogramas + Categorías + Rutinas (Cuando se pueden ver tanto las categorías como las rutinas)
         return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
+
     }
 
     private fun loadPictosBarra(): MutableList<Picto> {
