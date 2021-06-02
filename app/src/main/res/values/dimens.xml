@@ -20,6 +20,7 @@
     <dimen name="elevacion_corta">2dp</dimen>
     <dimen name="circulo_picto">100dp</dimen>
     <dimen name="circulo_contenedor_picto">110dp</dimen>
+    <dimen name="circulo_rutina">250dp</dimen>
     <dimen name="padding_zona_segura">250dp</dimen>
 
 </resources>

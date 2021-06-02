@@ -32,6 +32,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageButton
+                    android:id="@+id/botonAtrasConfig"
+                    android:layout_width="@dimen/lista_botones_config_circulos"
+                    android:layout_height="@dimen/lista_botones_config_circulos"
+                    android:layout_marginStart="@dimen/margen_normal"
+                    android:background="@drawable/rounded_corner"
+                    android:elevation="@dimen/elevacion"
+                    android:padding="@dimen/margen_peque"
+                    app:layout_constraintBottom_toBottomOf="@+id/espacio_modificar_perfil_foto"
+                    app:layout_constraintEnd_toStartOf="@+id/boton_modificar_foto"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/espacio_modificar_perfil_foto"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+                    tools:ignore="ContentDescription"
+                    tools:targetApi="lollipop" />
+
                 <Button
                     android:id="@+id/boton_modificar_foto"
                     android:layout_width="@dimen/circulo_foto"

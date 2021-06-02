@@ -1,6 +1,8 @@
 package com.example.ausagi
 
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -20,6 +22,18 @@ class MainActivity : AppCompatActivity() {
         navController.setGraph(R.navigation.nav_graph) //Para que no haya problemas al rotar la pantalla
 
         setupActionBarWithNavController(navController)
+
+        //Eliminar barra de acción y softkeys
+        this.supportActionBar?.hide()
+        this.window.decorView.apply{
+            systemUiVisibility =  View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                    View.SYSTEM_UI_FLAG_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        }
+        this.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
     }
 

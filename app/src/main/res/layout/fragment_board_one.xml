@@ -62,7 +62,7 @@
                     android:scrollbars="horizontal"
                     android:orientation="horizontal"
                     android:elevation="@dimen/margen_peque"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layoutManager="LinearLayoutManager"
                     tools:listitem="@layout/item_picto_view"
                     tools:targetApi="lollipop" />
 
@@ -94,6 +94,20 @@
                 app:srcCompat="@drawable/ic_baseline_delete_24"
                 tools:targetApi="lollipop"
                 tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/botonAtras"
+                android:layout_width="@dimen/lista_botones_config_circulos"
+                android:layout_height="@dimen/lista_botones_config_circulos"
+                android:background="@drawable/rounded_corner"
+                android:elevation="@dimen/elevacion"
+                android:layout_marginStart="@dimen/margen_peque_2"
+                app:layout_constraintBottom_toBottomOf="@+id/ContenedorBarraAccion"
+                app:layout_constraintStart_toStartOf="@+id/ContenedorBarraAccion"
+                app:layout_constraintTop_toBottomOf="@+id/barraAccion"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+                tools:ignore="ContentDescription"
+                tools:targetApi="lollipop" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cuadricula_pictos_N1_recyclerView"

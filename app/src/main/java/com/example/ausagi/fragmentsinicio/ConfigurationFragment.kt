@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ausagi.R
 import com.example.ausagi.databinding.FragmentConfigurationBinding
 import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_configuration.*
@@ -84,6 +86,11 @@ class ConfigurationFragment : Fragment() {
             val action = ConfigurationFragmentDirections.actionConfigurationFragmentToHomeFragment()
             findNavController().navigate(action)
             true
+        }
+
+        //Botón para atrás
+        botonAtrasConfig.setOnClickListener {
+            requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
     }
 

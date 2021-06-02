@@ -84,5 +84,19 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_boardOneFragment_to_boardRoutineFragment"
+            app:destination="@id/boardRoutineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boardRoutineFragment"
+        android:name="com.example.ausagi.fragmentstableros.BoardRoutineFragment"
+        android:label="fragment_board_routine"
+        tools:layout="@layout/fragment_board_routine" >
+        <action
+            android:id="@+id/action_boardRoutineFragment_to_boardOneFragment"
+            app:destination="@id/boardOneFragment"
+            app:popUpTo="@id/boardOneFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>

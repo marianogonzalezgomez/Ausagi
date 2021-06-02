@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ausagi.R
 import com.example.ausagi.databinding.FragmentInstructionsBinding
+import kotlinx.android.synthetic.main.fragment_information.*
 
 class InstructionsFragment : Fragment() {
 
@@ -34,6 +37,10 @@ class InstructionsFragment : Fragment() {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
 
+        //Botón para atrás
+        botonAtras.setOnClickListener {
+            requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
+        }
     }
 
 }

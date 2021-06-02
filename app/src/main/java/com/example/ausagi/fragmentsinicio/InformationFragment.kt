@@ -7,12 +7,16 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ausagi.R
 import com.example.ausagi.databinding.FragmentInformationBinding
 import com.example.ausagi.model.ProfileViewModel
+import kotlinx.android.synthetic.main.fragment_configuration.*
 import kotlinx.android.synthetic.main.fragment_create_profile.*
 import kotlinx.android.synthetic.main.fragment_information.*
+import kotlinx.android.synthetic.main.fragment_information.botonAtras
 
 class InformationFragment : Fragment() {
 
@@ -55,6 +59,11 @@ class InformationFragment : Fragment() {
         boton_configurar_perfil.setOnClickListener {
             val action = InformationFragmentDirections.actionInformationFragmentToConfigurationFragment()
             findNavController().navigate(action)
+        }
+
+        //Botón para atrás
+        botonAtras.setOnClickListener {
+            requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
 
         espacio_informacion_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.posicion.value!!].imageResource)

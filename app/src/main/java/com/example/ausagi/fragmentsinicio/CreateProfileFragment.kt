@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ausagi.R
 import com.example.ausagi.databinding.FragmentCreateProfileBinding
 import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_create_profile.*
@@ -40,11 +42,7 @@ class CreateProfileFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentCreateProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -78,6 +76,11 @@ class CreateProfileFragment : Fragment() {
             //funcion de navegacion
             val action = CreateProfileFragmentDirections.actionCreateProfileFragmentToHomeFragment()
             findNavController().navigate(action)
+        }
+
+        //Botón para atrás
+        botonAtrasCreate.setOnClickListener {
+            requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
 
     }

@@ -12,10 +12,10 @@ import com.example.ausagi.database.Profile
 class ProfileViewModel : ViewModel() {
 
     //VARIABLES-------------------------------------------------------
-    val listaPerfiles = mutableListOf<Profile>()
-    val posicion = MutableLiveData<Int>()
-    val posicionUltimoPerfil = MutableLiveData<Int>()
-    val posicionLista = MutableLiveData<Int>()
+    val listaPerfiles = mutableListOf<Profile>() //lista de los perfiles creados
+    val posicion = MutableLiveData<Int>() //posicion del perfil seleccionado en la lista de perfiles
+    val posicionUltimoPerfil = MutableLiveData<Int>() //posicion del ultimo perfil de la lista de perfiles
+    val posicionLista = MutableLiveData<Int>() //posicion de la lista correspondiente dentro de la listaN1
 
     var nivelTempVar: String = ""
     var colorTempVar: String = ""
@@ -65,13 +65,17 @@ class ProfileViewModel : ViewModel() {
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid1), "Yo")
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.quiero), "Quiero")
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid2), "Amigo")
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid3), "Amiga")
         guardarCat(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.casa), "Casa") //Añadir categoría
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.comer), "Comer")
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.beber), "Beber")
         guardarCat(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_caca), "Hacer caca") //Añadir categoría
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_pis), "Hacer pis")
         guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.ir_al_colegio), "Ir al colegio")
+        guardarRut(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid3), "Amiga") //Añadir Rutina
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.quiero), "Quiero")
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_caca), "Hacer caca")
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_pis), "Hacer pis")
+
     }
 
     //Funciones para guardar y eliminar perfiles
@@ -86,7 +90,7 @@ class ProfileViewModel : ViewModel() {
         listaPerfiles.removeAt(posicion.value!!)
     }
 
-    //Funciones para guardar pictos y categorías dentro de la lista de cada perfil ¡¡POR DEFECTO!!
+    //Funciones para guardar pictos, categorías y rutinas dentro de la lista de cada perfil ¡¡POR DEFECTO!!
     fun guardarPicto(fotoID: Uri?, nombre: String) {
         posicionUltimoPerfil.value = listaPerfiles.size - 1
         val pos: Int = listaPerfiles[posicionUltimoPerfil.value!!].listaN1.size - 1 //posición de la lista a la que se va a añadir el pictograma
@@ -97,6 +101,12 @@ class ProfileViewModel : ViewModel() {
         listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
         val pos = 0 //El picto que protagoniza la categoría, se guarda en la lista inicial
         listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, true, false, true)) //Guardar el pictograma de categoría en la lista inicial y advertir que es categoría
+    }
+    fun guardarRut(fotoID: Uri?, nombre: String) {
+        posicionUltimoPerfil.value = listaPerfiles.size - 1
+        listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir nueva rutina (que es una lista de pictos)
+        val pos = 0 //El picto que protagoniza la rutina, se guarda en la lista inicial
+        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, false, true, false, true)) //Guardar el pictograma de rutina en la lista inicial y advertir que es rutina
     }
 
 }

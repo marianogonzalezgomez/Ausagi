@@ -45,6 +45,21 @@
                     tools:context=".fragmentsinicio.CreateProfileFragment"
                     tools:targetApi="lollipop" />
 
+                <ImageButton
+                    android:id="@+id/botonAtras"
+                    android:layout_width="@dimen/lista_botones_config_circulos"
+                    android:layout_height="@dimen/lista_botones_config_circulos"
+                    android:background="@drawable/rounded_corner"
+                    android:elevation="@dimen/elevacion"
+                    android:padding="@dimen/margen_peque"
+                    app:layout_constraintBottom_toBottomOf="@+id/espacio_informacion_foto"
+                    app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/espacio_informacion_foto"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+                    tools:ignore="ContentDescription"
+                    tools:targetApi="lollipop" />
+
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/espacio_informacion_foto"
                     android:layout_width="@dimen/circulo_foto"
