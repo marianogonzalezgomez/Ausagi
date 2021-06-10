@@ -87,6 +87,7 @@ class BoardOneFragment : Fragment(), Communicator {
             if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 1: Pictogramas") {
                 recyclerView2.adapter?.notifyDataSetChanged()
                 recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size - 1)
+
             }
             else if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 2: Pictogramas + Categorías") {
                 if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].isCategory) {
@@ -97,7 +98,7 @@ class BoardOneFragment : Fragment(), Communicator {
                     recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size - 1)
                 }
             }
-            else {
+            else { //Nivel 3
                 //Si es una rutina
                 if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isRoutine) {
                     checkCatRout()
@@ -168,8 +169,8 @@ class BoardOneFragment : Fragment(), Communicator {
 
     }
 
+    //Carga la lista de pictos que se considere dependiendo el nivel (se filtra mediante el atributo de level de cada picto
     private fun loadPictos(): MutableList<Picto> {
-
         if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 1: Pictogramas") {
             return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }
                 .toMutableList()
@@ -181,15 +182,18 @@ class BoardOneFragment : Fragment(), Communicator {
         //Nivel 3: Pictogramas + Categorías + Rutinas (Cuando se pueden ver tanto las categorías como las rutinas)
         return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }
             .toMutableList()
-
     }
 
     private fun loadPictosBarra(): MutableList<Picto> {
         return sharedViewModel.listaPictosBarra
     }
 
+    //Añade a la barra (adapter) el pictograma de la posición que se le indica dependiendo del nivel al que pertenezca
     override fun addPictoBarra(position: Int) {
-        if(!sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[position].isCategory) {
+        if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 1: Pictogramas") {
+            sharedViewModel.addPicto(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }[position])
+        }
+        else if (!sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[position].isCategory) {
             sharedViewModel.addPicto(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[position])
         }
     }
