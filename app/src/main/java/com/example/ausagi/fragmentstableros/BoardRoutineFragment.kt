@@ -30,11 +30,6 @@ class BoardRoutineFragment : Fragment(), Communicator {
     //Variables para el botón de atrás
     var contAtras: Int = 0
 
-    //FUNCIONES-----------------------------------------------------------------
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBoardRoutineBinding.inflate(inflater, container, false)
         return binding.root

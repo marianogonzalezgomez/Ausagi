@@ -24,4 +24,8 @@
     <color name="Green_Dark">#94af76</color>
     <color name="Green_Title">#f1f8e9</color>
     <color name="black_gr">#387002</color>
+
+    <color name="color_categorias">#fff3e0</color>
+    <color name="color_rutinas">#ffebee</color>
+
 </resources>

@@ -41,10 +41,6 @@ class MainActivity : AppCompatActivity() {
         eliminarBarraySofKeys()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     private fun eliminarBarraySofKeys() {
         //Eliminar barra de acción y softkeys
         this.supportActionBar?.hide()

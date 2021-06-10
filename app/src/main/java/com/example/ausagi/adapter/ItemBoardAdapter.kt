@@ -1,12 +1,13 @@
 package com.example.ausagi.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.R
 import com.example.ausagi.database.Picto
@@ -20,7 +21,6 @@ class ItemBoardAdapter(
     /**
      * Replace the contents of a view (invoked by the layout manager)
      */
-    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         var pressed = 0
@@ -28,8 +28,16 @@ class ItemBoardAdapter(
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
 
+        if (!item.isCategory && !item.isRoutine) {
+            holder.imageView.setBackgroundColor(Color.WHITE)
+        }
+
         if (item.isCategory) {
-            holder.imageView.setBackgroundColor(R.color.black)
+            holder.imageView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_categorias))
+        }
+
+        if (item.isRoutine) {
+            holder.imageView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_rutinas))
         }
 
         holder.imageView.setOnClickListener {

@@ -26,12 +26,6 @@ class HomeFragment : Fragment(), Communicator {
     //Variable para el viewmodel
     private val sharedViewModel: ProfileViewModel by activityViewModels()
 
-    //FUNCIONES-----------------------------------------------------------------
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root

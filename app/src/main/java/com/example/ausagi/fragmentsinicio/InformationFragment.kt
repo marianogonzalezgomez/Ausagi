@@ -16,7 +16,6 @@ import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_configuration.*
 import kotlinx.android.synthetic.main.fragment_create_profile.*
 import kotlinx.android.synthetic.main.fragment_information.*
-import kotlinx.android.synthetic.main.fragment_information.botonAtras
 
 class InformationFragment : Fragment() {
 
@@ -28,12 +27,6 @@ class InformationFragment : Fragment() {
 
     //Variable para el viewmodel
     private val sharedViewModel: ProfileViewModel by activityViewModels()
-
-    //FUNCIONES-----------------------------------------------------------------
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
