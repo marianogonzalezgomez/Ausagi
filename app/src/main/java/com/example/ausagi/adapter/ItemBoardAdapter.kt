@@ -1,5 +1,6 @@
 package com.example.ausagi.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -19,12 +20,17 @@ class ItemBoardAdapter(
     /**
      * Replace the contents of a view (invoked by the layout manager)
      */
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         var pressed = 0
 
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
+
+        if (item.isCategory) {
+            holder.imageView.setBackgroundColor(R.color.black)
+        }
 
         holder.imageView.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {

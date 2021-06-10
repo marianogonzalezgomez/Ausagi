@@ -32,7 +32,43 @@ class ProfileViewModel : ViewModel() {
     }
 
     //FUNCIONES-------------------------------------------------------
-    //funciones para configurar el perfil
+
+    //Funciones para guardar y eliminar perfiles
+    fun guardarPerfil(fotoID: Uri?, nombre: String, comentario: String) {
+        listaPerfiles.add(Profile(fotoID, nombre, nivelTempVar, comentario, colorTempVar))
+        nivelTempVar = "0" //Borrar resultado para el siguiente uso
+        colorTempVar="0" //Borrar resultado para el siguiente uso
+        posicionUltimoPerfil.value = listaPerfiles.size - 1
+        setDefaultTablero()
+    }
+    fun eliminarPerfil() {
+        listaPerfiles.removeAt(posicion.value!!)
+    }
+
+    //Funciones para guardar pictos, categorías y rutinas dentro de la lista de cada perfil ¡¡POR DEFECTO!!
+    fun guardarPicto(fotoID: Uri?, nombre: String, nivel: Int) {
+        posicionUltimoPerfil.value = listaPerfiles.size - 1
+        val pos: Int = listaPerfiles[posicionUltimoPerfil.value!!].listaN1.size - 1 //posición de la lista a la que se va a añadir el pictograma
+        when (nivel) {
+            1 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, true, false, false))
+            2 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, true, true))
+            3 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, false, true))
+        }
+    }
+    fun guardarCat(fotoID: Uri?, nombre: String) {
+        posicionUltimoPerfil.value = listaPerfiles.size - 1
+        listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
+        val pos = 0 //El picto que protagoniza la categoría, se guarda en la lista inicial
+        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, true, false, true)) //Guardar el pictograma de categoría en la lista inicial y advertir que es categoría
+    }
+    fun guardarRut(fotoID: Uri?, nombre: String) {
+        posicionUltimoPerfil.value = listaPerfiles.size - 1
+        listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir nueva rutina (que es una lista de pictos)
+        val pos = 0 //El picto que protagoniza la rutina, se guarda en la lista inicial
+        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, false, true, false, true)) //Guardar el pictograma de rutina en la lista inicial y advertir que es rutina
+    }
+
+    //Funciones para configurar el perfil
     fun setFoto(foto: Uri?) {
         listaPerfiles[posicion.value!!].imageResource = foto
     }
@@ -60,53 +96,115 @@ class ProfileViewModel : ViewModel() {
     fun setColorTemp(colortemp: String) {
         colorTempVar = colortemp
     }
+
+    //Funcion que configura el tablero por defecto
     private fun setDefaultTablero() { //lista de pictos por defecto de cada perfil
         listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir lista de pictos inicial
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid1), "Yo")
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.quiero), "Quiero")
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid2), "Amigo")
-        guardarCat(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.casa), "Casa") //Añadir categoría
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.comer), "Comer")
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.beber), "Beber")
-        guardarCat(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_caca), "Hacer caca") //Añadir categoría
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_pis), "Hacer pis")
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.ir_al_colegio), "Ir al colegio")
-        guardarRut(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.kid3), "Amiga") //Añadir Rutina
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.quiero), "Quiero")
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_caca), "Hacer caca")
-        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_pis), "Hacer pis")
+
+        //Nivel pictogramas
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.yo), "Yo", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.quiero), "Quiero", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.no), "No", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.bien), "Bien", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.mal), "Mal", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.casa), "Casa", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.autob_s), "Autobús", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.cepillar_los_dientes), "Lavar los dientes", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.coger_el_tenedor), "A la mesa", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.comer), "Comer", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.beber), "Beber", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_est_mago), "Dolor de tripa", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.picar), "Me pica", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_pis), "Hacer pis", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_caca), "Hacer caca", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.jugar), "Jugar", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.gafas), "Gafas", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.aud_fono), "Audífono", 1)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.mordedor), "Mordedor", 1)
+
+        //Nivel categorías
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.yo), "Yo", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.quiero), "Quiero", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.no), "No", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.bien), "Bien", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.mal), "Mal", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.gafas), "Gafas", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.aud_fono), "Audífono", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.mordedor), "Mordedor", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.picar), "Me pica", 2)
+        //Categoría de casa
+        guardarCat(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.casa), "Casa")
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.casa), "Casa", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.beber), "Beber", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.comer), "Comer", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.coger_el_tenedor), "A la mesa", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.cama), "Cama", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dormir), "Dormir", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.jugar_con_el_tablet), "Tablet", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.recoger), "Recoger", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.jugar), "Jugar", 2)
+        //Categoría de baño
+        guardarCat(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.ba_o), "Baño")
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.ba_o), "Baño", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.cepillar_los_dientes), "Lavar los dientes", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.cepillo_y_pasta_de_dientes), "Cepillo y pasta de dientes", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.crema), "Crema", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.duchar), "Duchar", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.esponja), "Esponja", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.jab_n), "Jabón", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.lavar_las_manos), "Lavar las manos", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_pis), "Hacer pis", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hacer_caca), "Hacer caca", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.limpiar_el_culo), "Limpiarse", 2)
+        //Categoría de colegio
+        guardarCat(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.colegio), "Colegio")
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.colegio), "Colegio", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.autob_s), "Autobús", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.compa_eros), "Compañeros", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.comer), "Comer", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.beber), "Beber", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.coger_el_tenedor), "A la mesa", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.jugar), "Jugar", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.recoger_la_silla), "Recoger la silla", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.recoger), "Recoger", 2)
+        //Categoría de Médico
+        guardarCat(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hospital), "Médico")
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.hospital), "Médico", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_est_mago), "Dolor de tripa", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_brazo), "Dolor de brazo", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_cabeza), "Dolor de cabeza", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_culo), "Dolor de culo", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_espalda), "Dolor de espalda", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_garganta), "Dolor de garganta", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_muela), "Dolor de muela", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_o_do), "Dolor de oído", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_pecho), "Dolor de pecho", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_pierna), "Dolor de pierna", 2)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.dolor_de_pie), "Dolor de pie", 2)
+
+        //Nivel rutinas
+        //Rutina de lavarse los dientes
+        guardarRut(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.cepillar_los_dientes), "Lavar los dientes")
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___cepillo_de_dientes), "Cepillo de dientes", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___echar_pasta_de_dientes), "Pasta de dientes", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.cepillo_y_pasta_de_dientes), "Echar pasta de dientes", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.cepillar_los_dientes), "Lavar los dientes", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___abrir_el_grifo), "Abrir el grifo", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___vaso_de_agua), "Llenar vaso de agua", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___g_rgaras), "Hacer gárgaras", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___enjuagar), "Enjuagar y escupir el agua", 3)
+        //Rutina de preparar la mochila
+        guardarRut(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___mochila), "Preparar la mochila")
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___meter), "Meter en la mochila", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___estuche), "Estuche", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___libro), "Libros", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___agua), "Botella de agua", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___inhalador), "Inhalador", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___pa_al), "Pañal", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___ropa), "Ropa", 3)
+        guardarPicto(Uri.parse("android.resource://com.example.ausagi/" + R.drawable.___cerrar_la_cremallera), "Cerrar la mochila", 3)
 
     }
 
-    //Funciones para guardar y eliminar perfiles
-    fun guardarPerfil(fotoID: Uri?, nombre: String, comentario: String) {
-        listaPerfiles.add(Profile(fotoID, nombre, nivelTempVar, comentario, colorTempVar))
-        nivelTempVar = "0" //Borrar resultado para el siguiente uso
-        colorTempVar="0" //Borrar resultado para el siguiente uso
-        posicionUltimoPerfil.value = listaPerfiles.size - 1
-        setDefaultTablero()
-    }
-    fun eliminarPerfil() {
-        listaPerfiles.removeAt(posicion.value!!)
-    }
-
-    //Funciones para guardar pictos, categorías y rutinas dentro de la lista de cada perfil ¡¡POR DEFECTO!!
-    fun guardarPicto(fotoID: Uri?, nombre: String) {
-        posicionUltimoPerfil.value = listaPerfiles.size - 1
-        val pos: Int = listaPerfiles[posicionUltimoPerfil.value!!].listaN1.size - 1 //posición de la lista a la que se va a añadir el pictograma
-        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, true, false, false))
-    }
-    fun guardarCat(fotoID: Uri?, nombre: String) {
-        posicionUltimoPerfil.value = listaPerfiles.size - 1
-        listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
-        val pos = 0 //El picto que protagoniza la categoría, se guarda en la lista inicial
-        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, true, false, true)) //Guardar el pictograma de categoría en la lista inicial y advertir que es categoría
-    }
-    fun guardarRut(fotoID: Uri?, nombre: String) {
-        posicionUltimoPerfil.value = listaPerfiles.size - 1
-        listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir nueva rutina (que es una lista de pictos)
-        val pos = 0 //El picto que protagoniza la rutina, se guarda en la lista inicial
-        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, false, true, false, true)) //Guardar el pictograma de rutina en la lista inicial y advertir que es rutina
-    }
 
 }

@@ -66,6 +66,11 @@ class HomeFragment : Fragment(), Communicator {
             findNavController().navigate(action)
         }
 
+        boton_salir.setOnClickListener {
+            activity?.finish()
+            System.exit(0)
+        }
+
         //El listener del boton_masinfo está en el adapter de cada perfil que se muestra en home
 
     }

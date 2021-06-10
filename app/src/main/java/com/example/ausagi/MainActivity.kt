@@ -23,6 +23,29 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
 
+        eliminarBarraySofKeys()
+
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        eliminarBarraySofKeys()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        eliminarBarraySofKeys()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    private fun eliminarBarraySofKeys() {
         //Eliminar barra de acción y softkeys
         this.supportActionBar?.hide()
         this.window.decorView.apply{
@@ -34,14 +57,5 @@ class MainActivity : AppCompatActivity() {
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         }
         this.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }

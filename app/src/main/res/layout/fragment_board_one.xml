@@ -18,6 +18,10 @@
         <variable
             name="BoardOneFragment"
             type="com.example.ausagi.fragmentstableros.BoardOneFragment" />
+
+        <variable
+            name="ItemBoardAdapter"
+            type="com.example.ausagi.adapter.ItemBoardAdapter" />
     </data>
 
     <LinearLayout
