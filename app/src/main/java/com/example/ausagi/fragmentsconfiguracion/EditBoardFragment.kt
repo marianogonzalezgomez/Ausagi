@@ -92,7 +92,7 @@ class EditBoardFragment : Fragment(), Communicator {
 
         //Función para entrar en una categoría
         sharedViewModel.clicado.observe(viewLifecycleOwner, Observer{
-            if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory) {
+            if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory) {
                 checkCatRout()
                 recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
             }
@@ -101,22 +101,57 @@ class EditBoardFragment : Fragment(), Communicator {
         //Funciones para eliminar los pictos, categorías y rutinas
         sharedViewModel.clicadoElim.observe(viewLifecycleOwner, Observer{
             if(sharedViewModel.clicadoElim.value != 0) {
-            Toast.makeText(context, "Eliminado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Eliminado", Toast.LENGTH_SHORT).show()
+                //Si es nivel 1, entonces se elimina el pictograma de la lista principal
                 if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas") {
                     sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
                         .remove(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }[sharedViewModel.posicion.value!!])
+                //Si es nivel 2, entonces se elimina el pictograma de la lista que le corresponda y además, si es categoría, se elimina todoo lo asociado a ella
+                } else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
+                    //Si es categoría, se elimina lo asociado
+                    if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].isCategory) {
+                        //Primero se eliminan los pictos asociados a esa categoría
+                        checkCatRout()
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1
+                            .removeAt(sharedViewModelProfile.posicionLista.value!!)
+                        //Después se elimina la portada de la lista principal
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList
+                            .removeAll(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList
+                            .filter{ it.whatCategory == sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].whatCategory })
+                        //Por último, se actualizan los números de categoría de los demás pictogramas
+                        updateNumCat()
+                        sharedViewModelProfile.posicionLista.value = 0
+                    } else {
+                        //Se elimina el pictograma de la lista si no es categoría
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
+                            .remove(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!])
+                    }
                 }
-                else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
-                    sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
-                        .remove(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 }[sharedViewModel.posicion.value!!])
+                //Si es nivel 3, cuando se elimina la rutina, se elimina todoo lo asociado a ella directamente.
+                else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 3: Pictogramas + Categorías + Rutinas") {
+                    //Si es categoría o rutina, se elimina lo asociado
+                    if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory ||
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isRoutine) {
+                        //Primero se eliminan los pictos asociados a esa rutina
+                        checkCatRout()
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1
+                            .removeAt(sharedViewModelProfile.posicionLista.value!!)
+                        //Después se elimina la portada de la lista principal
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList
+                            .removeAll(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList
+                            .filter{ it.whatCategory == sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].whatCategory })
+                        //Por último, se actualizan los números de categoría de los demás pictogramas
+                        updateNumCat()
+                        sharedViewModelProfile.posicionLista.value = 0
+                    } else {
+                        //Se elimina el pictograma de la lista si no es rutina
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
+                            .remove(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!])
+                    }
                 }
-                else {
-                    sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
-                        .remove(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!])
-                }
-            recyclerView.adapter?.notifyDataSetChanged()
-            recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
-            sharedViewModel.clicadoElim.value = 0
+                    recyclerView.adapter?.notifyDataSetChanged()
+                    recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+                    sharedViewModel.clicadoElim.value = 0
             }
         })
 
@@ -171,15 +206,45 @@ class EditBoardFragment : Fragment(), Communicator {
         var num = 0
 
         while(i <= limit) {
-            if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[i].isCategory){
+            if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].isCategory){
                 num++
             }
-            else if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[i].isRoutine){
+            else if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].isRoutine){
                 num++
             }
             i++
         }
         sharedViewModelProfile.posicionLista.value = num
+    }
+
+    private fun updateNumCat() {
+        val limit: Int = sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter { it.level2 || it.level3 }.size - 1
+        if (sharedViewModel.posicion.value!! < limit) { //Para evitar que se crashee con el último item (que no tiene porqué actualizarse nada ya que se elimina)
+            checkCatRout()
+            val offset: Int = sharedViewModelProfile.posicionLista.value!! //A partir de la categoría que hay que cambiar los numCat
+            var i = 0 //para iterar todos los pictos
+            var x = 1 //para iterar las categorías o rutinas hasta llegar al offset
+
+            while (i <= limit) {
+                if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].isCategory ||
+                    sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].isRoutine) {
+                    if (x >= offset) {
+                        //Se actualiza el numCat de la portada de la rutina o de la categoría
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].whatCategory--
+                        //Se actualizan los pictos dentro de cada rutina o categoría
+                        val limit2: Int = sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[x].pictoList.size - 1
+                        var e = 0
+                        while (e <= limit2) {
+                            sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[x].pictoList.filter{ it.level2 || it.level3 }[e].whatCategory--
+                            e++
+                            println("El pictograma $i se corresponde a la categoría $x")
+                        }
+                    }
+                    x++
+                }
+                i++
+            }
+        }
     }
 
 }

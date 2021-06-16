@@ -21,6 +21,7 @@ class ProfileViewModel : ViewModel() {
     var nivelTempVar: String = ""
     var colorTempVar: String = ""
 
+    var numCat: Int = 0
 
     //INICIALIZACIÓN--------------------------------------------------
     init {
@@ -49,25 +50,33 @@ class ProfileViewModel : ViewModel() {
     //Funciones para guardar pictos, categorías y rutinas dentro de la lista de cada perfil ¡¡POR DEFECTO!!
     fun guardarPicto(fotoID: Uri?, nombre: String, nivel: Int) {
         posicionUltimoPerfil.value = listaPerfiles.size - 1
-        val pos: Int = listaPerfiles[posicionUltimoPerfil.value!!].listaN1.size - 1 //posición de la lista a la que se va a añadir el pictograma
+        numCat = listaPerfiles[posicionUltimoPerfil.value!!].listaN1.size - 1 //posición de la lista a la que se va a añadir el pictograma
         when (nivel) {
-            1 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, true, false, false))
-            2 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, true, true))
-            3 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, false, true))
+            1 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[numCat].pictoList.add(Picto(fotoID, nombre, true, false, false, false, false, numCat))
+            2 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[numCat].pictoList.add(Picto(fotoID, nombre, false, true, true, false, false, numCat))
+            3 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[numCat].pictoList.add(Picto(fotoID, nombre, false, false, true, false, false, numCat))
         }
     }
     fun guardarCat(fotoID: Uri?, nombre: String) {
         posicionUltimoPerfil.value = listaPerfiles.size - 1
         listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
+        numCat =listaPerfiles[posicionUltimoPerfil.value!!].listaN1.size - 1 //Posicion de la categoría que se acaba de añadir
         val pos = 0 //El picto que protagoniza la categoría, se guarda en la lista inicial
-        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, true, false, true)) //Guardar el pictograma de categoría en la lista inicial y advertir que es categoría
+        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, true, false, true, false, numCat)) //Guardar el pictograma de categoría en la lista inicial y advertir que es categoría
     }
     fun guardarRut(fotoID: Uri?, nombre: String) {
         posicionUltimoPerfil.value = listaPerfiles.size - 1
         listaPerfiles[posicionUltimoPerfil.value!!].listaN1.add(ListaPicto()) //Añadir nueva rutina (que es una lista de pictos)
+        numCat =listaPerfiles[posicionUltimoPerfil.value!!].listaN1.size - 1 //Posicion de la categoría que se acaba de añadir
         val pos = 0 //El picto que protagoniza la rutina, se guarda en la lista inicial
-        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, false, true, false, true)) //Guardar el pictograma de rutina en la lista inicial y advertir que es rutina
+        listaPerfiles[posicionUltimoPerfil.value!!].listaN1[pos].pictoList.add(Picto(fotoID, nombre, false, false, true, false, true, numCat)) //Guardar el pictograma de rutina en la lista inicial y advertir que es rutina
     }
+
+    //Funciones para guardar pictos, categorías y rutinas dentro de la lista de cada perfil de forma ¡¡PERSONALIZADA!!
+
+
+
+
 
     //Funciones para configurar el perfil
     fun setFoto(foto: Uri?) {

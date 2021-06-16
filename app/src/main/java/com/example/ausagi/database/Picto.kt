@@ -9,5 +9,6 @@ data class Picto(
         var level2: Boolean,
         var level3: Boolean,
         var isCategory: Boolean = false,
-        var isRoutine: Boolean = false
+        var isRoutine: Boolean = false,
+        var whatCategory: Int = 0 //Sirve tanto para categorías como para rutinas
 )

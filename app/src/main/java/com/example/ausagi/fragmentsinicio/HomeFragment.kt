@@ -77,6 +77,12 @@ class HomeFragment : Fragment(), Communicator {
         sharedViewModel.posicion.value = position
     }
 
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.posicion.value = 0
+        sharedViewModel.posicionLista.value = 0
+    }
+
 
     //Funciones que no interesan en este fragment
     override fun addPictoBarra(position: Int) {
