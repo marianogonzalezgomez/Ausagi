@@ -37,9 +37,6 @@ class CreateProfileFragment : Fragment() {
     //FUNCIONES-----------------------------------------------------------------
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -56,7 +53,7 @@ class CreateProfileFragment : Fragment() {
             createProfileFragment = this@CreateProfileFragment //para los clicklisteners del xml
         }
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
         //Valores por defecto
         sharedViewModel.setNivelTemp("Nivel 1: Pictogramas")

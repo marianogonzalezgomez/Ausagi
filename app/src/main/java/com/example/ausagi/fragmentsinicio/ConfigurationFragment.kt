@@ -62,7 +62,7 @@ class ConfigurationFragment : Fragment() {
             configurationFragment = this@ConfigurationFragment //para los clicklisteners del xml
         }
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
         boton_modificar_foto.setOnClickListener {
             openGalleryForImage()
@@ -88,10 +88,15 @@ class ConfigurationFragment : Fragment() {
             true
         }
 
-        //Botón para atrás
+        boton_configurar_tablero.setOnClickListener {
+            val action = ConfigurationFragmentDirections.actionConfigurationFragmentToChooseConfigFragment()
+            findNavController().navigate(action)
+        }
+
         botonAtrasConfig.setOnClickListener {
             requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
+
     }
 
     //Abre la galería con un Intent

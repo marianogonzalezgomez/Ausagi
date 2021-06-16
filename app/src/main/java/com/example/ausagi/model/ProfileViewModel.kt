@@ -17,6 +17,7 @@ class ProfileViewModel : ViewModel() {
     val posicionUltimoPerfil = MutableLiveData<Int>() //posicion del ultimo perfil de la lista de perfiles
     val posicionLista = MutableLiveData<Int>() //posicion de la lista correspondiente dentro de la listaN1
 
+    var nivelBotonConfig: String = ""
     var nivelTempVar: String = ""
     var colorTempVar: String = ""
 
@@ -95,6 +96,11 @@ class ProfileViewModel : ViewModel() {
     }
     fun setColorTemp(colortemp: String) {
         colorTempVar = colortemp
+    }
+
+    //Funcion para conocer el nivel que se va a editar
+    fun setNivelBotonConfigg(nivel: String) {
+        nivelBotonConfig = nivel
     }
 
     //Funcion que configura el tablero por defecto

@@ -10,11 +10,15 @@ class BoardViewModel : ViewModel() {
     val posicion = MutableLiveData<Int>()
     val clicado = MutableLiveData<Int>()
     val atras = MutableLiveData<Int>()
+    val clicadoConfig = MutableLiveData<Int>()
+    val clicadoElim = MutableLiveData<Int>()
 
     //INICIALIZACIÓN--------------------------------------------------
     init {
         posicion.value = 0
         clicado.value = 0
+        clicadoConfig.value = 0
+        clicadoElim.value = 0
         atras.value = 0
     }
 
@@ -25,4 +29,5 @@ class BoardViewModel : ViewModel() {
     fun eliminarPictosBarra() { //elimina los pictos de la barra de accion
         listaPictosBarra.clear()
     }
+
 }

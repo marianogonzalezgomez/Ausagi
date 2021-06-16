@@ -25,5 +25,9 @@
     <string name="text_info">Información de perfil</string>
     <string name="text_eliminar_perfil">Eliminar perfil</string>
     <string name="text_boton_salir">Salir</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar</string>
+    <string name="mover">Mover</string>
+    <string name="opciones">Opciones</string>
 
 </resources>

@@ -49,6 +49,9 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_configurationFragment_to_chooseConfigFragment"
+            app:destination="@id/chooseConfigFragment" />
     </fragment>
     <fragment
         android:id="@+id/instructionsFragment"
@@ -98,5 +101,29 @@
             app:destination="@id/boardOneFragment"
             app:popUpTo="@id/boardOneFragment"
             app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseConfigFragment"
+        android:name="com.example.ausagi.fragmentsconfiguracion.ChooseConfigFragment"
+        android:label="ChooseConfigFragment" >
+        <action
+            android:id="@+id/action_chooseConfigFragment_to_configurationFragment"
+            app:destination="@id/configurationFragment"
+            app:popUpTo="@id/configurationFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_chooseConfigFragment_to_editBoardFragment"
+            app:destination="@id/editBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editBoardFragment"
+        android:name="com.example.ausagi.fragmentsconfiguracion.EditBoardFragment"
+        android:label="fragment_edit_board"
+        tools:layout="@layout/fragment_edit_board" >
+        <action
+            android:id="@+id/action_editBoardFragment_to_chooseConfigFragment"
+            app:destination="@id/chooseConfigFragment"
+            app:popUpTo="@id/chooseConfigFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

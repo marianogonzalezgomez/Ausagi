@@ -6,7 +6,6 @@
     tools:context=".fragmentsinicio.CreateProfileFragment">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.ausagi.model.ProfileViewModel" />
@@ -102,6 +101,35 @@
                         android:textColor="?attr/colorOnSecondary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/contenedor_espacio_comentario"
+                    style="@style/AppTheme.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margen_normal"
+                    android:layout_marginTop="@dimen/margen_normal"
+                    android:layout_marginEnd="@dimen/margen_normal"
+                    android:hint="@string/comentarios"
+                    android:textColor="?attr/colorOnSecondary"
+                    app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
+                    app:boxCornerRadiusBottomStart="@dimen/radio_boton"
+                    app:boxCornerRadiusTopEnd="@dimen/radio_boton"
+                    app:boxCornerRadiusTopStart="@dimen/radio_boton"
+                    app:layout_constraintStart_toStartOf="@+id/contenedor_espacio_nombre"
+                    app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_nombre">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/espacio_comentario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:maxLength="200"
+                        android:maxLines="5"
+                        android:textColor="?attr/colorOnSecondary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
                     android:id="@+id/titulo_elegirnivel"
                     android:layout_width="wrap_content"
@@ -110,8 +138,8 @@
                     android:text="@string/elige_un_nivel"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
-                    app:layout_constraintStart_toStartOf="@+id/contenedor_espacio_nombre"
-                    app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_nombre" />
+                    app:layout_constraintStart_toStartOf="@+id/contenedor_espacio_comentario"
+                    app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_comentario" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup"
@@ -155,35 +183,6 @@
                         tools:targetApi="lollipop" />
                 </RadioGroup>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/contenedor_espacio_comentario"
-                    style="@style/AppTheme.TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margen_normal"
-                    android:layout_marginTop="@dimen/margen_normal"
-                    android:layout_marginEnd="@dimen/margen_normal"
-                    android:hint="@string/comentarios"
-                    android:textColor="?attr/colorOnSecondary"
-                    app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
-                    app:boxCornerRadiusBottomStart="@dimen/radio_boton"
-                    app:boxCornerRadiusTopEnd="@dimen/radio_boton"
-                    app:boxCornerRadiusTopStart="@dimen/radio_boton"
-                    app:layout_constraintStart_toStartOf="@+id/radioGroup"
-                    app:layout_constraintTop_toBottomOf="@+id/radioGroup">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/espacio_comentario"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="start|top"
-                        android:inputType="textMultiLine"
-                        android:lines="3"
-                        android:maxLength="200"
-                        android:maxLines="5"
-                        android:textColor="?attr/colorOnSecondary" />
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <TextView
                     android:id="@+id/titulo_elegirpaleta"
                     android:layout_width="wrap_content"
@@ -193,7 +192,7 @@
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/titulo_2"
                     app:layout_constraintStart_toStartOf="@+id/radioGroup"
-                    app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_comentario" />
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup2"

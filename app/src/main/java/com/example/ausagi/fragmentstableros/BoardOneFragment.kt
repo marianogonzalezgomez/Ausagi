@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -67,6 +68,8 @@ class BoardOneFragment : Fragment(), Communicator {
             viewModel = sharedViewModel
         }
 
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+
         sharedViewModel.eliminarPictosBarra()
 
         val recyclerView = binding.cuadriculaPictosN1RecyclerView
@@ -119,13 +122,6 @@ class BoardOneFragment : Fragment(), Communicator {
             }
         })
 
-        //Actualizar el recycler de la tabla de pictos cada vez que se retrocede en una categoría
-        sharedViewModel.atras.observe(viewLifecycleOwner, Observer{
-            sharedViewModelProfile.posicionLista.value = 0
-            recyclerView.adapter?.notifyDataSetChanged()
-            recyclerView.adapter = ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
-        })
-
         //Eliminar Pictos de la barra de Acción con el botón eliminar
         botonEliminar.setOnClickListener {
             sharedViewModel.eliminarPictosBarra()
@@ -141,6 +137,13 @@ class BoardOneFragment : Fragment(), Communicator {
             sharedViewModelProfile.posicionLista.value = 0
             sharedViewModel.atras.value = contAtras++
         }
+
+        //Actualizar el recycler de la tabla de pictos cada vez que se retrocede en una categoría
+        sharedViewModel.atras.observe(viewLifecycleOwner, Observer{
+            sharedViewModelProfile.posicionLista.value = 0
+            recyclerView.adapter?.notifyDataSetChanged()
+            recyclerView.adapter = ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
+        })
 
         //Crear objeto para llevar a cabo el TTS
         ttsObject = TextToSpeech(activity) { status ->
@@ -169,7 +172,7 @@ class BoardOneFragment : Fragment(), Communicator {
 
     }
 
-    //Carga la lista de pictos que se considere dependiendo el nivel (se filtra mediante el atributo de level de cada picto
+    //Carga la lista de pictos que se considere dependiendo el nivel (se filtra mediante el atributo de level de cada picto)
     private fun loadPictos(): MutableList<Picto> {
         if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 1: Pictogramas") {
             return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }
@@ -231,6 +234,12 @@ class BoardOneFragment : Fragment(), Communicator {
             ttsObject!!.stop()
             ttsObject!!.shutdown()
         }
+    }
+
+    override fun passClickedConfig(pressedConfig: Int) {
+    }
+
+    override fun passClickedElim(pressedElim: Int) {
     }
 }
 

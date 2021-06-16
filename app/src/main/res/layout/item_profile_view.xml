@@ -45,6 +45,7 @@
         android:layout_marginStart="@dimen/margen_peque"
         android:background="@drawable/rounded_corner"
         android:elevation="@dimen/elevacion"
+        android:padding="@dimen/margen_peque"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"

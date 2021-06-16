@@ -47,7 +47,7 @@ class InformationFragment : Fragment() {
             informationFragment = this@InformationFragment //para los clicklisteners del xml
         }
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
         boton_configurar_perfil.setOnClickListener {
             val action = InformationFragmentDirections.actionInformationFragmentToConfigurationFragment()

@@ -35,7 +35,7 @@ class InstructionsFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
         //Botón para atrás
         botonAtras.setOnClickListener {

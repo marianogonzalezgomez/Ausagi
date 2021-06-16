@@ -39,7 +39,7 @@ class HomeFragment : Fragment(), Communicator {
             viewModel = sharedViewModel
         }
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
         val recyclerView = binding.recyclerView
         val myDataSet = loadProfiles()
@@ -83,6 +83,12 @@ class HomeFragment : Fragment(), Communicator {
     }
 
     override fun passClicked(pressed: Int) {
+    }
+
+    override fun passClickedConfig(pressedConfig: Int) {
+    }
+
+    override fun passClickedElim(pressedElim: Int) {
     }
 
 }

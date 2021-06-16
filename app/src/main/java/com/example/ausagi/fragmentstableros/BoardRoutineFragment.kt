@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -43,6 +44,8 @@ class BoardRoutineFragment : Fragment(), Communicator {
             viewModel = sharedViewModel
         }
 
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+
         val recyclerView = binding.recyclerViewRutinas
 
         recyclerView.apply {
@@ -81,6 +84,13 @@ class BoardRoutineFragment : Fragment(), Communicator {
 
     override fun addPictoBarra(position: Int) {
 
+    }
+
+    override fun passClickedConfig(pressedConfig: Int) {
+
+    }
+
+    override fun passClickedElim(pressedElim: Int) {
     }
 
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/margen_peque_1">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/semi_circle"
+        android:elevation="@dimen/elevacion_corta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/item_board_picto_imagen"
+        android:layout_width="@dimen/circulo_picto"
+        android:layout_height="@dimen/circulo_picto"
+        android:layout_gravity="center"
+        android:elevation="@dimen/elevacion_corta"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/frameLayout"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        app:shapeAppearanceOverlay="@style/semiCircleImageViewStyle"
+        tools:targetApi="lollipop" />
+
+    <ImageButton
+        android:id="@+id/capa_config"
+        android:layout_width="@dimen/circulo_config"
+        android:layout_height="@dimen/circulo_config"
+        android:layout_alignTop="@+id/frameLayout"
+        android:background="@drawable/rounded_corner_config"
+        android:elevation="@dimen/elevacion"
+        app:layout_constraintEnd_toEndOf="@+id/item_board_picto_imagen"
+        app:layout_constraintTop_toTopOf="@+id/item_board_picto_imagen"
+        app:srcCompat="@drawable/ic_baseline_edit_24"
+        tools:ignore="ContentDescription"
+        tools:targetApi="lollipop" />
+
+    <ImageButton
+        android:id="@+id/capa_mover"
+        android:layout_width="@dimen/circulo_config"
+        android:layout_height="@dimen/circulo_config"
+        android:layout_alignTop="@+id/frameLayout"
+        android:background="@drawable/rounded_corner_config"
+        android:elevation="@dimen/elevacion"
+        app:layout_constraintStart_toStartOf="@+id/item_board_picto_imagen"
+        app:layout_constraintTop_toTopOf="@+id/item_board_picto_imagen"
+        app:srcCompat="@drawable/ic_baseline_open_with_24"
+        tools:ignore="ContentDescription"
+        tools:targetApi="lollipop" />
+
+    <ImageButton
+        android:id="@+id/capa_elim"
+        android:layout_width="@dimen/circulo_config"
+        android:layout_height="@dimen/circulo_config"
+        android:layout_alignTop="@+id/frameLayout"
+        android:background="@drawable/rounded_corner_config"
+        android:elevation="@dimen/elevacion"
+        app:layout_constraintEnd_toEndOf="@+id/item_board_picto_imagen"
+        app:layout_constraintBottom_toBottomOf="@+id/item_board_picto_imagen"
+        app:srcCompat="@drawable/ic_baseline_delete_24"
+        tools:ignore="ContentDescription"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/item_board_nombre_picto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margen_peque_1"
+        android:fontFamily="@font/patrick_hand"
+        android:textAlignment="center"
+        android:textColor="?attr/colorOnSecondary"
+        android:textSize="@dimen/titulo_pictos"
+        app:layout_constraintEnd_toEndOf="@+id/item_board_picto_imagen"
+        app:layout_constraintStart_toStartOf="@+id/item_board_picto_imagen"
+        app:layout_constraintTop_toBottomOf="@+id/item_board_picto_imagen" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
