@@ -105,7 +105,7 @@ class BoardOneFragment : Fragment(), Communicator {
                     }
                 }
             }
-            else { //Nivel 3
+            else if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 3: Pictogramas + Categorías + Rutinas") { //Nivel 3
                 //Si es una rutina
                 if (!sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3  }.isNullOrEmpty()) {
                     if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isRoutine) {
@@ -189,9 +189,10 @@ class BoardOneFragment : Fragment(), Communicator {
             return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 }
                 .toMutableList()
         }
-        //Nivel 3: Pictogramas + Categorías + Rutinas (Cuando se pueden ver tanto las categorías como las rutinas)
-        return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }
-            .toMutableList()
+        else {
+            return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }
+                .toMutableList()
+        }
     }
 
     private fun loadPictosBarra(): MutableList<Picto> {

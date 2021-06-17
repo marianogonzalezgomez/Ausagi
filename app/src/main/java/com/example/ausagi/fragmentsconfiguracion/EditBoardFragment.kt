@@ -89,9 +89,12 @@ class EditBoardFragment : Fragment(), Communicator {
 
         //Función para entrar en una categoría
         sharedViewModel.clicado.observe(viewLifecycleOwner, Observer{
-            if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory) {
-                checkCatRout()
-                recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+            if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }.isNotEmpty()) {
+                if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory) {
+                    checkCatRout()
+                    recyclerView.adapter =
+                        ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+                }
             }
         })
 
