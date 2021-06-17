@@ -20,6 +20,7 @@ class ProfileViewModel : ViewModel() {
     var nivelBotonConfig: String = ""
     var nivelTempVar: String = ""
     var colorTempVar: String = ""
+    var tipoTempVar: Int = 0 //0 picto, 1 categoría y 2 rutina
 
     var numCat: Int = 0
 
@@ -129,6 +130,11 @@ class ProfileViewModel : ViewModel() {
     //Funcion para conocer el nivel que se va a editar
     fun setNivelBotonConfigg(nivel: String) {
         nivelBotonConfig = nivel
+    }
+
+    //Funcion para conocer el tipo de picto que se añade (picto, cat o rut)
+    fun setTipoTemp(tipoTemp: Int) {
+        tipoTempVar = tipoTemp
     }
 
     //Funcion que configura el tablero por defecto

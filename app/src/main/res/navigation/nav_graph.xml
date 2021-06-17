@@ -128,6 +128,9 @@
         <action
             android:id="@+id/action_editBoardFragment_to_editPictoFragment"
             app:destination="@id/editPictoFragment" />
+        <action
+            android:id="@+id/action_editBoardFragment_to_addPictoFragment"
+            app:destination="@id/addPictoFragment" />
     </fragment>
     <fragment
         android:id="@+id/editPictoFragment"
@@ -135,6 +138,17 @@
         android:label="EditPictoFragment" >
         <action
             android:id="@+id/action_editPictoFragment_to_editBoardFragment"
+            app:destination="@id/editBoardFragment"
+            app:popUpTo="@id/editBoardFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPictoFragment"
+        android:name="com.example.ausagi.fragmentsconfiguracion.AddPictoFragment"
+        android:label="fragment_add_picto"
+        tools:layout="@layout/fragment_add_picto" >
+        <action
+            android:id="@+id/action_addPictoFragment_to_editBoardFragment"
             app:destination="@id/editBoardFragment"
             app:popUpTo="@id/editBoardFragment"
             app:popUpToInclusive="true" />

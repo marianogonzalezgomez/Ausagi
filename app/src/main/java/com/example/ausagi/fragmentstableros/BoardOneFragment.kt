@@ -140,6 +140,8 @@ class BoardOneFragment : Fragment(), Communicator {
             if (sharedViewModelProfile.posicionLista.value == 0) {
                 requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
                 activity?.setTheme(style.Theme_Ausagi_White)
+                sharedViewModelProfile.posicionLista.value = 0
+                sharedViewModel.posicion.value = 0
             }
             sharedViewModelProfile.posicionLista.value = 0
             sharedViewModel.atras.value = contAtras++
@@ -244,9 +246,9 @@ class BoardOneFragment : Fragment(), Communicator {
         }
     }
 
+    //No se utilizan aqui
     override fun passClickedConfig(pressedConfig: Int) {
     }
-
     override fun passClickedElim(pressedElim: Int) {
     }
 }

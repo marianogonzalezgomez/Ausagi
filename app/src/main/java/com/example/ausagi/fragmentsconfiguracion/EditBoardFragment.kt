@@ -75,16 +75,22 @@ class EditBoardFragment : Fragment(), Communicator {
             sharedViewModelProfile.posicionLista.value = 0
             sharedViewModel.atras.value = contAtras++
         }
-
         //Actualizar el recycler de la tabla de pictos cada vez que se retrocede en una categoría
         sharedViewModel.atras.observe(viewLifecycleOwner, Observer{
             if(sharedViewModel.atrasEditar.value == 0) {
                 sharedViewModelProfile.posicionLista.value = 0
+                sharedViewModel.inCategory.value = false
             }
             recyclerView.adapter?.notifyDataSetChanged()
             recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
             sharedViewModel.atrasEditar.value = 0
         })
+
+        //Funcion para añadir un pictograma
+        boton_añadir.setOnClickListener {
+            val action = EditBoardFragmentDirections.actionEditBoardFragmentToAddPictoFragment()
+            findNavController().navigate(action)
+        }
 
 
         //Función para entrar en una categoría
@@ -92,8 +98,8 @@ class EditBoardFragment : Fragment(), Communicator {
             if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }.isNotEmpty()) {
                 if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory) {
                     checkCatRout()
-                    recyclerView.adapter =
-                        ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+                    recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+                    sharedViewModel.inCategory.value = true
                 }
             }
         })
@@ -118,7 +124,7 @@ class EditBoardFragment : Fragment(), Communicator {
                 //Si es nivel 2, entonces se elimina el pictograma de la lista que le corresponda y además, si es categoría, se elimina todoo lo asociado a ella
                 } else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
                     //Si es categoría, se elimina lo asociado
-                    if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].isCategory) {
+                    if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].isCategory) {
                         //Primero se eliminan los pictos asociados a esa categoría
                         checkCatRout()
                         sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1
@@ -139,8 +145,8 @@ class EditBoardFragment : Fragment(), Communicator {
                 //Si es nivel 3, cuando se elimina la rutina, se elimina todoo lo asociado a ella directamente.
                 else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 3: Pictogramas + Categorías + Rutinas") {
                     //Si es categoría o rutina, se elimina lo asociado
-                    if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory ||
-                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isRoutine) {
+                    if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory ||
+                        sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isRoutine) {
                         //Primero se eliminan los pictos asociados a esa rutina
                         checkCatRout()
                         sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1
@@ -161,6 +167,7 @@ class EditBoardFragment : Fragment(), Communicator {
                     recyclerView.adapter?.notifyDataSetChanged()
                     recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
                     sharedViewModel.clicadoElim.value = 0
+                    sharedViewModel.posicion.value = 0
             }
         })
 

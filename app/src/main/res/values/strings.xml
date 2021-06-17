@@ -29,5 +29,9 @@
     <string name="editar">Editar</string>
     <string name="mover">Mover</string>
     <string name="opciones">Opciones</string>
+    <string name="es_pictograma">Pictograma</string>
+    <string name="es_categoria">Categoría</string>
+    <string name="es_rutina">Rutina</string>
+    <string name="titulo_tipo">¿Qué va a ser?</string>
 
 </resources>

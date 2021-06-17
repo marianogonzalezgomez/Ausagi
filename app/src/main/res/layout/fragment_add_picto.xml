@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragmentsconfiguracion.EditPictoFragment">
+    tools:context=".fragmentsconfiguracion.AddPictoFragment">
 
     <data>
         <variable
@@ -11,7 +11,7 @@
 
         <variable
             name="EditPictoFragment"
-            type="com.example.ausagi.fragmentsconfiguracion.EditPictoFragment" />
+            type="com.example.ausagi.fragmentsconfiguracion.AddPictoFragment" />
     </data>
 
     <LinearLayout
@@ -45,6 +45,9 @@
                 android:layout_height="@dimen/circulo_contenedor_foto"
                 android:layout_marginTop="@dimen/margen_grande"
                 android:background="@drawable/semi_circle"
+                android:text="@string/add"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/titulo_2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -91,6 +94,60 @@
                     android:textColor="?attr/colorOnSecondary" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/titulo_elegir_tipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_tipo"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/titulo_2"
+                android:layout_marginTop="@dimen/margen_normal"
+                app:layout_constraintStart_toStartOf="@+id/contenedor_espacio_nombre"
+                app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_nombre" />
+
+
+            <RadioGroup
+                android:id="@+id/radioGroup_addPicto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margen_peque"
+                app:layout_constraintStart_toStartOf="@+id/titulo_elegir_tipo"
+                app:layout_constraintTop_toBottomOf="@+id/titulo_elegir_tipo">
+
+                <RadioButton
+                    android:id="@+id/radioButtonN1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="?attr/titleTextColor"
+                    android:checked="true"
+                    android:onClick="@{() -> viewModel.setTipoTemp(0)}"
+                    android:text="@string/es_pictograma"
+                    android:textColor="?attr/colorOnSecondary"
+                    tools:targetApi="lollipop" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonN2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="?attr/titleTextColor"
+                    android:checked="false"
+                    android:onClick="@{() -> viewModel.setTipoTemp(1)}"
+                    android:text="@string/es_categoria"
+                    android:textColor="?attr/colorOnSecondary"
+                    tools:targetApi="lollipop" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonN3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="?attr/titleTextColor"
+                    android:checked="false"
+                    android:onClick="@{() -> viewModel.setTipoTemp(2)}"
+                    android:text="@string/es_rutina"
+                    android:textColor="?attr/colorOnSecondary"
+                    tools:targetApi="lollipop" />
+            </RadioGroup>
+
             <Button
                 android:id="@+id/boton_picto_hecho"
                 android:layout_width="wrap_content"
@@ -102,7 +159,7 @@
                 android:layout_marginTop="@dimen/margen_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_nombre" />
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup_addPicto" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </layout>
