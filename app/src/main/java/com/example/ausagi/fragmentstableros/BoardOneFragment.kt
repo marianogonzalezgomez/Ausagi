@@ -88,36 +88,43 @@ class BoardOneFragment : Fragment(), Communicator {
         sharedViewModel.clicado.observe(viewLifecycleOwner, Observer{
 
             if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 1: Pictogramas") {
-                recyclerView2.adapter?.notifyDataSetChanged()
-                recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size - 1)
-
-            }
-            else if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 2: Pictogramas + Categorías") {
-                if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].isCategory) {
-                    checkCatRout()
-                    recyclerView.adapter = ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
-                } else {
+                if (!sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level1 }.isNullOrEmpty()) {
                     recyclerView2.adapter?.notifyDataSetChanged()
                     recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size - 1)
+                }
+            }
+            else if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].level == "Nivel 2: Pictogramas + Categorías") {
+                if (!sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 }.isNullOrEmpty()) {
+                    if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 }[sharedViewModel.posicion.value!!].isCategory) {
+                        checkCatRout()
+                        recyclerView.adapter =
+                            ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
+                    } else {
+                        recyclerView2.adapter?.notifyDataSetChanged()
+                        recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size - 1)
+                    }
                 }
             }
             else { //Nivel 3
                 //Si es una rutina
-                if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isRoutine) {
-                    checkCatRout()
-                    val action =
-                        BoardOneFragmentDirections.actionBoardOneFragmentToBoardRoutineFragment()
-                    findNavController().navigate(action)
-                }
-                //si es una categoría
-                else if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory) {
-                    checkCatRout()
-                    recyclerView.adapter = ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
-                }
-                //si es un pictograma
-                else {
-                    recyclerView2.adapter?.notifyDataSetChanged()
-                    recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size - 1)
+                if (!sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3  }.isNullOrEmpty()) {
+                    if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isRoutine) {
+                        checkCatRout()
+                        val action =
+                            BoardOneFragmentDirections.actionBoardOneFragmentToBoardRoutineFragment()
+                        findNavController().navigate(action)
+                    }
+                    //si es una categoría
+                    else if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory) {
+                        checkCatRout()
+                        recyclerView.adapter =
+                            ItemBoardAdapter(requireContext(), this@BoardOneFragment, loadPictos())
+                    }
+                    //si es un pictograma
+                    else {
+                        recyclerView2.adapter?.notifyDataSetChanged()
+                        recyclerView2.scrollToPosition(sharedViewModel.listaPictosBarra.size - 1)
+                    }
                 }
             }
         })
