@@ -125,5 +125,18 @@
             app:destination="@id/chooseConfigFragment"
             app:popUpTo="@id/chooseConfigFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_editBoardFragment_to_editPictoFragment"
+            app:destination="@id/editPictoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPictoFragment"
+        android:name="com.example.ausagi.fragmentsconfiguracion.EditPictoFragment"
+        android:label="EditPictoFragment" >
+        <action
+            android:id="@+id/action_editPictoFragment_to_editBoardFragment"
+            app:destination="@id/editBoardFragment"
+            app:popUpTo="@id/editBoardFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

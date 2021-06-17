@@ -39,7 +39,6 @@ class ConfigurationFragment : Fragment() {
     //FUNCIONES-----------------------------------------------------------------
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
 
     }
 
@@ -63,6 +62,8 @@ class ConfigurationFragment : Fragment() {
         }
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+
+        espacio_modificar_perfil_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.posicion.value!!].imageResource)
 
         boton_modificar_foto.setOnClickListener {
             openGalleryForImage()

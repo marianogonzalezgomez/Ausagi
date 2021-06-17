@@ -32,7 +32,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/botonAtras"
+                android:id="@+id/botonAtrasEditBoard"
                 android:layout_width="@dimen/lista_botones_config_circulos"
                 android:layout_height="@dimen/lista_botones_config_circulos"
                 android:background="@drawable/rounded_corner"
@@ -52,8 +52,8 @@
                 android:background="@drawable/rounded_corner"
                 android:elevation="@dimen/elevacion"
                 app:layout_constraintEnd_toStartOf="@+id/boton_guardar"
-                app:layout_constraintStart_toEndOf="@id/botonAtras"
-                app:layout_constraintTop_toTopOf="@id/botonAtras"
+                app:layout_constraintStart_toEndOf="@id/botonAtrasEditBoard"
+                app:layout_constraintTop_toTopOf="@id/botonAtrasEditBoard"
                 app:srcCompat="@drawable/ic_baseline_add_24"
                 tools:ignore="ContentDescription"
                 tools:targetApi="lollipop" />
@@ -81,7 +81,7 @@
                 app:layoutManager="GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/botonAtras"
+                app:layout_constraintTop_toBottomOf="@+id/botonAtrasEditBoard"
                 app:spanCount="3"
                 tools:listitem="@layout/item_config_view" />
 

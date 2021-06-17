@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragmentsconfiguracion.EditPictoFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.ausagi.model.ProfileViewModel" />
+
+        <variable
+            name="EditPictoFragment"
+            type="com.example.ausagi.fragmentsconfiguracion.EditPictoFragment" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?attr/colorSecondary">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/botonAtrasEdit"
+                android:layout_width="@dimen/lista_botones_config_circulos"
+                android:layout_height="@dimen/lista_botones_config_circulos"
+                android:background="@drawable/rounded_corner"
+                android:elevation="@dimen/elevacion"
+                android:padding="@dimen/margen_peque"
+                app:layout_constraintBottom_toBottomOf="@+id/boton_picto_foto"
+                app:layout_constraintEnd_toStartOf="@+id/boton_picto_foto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/boton_picto_foto"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+                tools:ignore="ContentDescription"
+                tools:targetApi="lollipop" />
+
+            <Button
+                android:id="@+id/boton_picto_foto"
+                android:layout_width="@dimen/circulo_contenedor_foto"
+                android:layout_height="@dimen/circulo_contenedor_foto"
+                android:layout_marginTop="@dimen/margen_grande"
+                android:background="@drawable/semi_circle"
+                android:text="@string/modify"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/titulo_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/espacio_picto_foto"
+                android:layout_width="@dimen/circulo_foto"
+                android:layout_height="@dimen/circulo_foto"
+                android:adjustViewBounds="true"
+                android:elevation="@dimen/elevacion_corta"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/boton_picto_foto"
+                app:layout_constraintEnd_toEndOf="@+id/boton_picto_foto"
+                app:layout_constraintStart_toStartOf="@+id/boton_picto_foto"
+                app:layout_constraintTop_toTopOf="@+id/boton_picto_foto"
+                app:shapeAppearanceOverlay="@style/semiCirclePictoEditViewStyle"
+                tools:targetApi="lollipop" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contenedor_espacio_nombre"
+                style="@style/AppTheme.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margen_normal"
+                android:layout_marginTop="@dimen/margen_normal"
+                android:layout_marginEnd="@dimen/margen_normal"
+                android:hint="@string/text_input_name"
+                android:textColor="?attr/colorOnSecondary"
+                app:boxCornerRadiusBottomEnd="@dimen/radio_boton"
+                app:boxCornerRadiusBottomStart="@dimen/radio_boton"
+                app:boxCornerRadiusTopEnd="@dimen/radio_boton"
+                app:boxCornerRadiusTopStart="@dimen/radio_boton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boton_picto_foto">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/espacio_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:textColor="?attr/colorOnSecondary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/boton_picto_hecho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="center_horizontal"
+                android:text="@string/texto_boton_hecho"
+                android:textColor="?attr/colorOnSecondary"
+                android:layout_marginTop="@dimen/margen_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contenedor_espacio_nombre" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

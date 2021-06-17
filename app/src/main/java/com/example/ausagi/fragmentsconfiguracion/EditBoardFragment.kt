@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.R
 import com.example.ausagi.adapter.Communicator
@@ -17,7 +18,7 @@ import com.example.ausagi.model.BoardViewModel
 import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_board_one.*
 import kotlinx.android.synthetic.main.fragment_choose_config.*
-import kotlinx.android.synthetic.main.fragment_choose_config.botonAtras
+import kotlinx.android.synthetic.main.fragment_configuration.*
 import kotlinx.android.synthetic.main.fragment_edit_board.*
 import kotlinx.android.synthetic.main.item_config_view.*
 
@@ -66,16 +67,8 @@ class EditBoardFragment : Fragment(), Communicator {
             adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
         }
 
-        sharedViewModel.clicadoConfig.observe(viewLifecycleOwner, Observer{
-            if(sharedViewModel.clicadoConfig.value != 0) {
-                //val action = EditBoardFragmentDirections.actionEditBoardFragmentToOptionsFragment()
-                //findNavController().navigate(action)
-                sharedViewModel.clicadoConfig.value = 0
-            }
-        })
-
         //BotonUp Atrás
-        botonAtras.setOnClickListener {
+        botonAtrasEditBoard.setOnClickListener {
             if (sharedViewModelProfile.posicionLista.value == 0) {
                 requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
             }
@@ -85,16 +78,30 @@ class EditBoardFragment : Fragment(), Communicator {
 
         //Actualizar el recycler de la tabla de pictos cada vez que se retrocede en una categoría
         sharedViewModel.atras.observe(viewLifecycleOwner, Observer{
-            sharedViewModelProfile.posicionLista.value = 0
+            if(sharedViewModel.atrasEditar.value == 0) {
+                sharedViewModelProfile.posicionLista.value = 0
+            }
             recyclerView.adapter?.notifyDataSetChanged()
             recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+            sharedViewModel.atrasEditar.value = 0
         })
+
 
         //Función para entrar en una categoría
         sharedViewModel.clicado.observe(viewLifecycleOwner, Observer{
             if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].isCategory) {
                 checkCatRout()
                 recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+            }
+        })
+
+        //Funciones para editar un pictograma
+        sharedViewModel.clicadoConfig.observe(viewLifecycleOwner, Observer{
+            if(sharedViewModel.clicadoConfig.value != 0) {
+                //checkCatRout()
+                val action = EditBoardFragmentDirections.actionEditBoardFragmentToEditPictoFragment()
+                findNavController().navigate(action)
+                sharedViewModel.clicadoConfig.value = 0
             }
         })
 
@@ -191,14 +198,6 @@ class EditBoardFragment : Fragment(), Communicator {
         sharedViewModel.clicadoElim.value = pressedElim
     }
 
-    //Es necesario que al salir de la pantalla de edición, estos parámetros vuelvan a su estado inicial
-    override fun onStop() {
-        super.onStop()
-        sharedViewModelProfile.posicionLista.value = 0
-        sharedViewModel.posicion.value = 0
-        sharedViewModel.clicado.value = 0
-    }
-
     //La funcion que se encarga de averiguar la categoría o la rutina que se ha presionado
     private fun checkCatRout() {
         val limit: Int = sharedViewModel.posicion.value!!
@@ -237,7 +236,6 @@ class EditBoardFragment : Fragment(), Communicator {
                         while (e <= limit2) {
                             sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[x].pictoList.filter{ it.level2 || it.level3 }[e].whatCategory--
                             e++
-                            println("El pictograma $i se corresponde a la categoría $x")
                         }
                     }
                     x++

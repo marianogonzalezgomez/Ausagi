@@ -10,6 +10,7 @@ class BoardViewModel : ViewModel() {
     val posicion = MutableLiveData<Int>()
     val clicado = MutableLiveData<Int>()
     val atras = MutableLiveData<Int>()
+    val atrasEditar = MutableLiveData<Int>()
     val clicadoConfig = MutableLiveData<Int>()
     val clicadoElim = MutableLiveData<Int>()
 
@@ -20,6 +21,7 @@ class BoardViewModel : ViewModel() {
         clicadoConfig.value = 0
         clicadoElim.value = 0
         atras.value = 0
+        atrasEditar.value = 0
     }
 
     //Funciones de manejo de pictos en la barra de accion

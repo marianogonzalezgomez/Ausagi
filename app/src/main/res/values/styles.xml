@@ -22,4 +22,9 @@
         <item name="cornerSize">15%</item>
     </style>
 
+    <style name="semiCirclePictoEditViewStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5%</item>
+    </style>
+
 </resources>

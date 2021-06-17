@@ -39,7 +39,7 @@ class ProfileViewModel : ViewModel() {
     fun guardarPerfil(fotoID: Uri?, nombre: String, comentario: String) {
         listaPerfiles.add(Profile(fotoID, nombre, nivelTempVar, comentario, colorTempVar))
         nivelTempVar = "0" //Borrar resultado para el siguiente uso
-        colorTempVar="0" //Borrar resultado para el siguiente uso
+        colorTempVar= "0" //Borrar resultado para el siguiente uso
         posicionUltimoPerfil.value = listaPerfiles.size - 1
         setDefaultTablero()
     }
@@ -73,10 +73,29 @@ class ProfileViewModel : ViewModel() {
     }
 
     //Funciones para guardar pictos, categorías y rutinas dentro de la lista de cada perfil de forma ¡¡PERSONALIZADA!!
+    fun guardarPictoPerson(fotoID: Uri?, nombre: String, nivel: Int, posicionPerfil: Int, categoria: Int) {
+        when (nivel) {
+            1 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, true, false, false, false, false, categoria))
+            2 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, false, true, true, false, false, categoria))
+            3 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, false, false, true, false, false, categoria))
+        }
+    }
 
-
-
-
+    //Funciones para editar pictos dentro de la lista de cada perfil
+    fun setFotoPicto(foto: Uri?, nivel: Int, posicionPicto: Int, posicionPerfil: Int, categoria: Int) {
+        when (nivel) {
+            1 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.filter { it.level1 }[posicionPicto].imageResource = foto
+            2 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.filter { it.level2 }[posicionPicto].imageResource = foto
+            3 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.filter { it.level2 || it.level3 }[posicionPicto].imageResource = foto
+        }
+    }
+    fun setNombrePicto(nombre: String, nivel: Int, posicionPicto: Int, posicionPerfil: Int, categoria: Int) {
+        when (nivel) {
+            1 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.filter { it.level1 }[posicionPicto].textResource = nombre
+            2 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.filter { it.level2 }[posicionPicto].textResource = nombre
+            3 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.filter { it.level2 || it.level3 }[posicionPicto].textResource = nombre
+        }
+    }
 
     //Funciones para configurar el perfil
     fun setFoto(foto: Uri?) {

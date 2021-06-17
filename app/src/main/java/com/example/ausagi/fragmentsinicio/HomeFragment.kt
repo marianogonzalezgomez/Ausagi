@@ -13,6 +13,7 @@ import com.example.ausagi.adapter.Communicator
 import com.example.ausagi.adapter.ItemProfileAdapter
 import com.example.ausagi.database.Profile
 import com.example.ausagi.databinding.FragmentHomeBinding
+import com.example.ausagi.model.BoardViewModel
 import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -24,7 +25,8 @@ class HomeFragment : Fragment(), Communicator {
     private val binding get() = _binding!!
 
     //Variable para el viewmodel
-    private val sharedViewModel: ProfileViewModel by activityViewModels()
+    private val sharedViewModelProfile: ProfileViewModel by activityViewModels()
+    private val sharedViewModel: BoardViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -36,7 +38,7 @@ class HomeFragment : Fragment(), Communicator {
 
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
-            viewModel = sharedViewModel
+            viewModel = sharedViewModelProfile
         }
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
@@ -70,17 +72,18 @@ class HomeFragment : Fragment(), Communicator {
     }
 
     private fun loadProfiles(): MutableList<Profile> {
-        return sharedViewModel.listaPerfiles
+        return sharedViewModelProfile.listaPerfiles
     }
 
     override fun passData(position: Int) {
-        sharedViewModel.posicion.value = position
+        sharedViewModelProfile.posicion.value = position
     }
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.posicion.value = 0
-        sharedViewModel.posicionLista.value = 0
+        sharedViewModelProfile.posicionLista.value = 0
+        sharedViewModelProfile.posicion.value = 0
+        sharedViewModel.clicado.value = 0
     }
 
 
