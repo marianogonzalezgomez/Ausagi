@@ -101,7 +101,6 @@ class EditBoardFragment : Fragment(), Communicator {
         //Funciones para editar un pictograma
         sharedViewModel.clicadoConfig.observe(viewLifecycleOwner, Observer{
             if(sharedViewModel.clicadoConfig.value != 0) {
-                //checkCatRout()
                 val action = EditBoardFragmentDirections.actionEditBoardFragmentToEditPictoFragment()
                 findNavController().navigate(action)
                 sharedViewModel.clicadoConfig.value = 0
