@@ -98,11 +98,11 @@ class ProfileViewModel : ViewModel() {
         numCat = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.isCategory && it.level2 }.size //tamaño de la lista de categorías del nivel 2
         val aux1 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.level1 }.size
         val aux2 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.level2 }.size
-        val aux3 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.level3 && !it.isRoutine }.size
+        val aux3 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ (it.level2 || it.level3) && !it.isRoutine }.size
         //Se guarda el pictograma dentro de la lista principal
         when (nivel) {
             2 -> listaPerfiles[posicionPerfil].listaN1[0].pictoList.add(aux1+aux2, Picto(fotoID, nombre, false, true, false, true, false, numCat+1))
-            3 -> listaPerfiles[posicionPerfil].listaN1[0].pictoList.add(aux1+aux2+aux3, Picto(fotoID, nombre, false, false, true, true, false, numCat+1))
+            3 -> listaPerfiles[posicionPerfil].listaN1[0].pictoList.add(aux1+aux3, Picto(fotoID, nombre, false, false, true, true, false, numCat+1))
         }
         listaPerfiles[posicionPerfil].listaN1.add(numCat+1, ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
     }
