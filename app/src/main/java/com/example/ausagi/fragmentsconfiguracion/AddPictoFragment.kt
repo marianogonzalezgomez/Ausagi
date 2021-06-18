@@ -70,7 +70,7 @@ class AddPictoFragment : Fragment() {
         boton_picto_hecho.setOnClickListener {
             //funcion para guardar los datos editados
             if (imageUri != null && espacio_nombre.text!!.isNotEmpty()) {
-                sharedViewModelProfile.guardarPictoPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!, sharedViewModelProfile.posicionLista.value!!)
+                guardarItem()
                 Toast.makeText(requireActivity(), "Guardado", Toast.LENGTH_SHORT).show()
                 //funcion de navegacion
                 sharedViewModel.posicion.value = 0
@@ -139,6 +139,7 @@ class AddPictoFragment : Fragment() {
         if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas"){
             titulo_elegir_tipo.visibility = View.GONE
             radioGroup_addPicto.visibility = View.GONE
+            sharedViewModelProfile.setTipoTemp(0)
         }
         else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías"){
             if (sharedViewModel.inCategory.value == false) {
@@ -149,6 +150,7 @@ class AddPictoFragment : Fragment() {
             else {
                 titulo_elegir_tipo.visibility = View.GONE
                 radioGroup_addPicto.visibility = View.GONE
+                sharedViewModelProfile.setTipoTemp(0)
             }
         }
         else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 3: Pictogramas + Categorías + Rutinas") {
@@ -160,7 +162,20 @@ class AddPictoFragment : Fragment() {
             else {
                 titulo_elegir_tipo.visibility = View.GONE
                 radioGroup_addPicto.visibility = View.GONE
+                sharedViewModelProfile.setTipoTemp(0)
             }
+        }
+    }
+
+    private fun guardarItem() {
+        if (sharedViewModelProfile.tipoTempVar == 0) { //Picto
+            sharedViewModelProfile.guardarPictoPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!, sharedViewModelProfile.posicionLista.value!!)
+        }
+        else if (sharedViewModelProfile.tipoTempVar == 1) { //Categoría
+            sharedViewModelProfile.guardarCatPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!)
+        }
+        else if (sharedViewModelProfile.tipoTempVar == 2) { //Rutina
+            //sharedViewModelProfile.guardarCatPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!, sharedViewModelProfile.posicionLista.value!!)
         }
     }
 

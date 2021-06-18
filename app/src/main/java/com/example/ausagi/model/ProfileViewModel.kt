@@ -55,7 +55,7 @@ class ProfileViewModel : ViewModel() {
         when (nivel) {
             1 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[numCat].pictoList.add(Picto(fotoID, nombre, true, false, false, false, false, numCat))
             2 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[numCat].pictoList.add(Picto(fotoID, nombre, false, true, true, false, false, numCat))
-            3 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[numCat].pictoList.add(Picto(fotoID, nombre, false, false, true, false, false, numCat))
+            3 -> listaPerfiles[posicionUltimoPerfil.value!!].listaN1[numCat].pictoList.add(Picto(fotoID, nombre, false, true, true, false, false, numCat))
         }
     }
     fun guardarCat(fotoID: Uri?, nombre: String) {
@@ -75,11 +75,36 @@ class ProfileViewModel : ViewModel() {
 
     //Funciones para guardar pictos, categorías y rutinas dentro de la lista de cada perfil de forma ¡¡PERSONALIZADA!!
     fun guardarPictoPerson(fotoID: Uri?, nombre: String, nivel: Int, posicionPerfil: Int, categoria: Int) {
-        when (nivel) {
-            1 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, true, false, false, false, false, categoria))
-            2 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, false, true, true, false, false, categoria))
-            3 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, false, false, true, false, false, categoria))
+        val aux1 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.level1 }.size
+        val aux2 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.level2 && !it.isCategory }.size
+        val aux3 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ (it.level2 || it.level3) && !it.isCategory && !it.isRoutine }.size
+        if (categoria == 0){
+                when (nivel) {
+                    1 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(aux1, Picto(fotoID, nombre, true, false, false, false, false, categoria))
+                    2 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(aux1+aux2, Picto(fotoID, nombre, false, true, true, false, false, categoria))
+                    3 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(aux1+aux3, Picto(fotoID, nombre, false, true, true, false, false, categoria))
+                }
+            }
+        else {
+            when (nivel) {
+                1 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, true, false, false, false, false, categoria))
+                2 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, false, true, true, false, false, categoria))
+                3 -> listaPerfiles[posicionPerfil].listaN1[categoria].pictoList.add(Picto(fotoID, nombre, false, true, true, false, false, categoria))
+            }
         }
+    }
+    fun guardarCatPerson(fotoID: Uri?, nombre: String, nivel: Int, posicionPerfil: Int) {
+        //Se guarda la categoría como una nueva lista
+        numCat = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.isCategory && it.level2 }.size //tamaño de la lista de categorías del nivel 2
+        val aux1 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.level1 }.size
+        val aux2 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.level2 }.size
+        val aux3 = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.level3 && !it.isRoutine }.size
+        //Se guarda el pictograma dentro de la lista principal
+        when (nivel) {
+            2 -> listaPerfiles[posicionPerfil].listaN1[0].pictoList.add(aux1+aux2, Picto(fotoID, nombre, false, true, false, true, false, numCat+1))
+            3 -> listaPerfiles[posicionPerfil].listaN1[0].pictoList.add(aux1+aux2+aux3, Picto(fotoID, nombre, false, false, true, true, false, numCat+1))
+        }
+        listaPerfiles[posicionPerfil].listaN1.add(numCat+1, ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
     }
 
     //Funciones para editar pictos dentro de la lista de cada perfil

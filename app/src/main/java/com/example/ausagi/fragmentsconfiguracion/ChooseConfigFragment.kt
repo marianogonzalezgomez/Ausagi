@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.R
 import com.example.ausagi.databinding.FragmentChooseConfigBinding
+import com.example.ausagi.model.BoardViewModel
 import com.example.ausagi.model.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_choose_config.*
 
@@ -25,6 +26,7 @@ class ChooseConfigFragment : Fragment() {
 
     //Variables para el viewmodel
     private val sharedViewModel: ProfileViewModel by activityViewModels()
+    private val sharedViewModelBoard: BoardViewModel by activityViewModels()
 
     //FUNCIONES-----------------------------------------------------------------
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +52,10 @@ class ChooseConfigFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             chooseConfigFragment = this@ChooseConfigFragment //para los clicklisteners del xml
         }
+
+        //Para reiniciar parámetros
+        sharedViewModel.posicionLista.value = 0
+        sharedViewModelBoard.posicion.value = 0
 
 
         //Botones de elección de tablero a editar
