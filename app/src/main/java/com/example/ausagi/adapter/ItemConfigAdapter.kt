@@ -68,7 +68,7 @@ class ItemConfigAdapter(
 
         //Pasar la posicion del adapter al recyclerview para conocer qué item se ha elegido
         holder.imageView.setOnClickListener {
-            if (position != RecyclerView.NO_POSITION && item.isCategory) {
+            if (position != RecyclerView.NO_POSITION && (item.isCategory || item.isRoutine)) {
                 listener.passData(position)
                 pressed++
                 listener.passClicked(pressed)
