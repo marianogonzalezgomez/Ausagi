@@ -56,6 +56,7 @@ class ChooseConfigFragment : Fragment() {
         //Para reiniciar parámetros
         sharedViewModel.posicionLista.value = 0
         sharedViewModelBoard.posicion.value = 0
+        sharedViewModel.setTipoTemp(0)
 
 
         //Botones de elección de tablero a editar

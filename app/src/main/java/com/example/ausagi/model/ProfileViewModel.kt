@@ -106,6 +106,15 @@ class ProfileViewModel : ViewModel() {
         }
         listaPerfiles[posicionPerfil].listaN1.add(numCat+1, ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
     }
+    fun guardarRutPerson(fotoID: Uri?, nombre: String, nivel: Int, posicionPerfil: Int) {
+        //Se guarda la categoría como una nueva lista
+        numCat = listaPerfiles[posicionPerfil].listaN1[0].pictoList.filter{ it.isRoutine || it.isCategory }.size //tamaño de la lista de rutinas y categorías
+        //Se guarda el pictograma dentro de la lista principal
+        when (nivel) {
+            3 -> listaPerfiles[posicionPerfil].listaN1[0].pictoList.add(Picto(fotoID, nombre, false, false, true, false, true, numCat+1))
+        }
+        listaPerfiles[posicionPerfil].listaN1.add(numCat+1, ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
+    }
 
     //Funciones para editar pictos dentro de la lista de cada perfil
     fun setFotoPicto(foto: Uri?, nivel: Int, posicionPicto: Int, posicionPerfil: Int, categoria: Int) {

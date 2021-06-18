@@ -66,9 +66,8 @@ class AddPictoFragment : Fragment() {
         boton_picto_foto.setOnClickListener {
             openGalleryForImage()
         }
-
+        //funcion para guardar los datos editados
         boton_picto_hecho.setOnClickListener {
-            //funcion para guardar los datos editados
             if (imageUri != null && espacio_nombre.text!!.isNotEmpty()) {
                 guardarItem()
                 Toast.makeText(requireActivity(), "Guardado", Toast.LENGTH_SHORT).show()
@@ -89,6 +88,7 @@ class AddPictoFragment : Fragment() {
             sharedViewModel.posicion.value = 0
             irAtras()
             sharedViewModel.atrasEditar.value = 1
+            sharedViewModelProfile.setTipoTemp(0)
             requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
 
@@ -175,8 +175,9 @@ class AddPictoFragment : Fragment() {
             sharedViewModelProfile.guardarCatPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!)
         }
         else if (sharedViewModelProfile.tipoTempVar == 2) { //Rutina
-            //sharedViewModelProfile.guardarCatPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!, sharedViewModelProfile.posicionLista.value!!)
+            sharedViewModelProfile.guardarRutPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!)
         }
+        sharedViewModelProfile.setTipoTemp(0)
     }
 
 }
