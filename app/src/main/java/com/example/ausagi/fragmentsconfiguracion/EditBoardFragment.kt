@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.R
 import com.example.ausagi.adapter.Communicator
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_choose_config.*
 import kotlinx.android.synthetic.main.fragment_configuration.*
 import kotlinx.android.synthetic.main.fragment_edit_board.*
 import kotlinx.android.synthetic.main.item_config_view.*
+import java.util.*
 
 
 class EditBoardFragment : Fragment(), Communicator {
@@ -38,9 +40,32 @@ class EditBoardFragment : Fragment(), Communicator {
     //Variables para el botón de atrás
     private var contAtras: Int = 0
 
-    //FUNCIONES-----------------------------------------------------------------
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    //Variable para mover los pictogramas
+    private val simpleItemTouchCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.START or ItemTouchHelper.END, 0) {
+        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+
+            val adapter = recyclerView.adapter
+            val from = viewHolder.adapterPosition
+            val to = target.adapterPosition
+
+            // [4] Keep up-to-date the underlying data set
+            Collections.swap(loadPictos(), from, to)
+            // [5] Tell the adapter to switch the 2 items
+            adapter?.notifyItemMoved(from, to)
+
+            sharedViewModelProfile.moverPicto(from, to)
+
+            return true
+        }
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            // Nada
+        }
+
+        override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+            recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+            super.clearView(recyclerView, viewHolder)
+        }
+
     }
 
     override fun onCreateView(
@@ -92,7 +117,6 @@ class EditBoardFragment : Fragment(), Communicator {
             findNavController().navigate(action)
         }
 
-
         //Función para entrar en una categoría o una rutina
         sharedViewModel.clicado.observe(viewLifecycleOwner, Observer{
             if(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }.isNotEmpty()) {
@@ -104,6 +128,9 @@ class EditBoardFragment : Fragment(), Communicator {
                 }
             }
         })
+
+        //Función para mover un pictograma
+        ItemTouchHelper(simpleItemTouchCallback).attachToRecyclerView(recyclerView)
 
         //Funciones para editar un pictograma
         sharedViewModel.clicadoConfig.observe(viewLifecycleOwner, Observer{
@@ -122,7 +149,7 @@ class EditBoardFragment : Fragment(), Communicator {
                 if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas") {
                     sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
                         .remove(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }[sharedViewModel.posicion.value!!])
-                //Si es nivel 2, entonces se elimina el pictograma de la lista que le corresponda y además, si es categoría, se elimina todoo lo asociado a ella
+                    //Si es nivel 2, entonces se elimina el pictograma de la lista que le corresponda y además, si es categoría, se elimina todoo lo asociado a ella
                 } else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
                     //Si es categoría, se elimina lo asociado
                     if (sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].isCategory) {
@@ -133,7 +160,7 @@ class EditBoardFragment : Fragment(), Communicator {
                         //Después se elimina la portada de la lista principal
                         sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList
                             .removeAll(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList
-                            .filter{ it.whatCategory == sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].whatCategory })
+                                .filter{ it.whatCategory == sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 }[sharedViewModel.posicion.value!!].whatCategory })
                         //Por último, se actualizan los números de categoría de los demás pictogramas
                         updateNumCat()
                         sharedViewModelProfile.posicionLista.value = 0
@@ -155,7 +182,7 @@ class EditBoardFragment : Fragment(), Communicator {
                         //Después se elimina la portada de la lista principal
                         sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList
                             .removeAll(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList
-                            .filter{ it.whatCategory == sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].whatCategory })
+                                .filter{ it.whatCategory == sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!].whatCategory })
                         //Por último, se actualizan los números de categoría de los demás pictogramas
                         updateNumCat()
                         sharedViewModelProfile.posicionLista.value = 0
@@ -165,14 +192,15 @@ class EditBoardFragment : Fragment(), Communicator {
                             .remove(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter{ it.level2 || it.level3 }[sharedViewModel.posicion.value!!])
                     }
                 }
-                    recyclerView.adapter?.notifyDataSetChanged()
-                    recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
-                    sharedViewModel.clicadoElim.value = 0
-                    sharedViewModel.posicion.value = 0
+                recyclerView.adapter?.notifyDataSetChanged()
+                recyclerView.adapter = ItemConfigAdapter(requireContext(), this@EditBoardFragment, loadPictos())
+                sharedViewModel.clicadoElim.value = 0
+                sharedViewModel.posicion.value = 0
             }
         })
-
     }
+
+
 
     //Carga la lista de pictos que se considere dependiendo el nivel (se filtra mediante el atributo de level de cada picto)
     private fun loadPictos(): MutableList<Picto> {
@@ -206,6 +234,10 @@ class EditBoardFragment : Fragment(), Communicator {
 
     override fun passClickedElim(pressedElim: Int) {
         sharedViewModel.clicadoElim.value = pressedElim
+    }
+
+    override fun passClickedMover(pressedMover: Int) {
+        sharedViewModel.clicadoMover.value = pressedMover
     }
 
     //La funcion que se encarga de averiguar la categoría o la rutina que se ha presionado
@@ -254,5 +286,4 @@ class EditBoardFragment : Fragment(), Communicator {
             }
         }
     }
-
 }

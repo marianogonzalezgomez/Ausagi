@@ -12,8 +12,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout_routine"
-        android:layout_width="@dimen/circulo_rutina"
-        android:layout_height="@dimen/circulo_rutina"
+        android:layout_width="@dimen/circulo_contenedor_rutina"
+        android:layout_height="@dimen/circulo_contenedor_rutina"
         android:background="@drawable/semi_circle"
         android:elevation="@dimen/elevacion_corta"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="@+id/frameLayout_routine"
         app:layout_constraintStart_toStartOf="@+id/frameLayout_routine"
         app:layout_constraintTop_toTopOf="@+id/frameLayout_routine"
-        app:shapeAppearanceOverlay="@style/semiCircleImageViewStyle"
+        app:shapeAppearanceOverlay="@style/semiCirclePictoEditViewStyle"
         tools:targetApi="lollipop" />
 
     <TextView

@@ -1,6 +1,7 @@
 package com.example.ausagi.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class ItemRoutineAdapter(
 
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
+        holder.imageView.setBackgroundColor(Color.WHITE)
 
     }
 

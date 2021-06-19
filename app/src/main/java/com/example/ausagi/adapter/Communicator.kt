@@ -6,4 +6,5 @@ interface Communicator {
     fun passClicked(pressed: Int)
     fun passClickedConfig(pressedConfig: Int)
     fun passClickedElim(pressedElim: Int)
+    fun passClickedMover(pressedMover: Int)
 }

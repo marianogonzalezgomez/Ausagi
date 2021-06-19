@@ -19,7 +19,8 @@
     <dimen name="elevacion_corta">2dp</dimen>
     <dimen name="circulo_picto">100dp</dimen>
     <dimen name="circulo_contenedor_picto">110dp</dimen>
-    <dimen name="circulo_rutina">250dp</dimen>
+    <dimen name="circulo_rutina">230dp</dimen>
+    <dimen name="circulo_contenedor_rutina">250dp</dimen>
     <dimen name="circulo_config">30dp</dimen>
     <dimen name="circulo_foto">180dp</dimen>
     <dimen name="circulo_contenedor_foto">200dp</dimen>

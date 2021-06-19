@@ -40,12 +40,6 @@ class AddPictoFragment : Fragment() {
     private var imageUri: Uri? = null
     val REQUEST_CODE = 100
 
-    //FUNCIONES-----------------------------------------------------------------
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAddPictoBinding.inflate(inflater, container, false)
         return binding.root

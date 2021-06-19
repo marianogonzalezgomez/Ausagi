@@ -2,12 +2,13 @@ package com.example.ausagi.adapter
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.R
 import com.example.ausagi.database.Picto
@@ -33,10 +34,12 @@ class ItemBoardAdapter(
             holder.imageView.setBackgroundColor(Color.WHITE)
         }
         if (item.isCategory) {
-            holder.imageView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_categorias))
+            holder.recubrimiento.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP)
+            holder.imageView.setBackgroundColor(Color.WHITE)
         }
         if (item.isRoutine) {
-            holder.imageView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_rutinas))
+            holder.recubrimiento.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP)
+            holder.imageView.setBackgroundColor(Color.WHITE)
         }
 
         holder.imageView.setOnClickListener {
@@ -75,6 +78,6 @@ class ItemBoardAdapter(
     inner class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.item_board_picto_imagen)
         val textView: TextView = view.findViewById(R.id.item_board_nombre_picto)
-
+        val recubrimiento: FrameLayout = view.findViewById(R.id.frameLayout)
     }
 }

@@ -51,23 +51,10 @@
                 android:layout_height="@dimen/lista_botones_config_circulos"
                 android:background="@drawable/rounded_corner"
                 android:elevation="@dimen/elevacion"
-                app:layout_constraintEnd_toStartOf="@+id/boton_guardar"
-                app:layout_constraintStart_toEndOf="@id/botonAtrasEditBoard"
-                app:layout_constraintTop_toTopOf="@id/botonAtrasEditBoard"
-                app:srcCompat="@drawable/ic_baseline_add_24"
-                tools:ignore="ContentDescription"
-                tools:targetApi="lollipop" />
-
-            <ImageButton
-                android:id="@+id/boton_guardar"
-                android:layout_width="@dimen/lista_botones_config_circulos"
-                android:layout_height="@dimen/lista_botones_config_circulos"
-                android:background="@drawable/rounded_corner"
-                android:elevation="@dimen/elevacion"
                 android:layout_marginEnd="@dimen/margen_normal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/boton_añadir"
-                app:srcCompat="@drawable/ic_baseline_done_24"
+                app:layout_constraintTop_toTopOf="@id/botonAtrasEditBoard"
+                app:srcCompat="@drawable/ic_baseline_add_24"
                 tools:ignore="ContentDescription"
                 tools:targetApi="lollipop" />
 

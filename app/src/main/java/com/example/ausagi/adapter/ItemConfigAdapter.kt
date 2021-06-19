@@ -2,14 +2,11 @@ package com.example.ausagi.adapter
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ausagi.R
 import com.example.ausagi.database.Picto
@@ -38,10 +35,12 @@ class ItemConfigAdapter(
             holder.imageView.setBackgroundColor(Color.WHITE)
         }
         if (item.isCategory) {
-            holder.imageView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_categorias))
+            holder.recubrimiento.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP)
+            holder.imageView.setBackgroundColor(Color.WHITE)
         }
         if (item.isRoutine) {
-            holder.imageView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_rutinas))
+            holder.recubrimiento.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP)
+            holder.imageView.setBackgroundColor(Color.WHITE)
         }
 
         //Pasar la posicion del adapter al recyclerview para conocer qué config item se ha elegido
@@ -64,6 +63,11 @@ class ItemConfigAdapter(
                 listener.passClickedElim(pressedElim)
             }
             true
+        }
+        holder.imageButtonMover.setOnClickListener {
+            if (position != RecyclerView.NO_POSITION) {
+                Toast.makeText(context, "Mantén pulsado y arrastre para mover", Toast.LENGTH_SHORT).show()
+            }
         }
 
         //Pasar la posicion del adapter al recyclerview para conocer qué item se ha elegido
@@ -105,5 +109,7 @@ class ItemConfigAdapter(
         val imageButtonConfig: ImageButton = view.findViewById(R.id.capa_config)
         val imageButtonMover: ImageButton = view.findViewById(R.id.capa_mover)
         val imageButtonElim: ImageButton = view.findViewById(R.id.capa_elim)
+        val recubrimiento: FrameLayout = view.findViewById(R.id.frameLayout)
     }
+
 }

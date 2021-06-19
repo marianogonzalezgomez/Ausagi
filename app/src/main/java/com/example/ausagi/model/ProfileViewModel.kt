@@ -116,6 +116,44 @@ class ProfileViewModel : ViewModel() {
         listaPerfiles[posicionPerfil].listaN1.add(numCat+1, ListaPicto()) //Añadir nueva categoría (que es una lista de pictos)
     }
 
+    //Funcion que mueve los pictos correctamente
+    fun moverPicto(from: Int, to: Int) {
+        var destino: Int = to
+        val pictoTemp: Picto = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList[from] //Copia del picto a mover
+        val aux1 = listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter{ it.level1 }.size
+        val aux2_1 = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter{ it.level2 }.size
+        val aux2_2 = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter{ it.level2 && !it.isCategory }.size
+        val aux3 = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter{ (it.level2 || it.level3) && !it.isCategory && !it.isRoutine }.size
+
+        if(nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
+            if (listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter { it.level2 }[from].isCategory) {
+                /*    if(to <= aux2_2) {
+                    destino = aux1+aux2_2 + 1
+                    println("$destino")
+               }
+            }
+            else {
+                if (to >= aux2_2) {
+                    destino = aux1 + aux2_2 + 1
+                    println("$destino")
+                }
+            }
+            listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                .removeAt(aux1 + from + 1)
+            listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                .add(destino, pictoTemp)*/
+            } else if (nivelBotonConfig == "Nivel 3: Pictogramas + Categorías + Rutinas") {
+                //AÑADIR lo mismo que arriba cuando funcione
+            }
+        }
+        else { //Para los pictos que no son de la lista principal del nivel 2 o 3
+            listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                .removeAt(from)
+            listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                .add(destino, pictoTemp)
+        }
+    }
+
     //Funciones para editar pictos dentro de la lista de cada perfil
     fun setFotoPicto(foto: Uri?, nivel: Int, posicionPicto: Int, posicionPerfil: Int, categoria: Int) {
         when (nivel) {

@@ -93,4 +93,7 @@ class BoardRoutineFragment : Fragment(), Communicator {
     override fun passClickedElim(pressedElim: Int) {
     }
 
+    override fun passClickedMover(pressedMover: Int) {
+    }
+
 }

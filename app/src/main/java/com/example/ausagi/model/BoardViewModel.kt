@@ -13,6 +13,7 @@ class BoardViewModel : ViewModel() {
     val atrasEditar = MutableLiveData<Int>()
     val clicadoConfig = MutableLiveData<Int>()
     val clicadoElim = MutableLiveData<Int>()
+    val clicadoMover = MutableLiveData<Int>()
     val inCategory = MutableLiveData<Boolean>()
 
     //INICIALIZACIÓN--------------------------------------------------
@@ -21,6 +22,7 @@ class BoardViewModel : ViewModel() {
         clicado.value = 0
         clicadoConfig.value = 0
         clicadoElim.value = 0
+        clicadoMover.value = 0
         atras.value = 0
         atrasEditar.value = 0
         inCategory.value = false

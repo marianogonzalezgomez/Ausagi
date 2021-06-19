@@ -251,5 +251,8 @@ class BoardOneFragment : Fragment(), Communicator {
     }
     override fun passClickedElim(pressedElim: Int) {
     }
+
+    override fun passClickedMover(pressedMover: Int) {
+    }
 }
 
