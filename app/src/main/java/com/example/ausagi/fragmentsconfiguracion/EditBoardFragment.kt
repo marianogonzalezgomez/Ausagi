@@ -53,7 +53,7 @@ class EditBoardFragment : Fragment(), Communicator {
             // [5] Tell the adapter to switch the 2 items
             adapter?.notifyItemMoved(from, to)
 
-            sharedViewModelProfile.moverPicto(from, to)
+            sharedViewModelProfile.moverPicto(from, to, requireContext())
 
             return true
         }

@@ -1,6 +1,8 @@
 package com.example.ausagi.model
 
+import android.content.Context
 import android.net.Uri
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ausagi.R
@@ -117,36 +119,52 @@ class ProfileViewModel : ViewModel() {
     }
 
     //Funcion que mueve los pictos correctamente
-    fun moverPicto(from: Int, to: Int) {
+    fun moverPicto(from: Int, to: Int, context: Context) {
         var destino: Int = to
-        val pictoTemp: Picto = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList[from] //Copia del picto a mover
+         //Copia del picto a mover
         val aux1 = listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter{ it.level1 }.size
-        val aux2_1 = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter{ it.level2 }.size
-        val aux2_2 = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter{ it.level2 && !it.isCategory }.size
-        val aux3 = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter{ (it.level2 || it.level3) && !it.isCategory && !it.isRoutine }.size
+        val aux2 = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter{ it.level2 && !it.isCategory }.size
+        val aux3 = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter{ (it.level2 || it.level3) && !it.isCategory }.size
 
-        if(nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
-            if (listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter { it.level2 }[from].isCategory) {
-                /*    if(to <= aux2_2) {
-                    destino = aux1+aux2_2 + 1
-                    println("$destino")
-               }
-            }
-            else {
-                if (to >= aux2_2) {
-                    destino = aux1 + aux2_2 + 1
-                    println("$destino")
+        if(nivelBotonConfig == "Nivel 2: Pictogramas + Categorías" && posicionLista.value!! == 0) {
+            if (!listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 }[from].isCategory) {
+                if (to >= aux2) {
+                    Toast.makeText(context, "Solo entre pictogramas", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    val pictoTemp: Picto = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList[aux1+from]
+                    destino = aux1 + to
+                    listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                        .removeAt(aux1 + from)
+                    listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                        .add(destino, pictoTemp)
                 }
             }
-            listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
-                .removeAt(aux1 + from + 1)
-            listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
-                .add(destino, pictoTemp)*/
-            } else if (nivelBotonConfig == "Nivel 3: Pictogramas + Categorías + Rutinas") {
-                //AÑADIR lo mismo que arriba cuando funcione
+            else {
+                Toast.makeText(context, "Solo entre pictogramas", Toast.LENGTH_SHORT).show()
+            }
+        }
+        else if (nivelBotonConfig == "Nivel 3: Pictogramas + Categorías + Rutinas" && posicionLista.value!! == 0) {
+            if (!listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[from].isCategory &&
+                !listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[from].isRoutine) {
+                if (to >= aux3) {
+                    Toast.makeText(context, "Solo entre pictogramas", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    val pictoTemp: Picto = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList[aux1+from]
+                    destino = aux1 + to
+                    listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                        .removeAt(aux1 + from)
+                    listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                        .add(destino, pictoTemp)
+                }
+            }
+            else {
+                Toast.makeText(context, "Solo entre pictogramas", Toast.LENGTH_SHORT).show()
             }
         }
         else { //Para los pictos que no son de la lista principal del nivel 2 o 3
+            val pictoTemp: Picto = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList[from]
             listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
                 .removeAt(from)
             listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
