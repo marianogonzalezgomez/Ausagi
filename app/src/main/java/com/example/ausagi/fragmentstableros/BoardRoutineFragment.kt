@@ -55,23 +55,23 @@ class BoardRoutineFragment : Fragment(), Communicator {
         //Botones para ir atrás
         botonAtrasInicio.setOnClickListener {
             //Se ponen a 0 estos valores para volver a la pantalla anterior con normalidad
-            sharedViewModel.clicado.value = 0
-            sharedViewModel.posicion.value = 0
-            sharedViewModelProfile.posicionLista.value = 0
+            sharedViewModel.setClicado(0)
+            sharedViewModel.setPosicion(0)
+            sharedViewModelProfile.setPosicionLis(0)
             requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
         botonAtrasFinal.setOnClickListener {
             //Se ponen a 0 estos valores para volver a la pantalla anterior con normalidad
-            sharedViewModel.clicado.value = 0
-            sharedViewModel.posicion.value = 0
-            sharedViewModelProfile.posicionLista.value = 0
+            sharedViewModel.setClicado(0)
+            sharedViewModel.setPosicion(0)
+            sharedViewModelProfile.setPosicionLis(0)
             requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
 
     }
 
     private fun loadPictos(): MutableList<Picto> {
-        return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList
+        return sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.getPosicionPer()].listaN1[sharedViewModelProfile.getPosicionLis()].pictoList
     }
 
     override fun passData(position: Int) {

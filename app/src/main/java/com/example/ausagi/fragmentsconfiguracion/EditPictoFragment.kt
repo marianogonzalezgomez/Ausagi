@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -60,42 +59,32 @@ class EditPictoFragment : Fragment() {
         }
 
         boton_picto_hecho.setOnClickListener {
-            //funcion para guardar los datos editados
-            //sharedViewModelProfile.guardarPictoPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!, sharedViewModelProfile.posicionLista.value!!)
-            if (imageUri != null) {
-                sharedViewModelProfile.setFotoPicto(
-                    imageUri,
-                    mapNivel(),
-                    sharedViewModel.posicion.value!!,
-                    sharedViewModelProfile.posicion.value!!,
-                    sharedViewModelProfile.posicionLista.value!!
-                )
-            }
-            sharedViewModelProfile.setNombrePicto(
-                espacio_nombre.text.toString(),
-                mapNivel(),
-                sharedViewModel.posicion.value!!,
-                sharedViewModelProfile.posicion.value!!,
-                sharedViewModelProfile.posicionLista.value!!
-            )
-            Toast.makeText(requireActivity(), "Guardado", Toast.LENGTH_SHORT).show()
-
-            //funcion de navegacion
-            sharedViewModel.posicion.value = 0
-            irAtras()
-            sharedViewModel.atrasEditar.value = 1
+            editItem()
             val action = EditPictoFragmentDirections.actionEditPictoFragmentToEditBoardFragment()
             findNavController().navigate(action)
         }
 
         //Botón para atrás
         botonAtrasEdit.setOnClickListener {
-            sharedViewModel.posicion.value = 0
-            irAtras()
-            sharedViewModel.atrasEditar.value = 1
+            sharedViewModel.setPosicion(0)
+            sharedViewModelProfile.irAtrasEdit(sharedViewModel.getPosicion())
+            sharedViewModel.setAtrasEditar(1)
             requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
 
+    }
+
+
+
+    //FUNCIONES---------------------------------------------
+
+    private fun editItem() {
+        //funcion para guardar los datos editados
+        sharedViewModelProfile.editItem(imageUri, sharedViewModel.getPosicion(), espacio_nombre.text.toString(), context)
+        //funcion de navegacion
+        sharedViewModel.setPosicion(0)
+        sharedViewModelProfile.irAtrasEdit(sharedViewModel.getPosicion())
+        sharedViewModel.setAtrasEditar(1)
     }
 
     //funciones intent de foto
@@ -115,41 +104,18 @@ class EditPictoFragment : Fragment() {
         }
     }
 
-    //Funcion de mapeo de nivel
-    private fun mapNivel(): Int {
-        if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas") {
-            return 1
-        } else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
-            return 2
-        } else
-            return 3
-    }
-
     //Funcion para que aparezca el picto para editar
     private fun pictoAppear() {
-        if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas") {
-            espacio_picto_foto.setImageURI(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }[sharedViewModel.posicion.value!!].imageResource)
-            espacio_nombre.setText(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }[sharedViewModel.posicion.value!!].textResource)
-        } else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
-            espacio_picto_foto.setImageURI(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 }[sharedViewModel.posicion.value!!].imageResource)
-            espacio_nombre.setText(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 }[sharedViewModel.posicion.value!!].textResource)
+        if (sharedViewModelProfile.getNivelBotonConfigg() == "Nivel 1: Pictogramas") {
+            espacio_picto_foto.setImageURI(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.getPosicionPer()].listaN1[sharedViewModelProfile.getPosicionLis()].pictoList.filter { it.level1 }[sharedViewModel.getPosicion()].imageResource)
+            espacio_nombre.setText(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.getPosicionPer()].listaN1[sharedViewModelProfile.getPosicionLis()].pictoList.filter { it.level1 }[sharedViewModel.getPosicion()].textResource)
+        } else if (sharedViewModelProfile.getNivelBotonConfigg() == "Nivel 2: Pictogramas + Categorías") {
+            espacio_picto_foto.setImageURI(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.getPosicionPer()].listaN1[sharedViewModelProfile.getPosicionLis()].pictoList.filter { it.level2 }[sharedViewModel.getPosicion()].imageResource)
+            espacio_nombre.setText(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.getPosicionPer()].listaN1[sharedViewModelProfile.getPosicionLis()].pictoList.filter { it.level2 }[sharedViewModel.getPosicion()].textResource)
         } else {
-            espacio_picto_foto.setImageURI(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].imageResource)
-            espacio_nombre.setText(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].textResource)
+            espacio_picto_foto.setImageURI(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.getPosicionPer()].listaN1[sharedViewModelProfile.getPosicionLis()].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.getPosicion()].imageResource)
+            espacio_nombre.setText(sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.getPosicionPer()].listaN1[sharedViewModelProfile.getPosicionLis()].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.getPosicion()].textResource)
         }
-    }
-
-    //Función para ir correctamente hacia atrás
-    private fun irAtras() {
-        if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas") {
-            sharedViewModelProfile.posicionLista.value =
-                sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }[sharedViewModel.posicion.value!!].whatCategory
-        } else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
-            sharedViewModelProfile.posicionLista.value =
-                sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 }[sharedViewModel.posicion.value!!].whatCategory
-        } else
-            sharedViewModelProfile.posicionLista.value =
-                sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].whatCategory
     }
 
 }

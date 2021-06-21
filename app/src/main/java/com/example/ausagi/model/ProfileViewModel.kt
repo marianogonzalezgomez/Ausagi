@@ -15,16 +15,16 @@ class ProfileViewModel : ViewModel() {
 
     //VARIABLES-------------------------------------------------------
     val listaPerfiles = mutableListOf<Profile>() //lista de los perfiles creados
-    val posicion = MutableLiveData<Int>() //posicion del perfil seleccionado en la lista de perfiles
-    val posicionUltimoPerfil = MutableLiveData<Int>() //posicion del ultimo perfil de la lista de perfiles
-    val posicionLista = MutableLiveData<Int>() //posicion de la lista correspondiente dentro de la listaN1
+    private val posicion = MutableLiveData<Int>() //posicion del perfil seleccionado en la lista de perfiles
+    private val posicionUltimoPerfil = MutableLiveData<Int>() //posicion del ultimo perfil de la lista de perfiles
+    private val posicionLista = MutableLiveData<Int>() //posicion de la lista correspondiente dentro de la listaN1
 
-    var nivelBotonConfig: String = ""
-    var nivelTempVar: String = ""
-    var colorTempVar: String = ""
-    var tipoTempVar: Int = 0 //0 picto, 1 categoría y 2 rutina
+    private var nivelBotonConfig: String = ""
+    private var nivelTempVar: String = ""
+    private var colorTempVar: String = ""
+    private var tipoTempVar: Int = 0 //0 picto, 1 categoría y 2 rutina
 
-    var numCat: Int = 0
+    private var numCat: Int = 0
 
     //INICIALIZACIÓN--------------------------------------------------
     init {
@@ -37,6 +37,20 @@ class ProfileViewModel : ViewModel() {
     }
 
     //FUNCIONES-------------------------------------------------------
+
+    //Funciones de posicion
+    fun setPosicionPer(pos: Int) {
+        posicion.value = pos
+    }
+    fun setPosicionLis(pos: Int) {
+        posicionLista.value = pos
+    }
+    fun getPosicionPer(): Int {
+        return posicion.value!!
+    }
+    fun getPosicionLis(): Int {
+        return posicionLista.value!!
+    }
 
     //Funciones para guardar y eliminar perfiles
     fun guardarPerfil(fotoID: Uri?, nombre: String, comentario: String) {
@@ -119,7 +133,7 @@ class ProfileViewModel : ViewModel() {
     }
 
     //Funcion que mueve los pictos correctamente
-    fun moverPicto(from: Int, to: Int, context: Context) {
+    fun moverPicto(from: Int, to: Int, context: Context?) {
         var destino: Int = to
          //Copia del picto a mover
         val aux1 = listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter{ it.level1 }.size
@@ -188,6 +202,191 @@ class ProfileViewModel : ViewModel() {
         }
     }
 
+    //Funcion para guardar un item
+    fun guardarItem(imageUri: Uri?, text: String, nivel: Int){
+        when (tipoTempVar) {
+            0 -> guardarPictoPerson(imageUri, text, nivel, posicion.value!!, posicionLista.value!!)
+            1 -> guardarCatPerson(imageUri, text, nivel, posicion.value!!)
+            2 -> guardarRutPerson(imageUri, text, nivel, posicion.value!!)
+        }
+        setTipoTemp(0)
+    }
+
+    //Funcion para guardar la edición de un item
+    fun editItem(imageUri: Uri?, posi: Int, text: String, context: Context?){
+        if (imageUri != null) {
+            setFotoPicto(imageUri, mapNivel(), posi, posicion.value!!, posicionLista.value!!)
+        }
+        setNombrePicto(text, mapNivel(), posi, posicion.value!!, posicionLista.value!!)
+        Toast.makeText(context, "Guardado", Toast.LENGTH_SHORT).show()
+    }
+
+    //Funcion modificar perfil
+    fun modificarPerfil(imageUri: Uri?, text_nombre: String, text_com: String){
+        if (imageUri != null) {
+            setFoto(imageUri)
+        }
+        setNombre(text_nombre)
+        setNivel()
+        setComentario(text_com)
+        setColor()
+    }
+
+    //Funcion de mapeo de nivel
+    fun mapNivel(): Int {
+        if (nivelBotonConfig == "Nivel 1: Pictogramas"){
+            return 1
+        }
+        else if (nivelBotonConfig == "Nivel 2: Pictogramas + Categorías"){
+            return 2
+        }
+        else
+            return 3
+    }
+
+    //Funcion ir para atrás en Addpicto
+    fun irAtrasEdit(pos: Int) {
+        if (nivelBotonConfig == "Nivel 1: Pictogramas"){
+            posicionLista.value = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level1 }[pos].whatCategory
+        }
+        else if (nivelBotonConfig == "Nivel 2: Pictogramas + Categorías"){
+            posicionLista.value = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 }[pos].whatCategory
+        }
+        else
+            posicionLista.value = listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[pos].whatCategory
+    }
+
+    //Función para cambiar los numeros de categoría de los items al ser eliminados
+    fun updateNumCat(posi: Int) {
+        val limit: Int = listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter { it.level2 || it.level3 }.size - 1
+        if (posi < limit) { //Para evitar que se crashee con el último item (que no tiene porqué actualizarse nada ya que se elimina)
+            checkCatRout(posi)
+            val offset: Int = posicionLista.value!! //A partir de la categoría que hay que cambiar los numCat
+            var i = 0 //para iterar todos los pictos
+            var x = 1 //para iterar las categorías o rutinas hasta llegar al offset
+
+            while (i <= limit) {
+                if (listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].isCategory ||
+                    listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].isRoutine) {
+                    if (x >= offset) {
+                        //Se actualiza el numCat de la portada de la rutina o de la categoría
+                        listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].whatCategory--
+                        //Se actualizan los pictos dentro de cada rutina o categoría
+                        val limit2: Int = listaPerfiles[posicion.value!!].listaN1[x].pictoList.size - 1
+                        var e = 0
+                        while (e <= limit2) {
+                            listaPerfiles[posicion.value!!].listaN1[x].pictoList.filter{ it.level2 || it.level3 }[e].whatCategory--
+                            e++
+                        }
+                    }
+                    x++
+                }
+                i++
+            }
+        }
+    }
+
+    //Funcion para comprobar la categoría o rutina que se ha seleccionado
+    fun checkCatRout(posi: Int) {
+        val limit: Int = posi
+        var i = 0
+        var num = 0
+
+        while(i <= limit) {
+            if(listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].isCategory){
+                num++
+            }
+            else if(listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter{ it.level2 || it.level3 }[i].isRoutine){
+                num++
+            }
+            i++
+        }
+        posicionLista.value = num
+    }
+
+    //Funcion para eliminar items de los tableros
+    fun eliminarItem(context: Context?, posi: Int){
+        Toast.makeText(context, "Eliminado", Toast.LENGTH_SHORT).show()
+        //Si es nivel 1, entonces se elimina el pictograma de la lista principal
+        if (nivelBotonConfig == "Nivel 1: Pictogramas") {
+            listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                .remove(listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level1 }[posi])
+            //Si es nivel 2, entonces se elimina el pictograma de la lista que le corresponda y además, si es categoría, se elimina todoo lo asociado a ella
+        } else if (nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
+            //Si es categoría, se elimina lo asociado
+            if (listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 }[posi].isCategory) {
+                //Primero se eliminan los pictos asociados a esa categoría
+                checkCatRout(posi)
+                listaPerfiles[posicion.value!!].listaN1
+                    .removeAt(posicionLista.value!!)
+                //Después se elimina la portada de la lista principal
+                listaPerfiles[posicion.value!!].listaN1[0].pictoList
+                    .removeAll(listaPerfiles[posicion.value!!].listaN1[0].pictoList
+                        .filter { it.whatCategory == listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter { it.level2 }[posi].whatCategory })
+                //Por último, se actualizan los números de categoría de los demás pictogramas
+                updateNumCat(posi)
+                posicionLista.value = 0
+            } else {
+                //Se elimina el pictograma de la lista si no es categoría
+                listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                    .remove(listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 }[posi])
+            }
+        }
+        //Si es nivel 3, cuando se elimina la rutina, se elimina todoo lo asociado a ella directamente.
+        else if (nivelBotonConfig == "Nivel 3: Pictogramas + Categorías + Rutinas") {
+            //Si es categoría o rutina, se elimina lo asociado
+            if (listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[posi].isCategory ||
+                listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[posi].isRoutine
+            ) {
+                //Primero se eliminan los pictos asociados a esa rutina
+                checkCatRout(posi)
+                listaPerfiles[posicion.value!!].listaN1
+                    .removeAt(posicionLista.value!!)
+                //Después se elimina la portada de la lista principal
+                listaPerfiles[posicion.value!!].listaN1[0].pictoList
+                    .removeAll(listaPerfiles[posicion.value!!].listaN1[0].pictoList
+                        .filter { it.whatCategory == listaPerfiles[posicion.value!!].listaN1[0].pictoList.filter { it.level2 || it.level3 }[posi].whatCategory })
+                //Por último, se actualizan los números de categoría de los demás pictogramas
+                updateNumCat(posi)
+                posicionLista.value = 0
+            } else {
+                //Se elimina el pictograma de la lista si no es rutina
+                listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList
+                    .remove(listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[posi])
+            }
+        }
+    }
+
+    //Funcion para cargar los pictos que correspondan
+    fun loadPictosConfig(): MutableList<Picto> {
+        if (nivelBotonConfig == "Nivel 1: Pictogramas") {
+            return listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level1 }
+                .toMutableList()
+        }
+        else if (nivelBotonConfig == "Nivel 2: Pictogramas + Categorías") {
+            return listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 }
+                .toMutableList()
+        }
+        //Nivel 3: Pictogramas + Categorías + Rutinas (Cuando se pueden ver tanto las categorías como las rutinas)
+        return listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }
+            .toMutableList()
+    }
+
+    //Funcion para cargar los pictos que correspondan
+    fun loadPictosBoard(): MutableList<Picto> {
+        if (listaPerfiles[posicion.value!!].level == "Nivel 1: Pictogramas") {
+            return listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level1 }
+                .toMutableList()
+        }
+        else if (listaPerfiles[posicion.value!!].level == "Nivel 2: Pictogramas + Categorías") {
+            return listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 }
+                .toMutableList()
+        }
+        //Nivel 3: Pictogramas + Categorías + Rutinas (Cuando se pueden ver tanto las categorías como las rutinas)
+        return listaPerfiles[posicion.value!!].listaN1[posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }
+            .toMutableList()
+    }
+
     //Funciones para configurar el perfil
     fun setFoto(foto: Uri?) {
         listaPerfiles[posicion.value!!].imageResource = foto
@@ -221,10 +420,16 @@ class ProfileViewModel : ViewModel() {
     fun setNivelBotonConfigg(nivel: String) {
         nivelBotonConfig = nivel
     }
+    fun getNivelBotonConfigg(): String {
+        return nivelBotonConfig
+    }
 
     //Funcion para conocer el tipo de picto que se añade (picto, cat o rut)
     fun setTipoTemp(tipoTemp: Int) {
         tipoTempVar = tipoTemp
+    }
+    fun getTipoTemp(): Int{
+        return tipoTempVar
     }
 
     //Funcion que configura el tablero por defecto

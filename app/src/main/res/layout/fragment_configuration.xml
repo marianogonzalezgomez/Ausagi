@@ -100,7 +100,7 @@
                         android:inputType="text"
                         android:maxLength="20"
                         android:maxLines="1"
-                        android:text="@{viewModel.listaPerfiles[viewModel.posicion].name}"
+                        android:text="@{viewModel.listaPerfiles[viewModel.getPosicionPer()].name}"
                         android:textColor="?attr/colorOnSecondary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,7 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].level.equals(@string/nivel_1_pictogramas)}"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.getPosicionPer()].level.equals(@string/nivel_1_pictogramas)}"
                         android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_1_pictogramas)}"
                         android:text="@string/nivel_1_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
@@ -139,7 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].level.equals(@string/nivel_2_pictogramas)}"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.getPosicionPer()].level.equals(@string/nivel_2_pictogramas)}"
                         android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_2_pictogramas)}"
                         android:text="@string/nivel_2_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
@@ -150,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].level.equals(@string/nivel_3_pictogramas)}"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.getPosicionPer()].level.equals(@string/nivel_3_pictogramas)}"
                         android:onClick="@{() -> viewModel.setNivelTemp(@string/nivel_3_pictogramas)}"
                         android:text="@string/nivel_3_pictogramas"
                         android:textColor="?attr/colorOnSecondary"
@@ -183,7 +183,7 @@
                         android:lines="3"
                         android:maxLength="200"
                         android:maxLines="5"
-                        android:text="@{viewModel.listaPerfiles[viewModel.posicion].comment}"
+                        android:text="@{viewModel.listaPerfiles[viewModel.getPosicionPer()].comment}"
                         android:textColor="?attr/colorOnSecondary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -211,7 +211,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].colour.equals(@string/text_azul)}"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.getPosicionPer()].colour.equals(@string/text_azul)}"
                         android:onClick="@{() -> viewModel.setColorTemp(@string/text_azul)}"
                         android:text="@string/text_azul"
                         android:textColor="?attr/colorOnSecondary"
@@ -222,7 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].colour.equals(@string/text_marron)}"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.getPosicionPer()].colour.equals(@string/text_marron)}"
                         android:onClick="@{() -> viewModel.setColorTemp(@string/text_marron)}"
                         android:text="@string/text_marron"
                         android:textColor="?attr/colorOnSecondary"
@@ -233,7 +233,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="?attr/titleTextColor"
-                        android:checked="@{viewModel.listaPerfiles[viewModel.posicion].colour.equals(@string/text_verde)}"
+                        android:checked="@{viewModel.listaPerfiles[viewModel.getPosicionPer()].colour.equals(@string/text_verde)}"
                         android:onClick="@{() -> viewModel.setColorTemp(@string/text_verde)}"
                         android:text="@string/text_verde"
                         android:textColor="?attr/colorOnSecondary"

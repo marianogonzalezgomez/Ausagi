@@ -26,6 +26,7 @@ class ItemBoardAdapter(
         val item = dataset[position]
         var pressed = 0
 
+        //Poner los datos guardados donde corresponde en el holder
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
 
@@ -42,6 +43,7 @@ class ItemBoardAdapter(
             holder.imageView.setBackgroundColor(Color.WHITE)
         }
 
+        //Pasar la posicion del adapter al recyclerview para conocer qué item se ha elegido
         holder.imageView.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
                 listener.addPictoBarra(position)
@@ -49,7 +51,7 @@ class ItemBoardAdapter(
 
                 pressed++
                 listener.passClicked(pressed)
-            } //Pasar la posicion del adapter al recyclerview para conocer qué item se ha elegido
+            }
         }
 
     }

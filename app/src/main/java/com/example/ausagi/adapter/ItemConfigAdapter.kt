@@ -27,6 +27,7 @@ class ItemConfigAdapter(
         var pressedConfig = 0
         var pressedElim = 0
 
+        //Poner los datos guardados donde corresponde en el holder
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
 
@@ -43,7 +44,7 @@ class ItemConfigAdapter(
             holder.imageView.setBackgroundColor(Color.WHITE)
         }
 
-        //Pasar la posicion del adapter al recyclerview para conocer qué config item se ha elegido
+        //Pasar la posicion del adapter al recyclerview para conocer qué config item y sus diferentes opciones que se ha elegido
         holder.imageButtonConfig.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
                 listener.passData(position)
@@ -69,8 +70,6 @@ class ItemConfigAdapter(
                 Toast.makeText(context, "Mantén pulsado y arrastre para mover", Toast.LENGTH_SHORT).show()
             }
         }
-
-        //Pasar la posicion del adapter al recyclerview para conocer qué item se ha elegido
         holder.imageView.setOnClickListener {
             if (position != RecyclerView.NO_POSITION && (item.isCategory || item.isRoutine)) {
                 listener.passData(position)

@@ -24,15 +24,17 @@ class ItemProfileAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
+        //Poner los datos guardados donde corresponde en el holder
         holder.imageView.setImageURI(item.imageResource)
+
+        //pasa la posicion del adapter al recyclerview para conocer que item se ha elegido y acciona la navegación
         holder.imageButton.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
                 listener.passData(position)
-            } //pasa la posicion del adapter al recyclerview para conocer que item se ha elegido
+            }
             val action = HomeFragmentDirections.actionHomeFragmentToInformationFragment()
             holder.itemView.findNavController().navigate(action)
         }
-
         holder.imageView.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
                 listener.passData(position)

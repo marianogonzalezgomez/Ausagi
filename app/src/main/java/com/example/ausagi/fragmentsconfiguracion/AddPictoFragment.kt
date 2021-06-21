@@ -56,19 +56,16 @@ class AddPictoFragment : Fragment() {
         //Funciones de visibilidad
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         mostrarOpciones()
-        
+
+        //Ejecuta la función del intent de abrir galería al presionar el boton correspondiente
         boton_picto_foto.setOnClickListener {
             openGalleryForImage()
         }
+
         //funcion para guardar los datos editados
         boton_picto_hecho.setOnClickListener {
             if (imageUri != null && espacio_nombre.text!!.isNotEmpty()) {
                 guardarItem()
-                Toast.makeText(requireActivity(), "Guardado", Toast.LENGTH_SHORT).show()
-                //funcion de navegacion
-                sharedViewModel.posicion.value = 0
-                irAtras()
-                sharedViewModel.atrasEditar.value = 1
                 val action = AddPictoFragmentDirections.actionAddPictoFragmentToEditBoardFragment()
                 findNavController().navigate(action)
             }
@@ -79,14 +76,18 @@ class AddPictoFragment : Fragment() {
 
         //Botón para atrás
         botonAtrasEdit.setOnClickListener {
-            sharedViewModel.posicion.value = 0
-            irAtras()
-            sharedViewModel.atrasEditar.value = 1
+            sharedViewModel.setPosicion(0)
+            sharedViewModelProfile.irAtrasEdit(sharedViewModel.getPosicion())
+            sharedViewModel.setAtrasEditar(1)
             sharedViewModelProfile.setTipoTemp(0)
             requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
 
     }
+
+
+
+    //FUNCIONES-----------------------------------------------------------------------
 
     //Funciones intent de foto
     //Abre la galería con un Intent
@@ -104,39 +105,15 @@ class AddPictoFragment : Fragment() {
         }
     }
 
-    //Funcion de mapeo de nivel
-    private fun mapNivel(): Int {
-        if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas"){
-            return 1
-        }
-        else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías"){
-            return 2
-        }
-        else
-            return 3
-    }
-
-    //Función para ir correctamente hacia atrás
-    private fun irAtras() {
-        if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas"){
-            sharedViewModelProfile.posicionLista.value = sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level1 }[sharedViewModel.posicion.value!!].whatCategory
-        }
-        else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías"){
-            sharedViewModelProfile.posicionLista.value = sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 }[sharedViewModel.posicion.value!!].whatCategory
-        }
-        else
-            sharedViewModelProfile.posicionLista.value = sharedViewModelProfile.listaPerfiles[sharedViewModelProfile.posicion.value!!].listaN1[sharedViewModelProfile.posicionLista.value!!].pictoList.filter { it.level2 || it.level3 }[sharedViewModel.posicion.value!!].whatCategory
-    }
-
     //Función para mostrar las opciones de acuerdo al nivel en el que nos encontremos
     private fun mostrarOpciones() {
-        if (sharedViewModelProfile.nivelBotonConfig == "Nivel 1: Pictogramas"){
+        if (sharedViewModelProfile.getNivelBotonConfigg() == "Nivel 1: Pictogramas"){
             titulo_elegir_tipo.visibility = View.GONE
             radioGroup_addPicto.visibility = View.GONE
             sharedViewModelProfile.setTipoTemp(0)
         }
-        else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 2: Pictogramas + Categorías"){
-            if (sharedViewModel.inCategory.value == false) {
+        else if (sharedViewModelProfile.getNivelBotonConfigg() == "Nivel 2: Pictogramas + Categorías"){
+            if (!sharedViewModel.getInCategory()) {
                 titulo_elegir_tipo.visibility = View.VISIBLE
                 radioGroup_addPicto.visibility = View.VISIBLE
                 radioButtonN3.visibility = View.GONE
@@ -147,8 +124,8 @@ class AddPictoFragment : Fragment() {
                 sharedViewModelProfile.setTipoTemp(0)
             }
         }
-        else if (sharedViewModelProfile.nivelBotonConfig == "Nivel 3: Pictogramas + Categorías + Rutinas") {
-            if (sharedViewModel.inCategory.value == false) {
+        else if (sharedViewModelProfile.getNivelBotonConfigg() == "Nivel 3: Pictogramas + Categorías + Rutinas") {
+            if (!sharedViewModel.getInCategory()) {
                 titulo_elegir_tipo.visibility = View.VISIBLE
                 radioGroup_addPicto.visibility = View.VISIBLE
                 radioButtonN3.visibility = View.VISIBLE
@@ -161,17 +138,14 @@ class AddPictoFragment : Fragment() {
         }
     }
 
-    private fun guardarItem() {
-        if (sharedViewModelProfile.tipoTempVar == 0) { //Picto
-            sharedViewModelProfile.guardarPictoPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!, sharedViewModelProfile.posicionLista.value!!)
-        }
-        else if (sharedViewModelProfile.tipoTempVar == 1) { //Categoría
-            sharedViewModelProfile.guardarCatPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!)
-        }
-        else if (sharedViewModelProfile.tipoTempVar == 2) { //Rutina
-            sharedViewModelProfile.guardarRutPerson(imageUri, espacio_nombre.text.toString(), mapNivel(), sharedViewModelProfile.posicion.value!!)
-        }
-        sharedViewModelProfile.setTipoTemp(0)
+    //Funcion guardar item
+    private fun guardarItem(){
+        sharedViewModelProfile.guardarItem(imageUri, espacio_nombre.text.toString(), sharedViewModelProfile.mapNivel())
+        Toast.makeText(requireActivity(), "Guardado", Toast.LENGTH_SHORT).show()
+        //funcion de navegacion
+        sharedViewModel.setPosicion(0)
+        sharedViewModelProfile.irAtrasEdit(sharedViewModel.getPosicion())
+        sharedViewModel.setAtrasEditar(1)
     }
 
 }

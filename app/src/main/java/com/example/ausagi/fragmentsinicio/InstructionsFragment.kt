@@ -37,7 +37,7 @@ class InstructionsFragment : Fragment() {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
-        //Botón para atrás
+        //Botón para ir atrás
         botonAtras.setOnClickListener {
             requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }

@@ -60,12 +60,8 @@ class CreateProfileFragment : Fragment() {
 
         boton_perfil_creado.setOnClickListener {
             //funcion para guardar los datos
-            sharedViewModel.guardarPerfil(imageUri,
-                    espacio_nombre.text.toString(),
-                    espacio_comentario.text.toString())
+            sharedViewModel.guardarPerfil(imageUri, espacio_nombre.text.toString(), espacio_comentario.text.toString())
             Toast.makeText(requireActivity(), "Perfil creado", Toast.LENGTH_SHORT).show()
-
-            //funcion de navegacion
             val action = CreateProfileFragmentDirections.actionCreateProfileFragmentToHomeFragment()
             findNavController().navigate(action)
         }

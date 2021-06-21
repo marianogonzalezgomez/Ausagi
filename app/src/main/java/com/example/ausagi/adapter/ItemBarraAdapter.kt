@@ -22,6 +22,7 @@ class ItemBarraAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
+        //Poner los datos guardados donde corresponde en el holder
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
 
@@ -56,6 +57,6 @@ class ItemBarraAdapter(
     inner class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.item_board_picto_imagen)
         val textView: TextView = view.findViewById(R.id.item_board_nombre_picto)
-
     }
+
 }

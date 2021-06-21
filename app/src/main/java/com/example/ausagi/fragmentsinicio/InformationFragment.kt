@@ -54,12 +54,12 @@ class InformationFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        //Botón para atrás
+        //Botón para ir atrás
         botonAtras.setOnClickListener {
             requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
         }
 
-        espacio_informacion_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.posicion.value!!].imageResource)
+        espacio_informacion_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.getPosicionPer()].imageResource)
     }
 
 

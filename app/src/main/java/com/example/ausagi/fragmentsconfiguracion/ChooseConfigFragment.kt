@@ -54,8 +54,8 @@ class ChooseConfigFragment : Fragment() {
         }
 
         //Para reiniciar parámetros
-        sharedViewModel.posicionLista.value = 0
-        sharedViewModelBoard.posicion.value = 0
+        sharedViewModel.setPosicionLis(0)
+        sharedViewModelBoard.setPosicion(0)
         sharedViewModel.setTipoTemp(0)
 
 

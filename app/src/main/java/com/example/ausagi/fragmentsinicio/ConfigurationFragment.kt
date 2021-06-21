@@ -57,20 +57,14 @@ class ConfigurationFragment : Fragment() {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
-        espacio_modificar_perfil_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.posicion.value!!].imageResource)
+        espacio_modificar_perfil_foto.setImageURI(sharedViewModel.listaPerfiles[sharedViewModel.getPosicionPer()].imageResource)
 
         boton_modificar_foto.setOnClickListener {
             openGalleryForImage()
         }
 
         boton_perfil_modificado.setOnClickListener {
-            if (imageUri != null) {
-                sharedViewModel.setFoto(imageUri)
-            }
-            sharedViewModel.setNombre(espacio_nombre_config.text.toString())
-            sharedViewModel.setNivel()
-            sharedViewModel.setComentario(espacio_comentario_config.text.toString())
-            sharedViewModel.setColor()
+            sharedViewModel.modificarPerfil(imageUri, espacio_nombre_config.text.toString(), espacio_comentario_config.text.toString())
             val action = ConfigurationFragmentDirections.actionConfigurationFragmentToInformationFragment()
             findNavController().navigate(action)
         }

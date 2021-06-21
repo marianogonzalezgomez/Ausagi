@@ -67,8 +67,14 @@ class HomeFragment : Fragment(), Communicator {
             System.exit(0)
         }
 
-        //El listener del boton_masinfo está en el adapter de cada perfil que se muestra en home
+    }
 
+
+    override fun onResume() {
+        super.onResume()
+        sharedViewModelProfile.setPosicionLis(0)
+        sharedViewModelProfile.setPosicionPer(0)
+        sharedViewModel.setClicado(0)
     }
 
     private fun loadProfiles(): MutableList<Profile> {
@@ -76,16 +82,8 @@ class HomeFragment : Fragment(), Communicator {
     }
 
     override fun passData(position: Int) {
-        sharedViewModelProfile.posicion.value = position
+        sharedViewModelProfile.setPosicionPer(position)
     }
-
-    override fun onResume() {
-        super.onResume()
-        sharedViewModelProfile.posicionLista.value = 0
-        sharedViewModelProfile.posicion.value = 0
-        sharedViewModel.clicado.value = 0
-    }
-
 
     //Funciones que no interesan en este fragment
     override fun addPictoBarra(position: Int) {

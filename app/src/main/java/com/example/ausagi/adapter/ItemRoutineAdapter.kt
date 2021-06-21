@@ -22,6 +22,7 @@ class ItemRoutineAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
+        //Poner los datos guardados donde corresponde en el holder
         holder.imageView.setImageURI(item.imageResource)
         holder.textView.text = item.textResource
         holder.imageView.setBackgroundColor(Color.WHITE)
