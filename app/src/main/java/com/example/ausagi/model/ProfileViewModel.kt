@@ -428,9 +428,6 @@ class ProfileViewModel : ViewModel() {
     fun setTipoTemp(tipoTemp: Int) {
         tipoTempVar = tipoTemp
     }
-    fun getTipoTemp(): Int{
-        return tipoTempVar
-    }
 
     //Funcion que configura el tablero por defecto
     private fun setDefaultTablero() { //lista de pictos por defecto de cada perfil

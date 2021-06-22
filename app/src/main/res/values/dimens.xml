@@ -26,5 +26,21 @@
     <dimen name="circulo_contenedor_foto">200dp</dimen>
     <dimen name="padding_zona_segura">250dp</dimen>
     <dimen name="padding_zona_segura_2">100dp</dimen>
+    <dimen name="altura_barra_accion">230dp</dimen>
+    <dimen name="altura_barra_pictos">150dp</dimen>
+    <dimen name="altura_barra_accion_720">460dp</dimen>
+    <dimen name="altura_barra_pictos_720">300dp</dimen>
+    <dimen name="lista_botones_config_circulos_720">100dp</dimen>
+    <dimen name="circulo_contenedor_picto_720">220dp</dimen>
+    <dimen name="circulo_picto_720">200dp</dimen>
+    <dimen name="titulo_pictos_720">48sp</dimen>
+    <dimen name="padding_zona_segura_720">500dp</dimen>
+    <dimen name="padding_zona_segura_2_720">200dp</dimen>
+    <dimen name="circulo_contenedor_rutina_720">500dp</dimen>
+    <dimen name="circulo_rutina_720">460dp</dimen>
+    <dimen name="circulo_config_720">60dp</dimen>
+
+
+
 
 </resources>

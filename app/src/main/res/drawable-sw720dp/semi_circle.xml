@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="?attr/colorPrimary" />
+
+    <corners android:radius="30dp" />
+
+    <size
+        android:width="@dimen/circulo_contenedor_picto_720"
+        android:height="@dimen/circulo_contenedor_picto_720" />
+
+</shape>
